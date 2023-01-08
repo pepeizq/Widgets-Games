@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using Plantillas;
+using System;
+using System.IO;
+using System.Text.Json;
 using Windows.Storage;
 
 namespace Herramientas
@@ -26,26 +30,36 @@ namespace Herramientas
             return false;
         }
 
-        public static string LeerFichero(string enlaceFichero)
+        public static string LeerFicheroDentroAplicacion(string enlaceFichero)
         {
             Uri enlace = new Uri(enlaceFichero);
             StorageFile fichero = StorageFile.GetFileFromApplicationUriAsync(enlace).AsTask().Result;
             return FileIO.ReadTextAsync(fichero).AsTask().Result;
         }
 
-        public static void EscribirFichero(string nombreFichero, string contenido)
+        public static string LeerFicheroFueraAplicacion(string enlaceFichero)
+        {
+            enlaceFichero = enlaceFichero.Replace("/", Strings.ChrW(92).ToString());
+
+            StorageFile fichero = StorageFile.GetFileFromPathAsync(enlaceFichero).AsTask().Result;
+            return FileIO.ReadTextAsync(fichero).AsTask().Result;
+        }
+
+        public static async void EscribirFichero(string nombreFichero, string contenido)
         {
             StorageFolder carpetaApp = ApplicationData.Current.LocalFolder;
 
-            if (carpetaApp.GetFolderAsync("Plantillas").AsTask().Result == null)
+            try
             {
-                carpetaApp.CreateFolderAsync("Plantillas", CreationCollisionOption.FailIfExists).AsTask();
+                await carpetaApp.CreateFolderAsync("Plantillas", CreationCollisionOption.FailIfExists);
             }
+            catch { }
 
-            StorageFolder carpetaPlantillas = carpetaApp.GetFolderAsync("Plantillas").AsTask().Result;
-            StorageFile fichero = carpetaPlantillas.CreateFileAsync(nombreFichero, CreationCollisionOption.ReplaceExisting).AsTask().Result;
+            StorageFolder carpetaPlantillas = await carpetaApp.GetFolderAsync("Plantillas");
+            StorageFile fichero = await carpetaPlantillas.CreateFileAsync(nombreFichero, CreationCollisionOption.ReplaceExisting);
 
-            FileIO.WriteTextAsync(fichero, contenido).AsTask();
+            await FileIO.WriteTextAsync(fichero, contenido);
         }
+
     }
 }

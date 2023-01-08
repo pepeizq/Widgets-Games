@@ -4,7 +4,7 @@ public abstract class WidgetBase : IWidget
 {
     public string? ID { get; init; }
     public virtual string? Estado { get; set; }
-    public string? Enlace { get; set; }
+    public virtual string? Enlace { get; set; }
 
     public bool Activado { get; private set; }
 

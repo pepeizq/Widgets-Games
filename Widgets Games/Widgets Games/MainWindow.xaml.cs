@@ -1,9 +1,13 @@
+using Herramientas;
 using Microsoft.UI.Xaml;
 using Microsoft.VisualBasic;
 using Microsoft.Windows.Widgets.Providers;
+using Plantillas;
 using System;
+using System.Text.Json;
 using System.Text.Json.Nodes;
 using Windows.Storage;
+using Windows.System;
 using static System.Net.Mime.MediaTypeNames;
 using static System.Net.WebRequestMethods;
 
@@ -22,8 +26,24 @@ namespace Widgets_Games
             this.InitializeComponent();
         }
 
-        private void myButton_Click(object sender, RoutedEventArgs e)
+        private async void myButton_Click(object sender, RoutedEventArgs e)
         {
+         
+
+            string plantilla = Ficheros.LeerFicheroDentroAplicacion("ms-appx:///Plantillas/Juego.json");
+
+            Juego json = JsonSerializer.Deserialize<Juego>(plantilla);
+            json.enlace = "steam://rungameid/1568590/";
+
+            JuegoFondo fondo = new JuegoFondo();
+            fondo.url = "https://cdn.cloudflare.steamstatic.com/steam/apps/1568590/library_600x900.jpg";
+
+            json.fondo = fondo;
+
+            Ficheros.EscribirFichero("Juego.json", JsonSerializer.Serialize(json));
+
+            //await Launcher.LaunchFolderPathAsync(ApplicationData.Current.LocalFolder.Path);
+
             myButton.Content = "Clicked";
 
             //string plantilla = Herramientas.Ficheros.LeerFichero("ms-appx:///Plantillas/Test.json");
@@ -39,8 +59,8 @@ namespace Widgets_Games
 
             //Herramientas.Ficheros.EscribirFichero("ms-appx:///Plantillas/Test.json", plantilla);
 
-            WidgetProveedor test = new WidgetProveedor();
-            test.Test();
+            //WidgetProveedor test = new WidgetProveedor();
+            //test.Test();
         }
     }
 }
