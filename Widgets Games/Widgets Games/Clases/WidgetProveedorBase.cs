@@ -17,8 +17,7 @@ public class WidgetProveedorBase : IWidgetProvider
 
         WidgetUpdateRequestOptions actualizarOpciones = new WidgetUpdateRequestOptions(widgetId)
         {
-            Template = nuevoWidget.GetTemplateForWidget(widgetId),
-            Data = nuevoWidget.GetDataForWidget(),
+            Template = nuevoWidget.CogerPlantilla(widgetId),
             CustomState = nuevoWidget.Estado
         };
 

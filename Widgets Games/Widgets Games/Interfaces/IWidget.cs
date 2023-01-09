@@ -4,7 +4,6 @@ public interface IWidget
 {
     string? ID { get; }
     string? Estado { get; }
-    string? Enlace { get; }
 
     bool Activado { get; }
 
@@ -12,6 +11,5 @@ public interface IWidget
     void Desactivar();
     void OnActionInvoked(WidgetActionInvokedArgs actionInvokedArgs);
     void OnWidgetContextChanged(WidgetContextChangedArgs contextChangedArgs);
-    string GetTemplateForWidget(string id);
-    string GetDataForWidget();
+    string CogerPlantilla(string id);
 }

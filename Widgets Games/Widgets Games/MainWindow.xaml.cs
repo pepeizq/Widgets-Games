@@ -33,12 +33,8 @@ namespace Widgets_Games
             string plantilla = Ficheros.LeerFicheroDentroAplicacion("ms-appx:///Plantillas/Juego.json");
 
             Juego json = JsonSerializer.Deserialize<Juego>(plantilla);
-            json.enlace = "steam://rungameid/1568590/";
-
-            JuegoFondo fondo = new JuegoFondo();
-            fondo.url = "https://cdn.cloudflare.steamstatic.com/steam/apps/1568590/library_600x900.jpg";
-
-            json.fondo = fondo;
+            json.enlace = "steam://rungameid/1659420/";
+            json.fondo.url = "https://cdn.cloudflare.steamstatic.com/steam/apps/1659420/library_600x900.jpg";
 
             Ficheros.EscribirFichero("Juego.json", JsonSerializer.Serialize(json));
 

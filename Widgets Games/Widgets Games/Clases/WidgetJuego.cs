@@ -8,69 +8,23 @@ using Windows.System;
 
 internal class WidgetJuego : WidgetBase
 {
-    private const int NumeroEmpieza = 10000;
-    private int contador = NumeroEmpieza;
-
-    public override string Enlace
-    {
-        get => base.Enlace;
-    }
-
-    public override string Estado
-    {
-        get => base.Estado;
-
-        set
-        {
-            base.Estado = value;
-
-            if (string.IsNullOrWhiteSpace(value))
-            {
-                Estado = NumeroEmpieza.ToString();
-            }
-            else
-            {
-                try
-                {
-                    contador = int.Parse(value);
-                }
-                catch
-                {
-                    Estado = NumeroEmpieza.ToString();
-                }
-            }
-        }
-    }
-
     public override async void OnActionInvoked(WidgetActionInvokedArgs actionInvokedArgs)
     {
         string verb = actionInvokedArgs.Verb;
 
         if (verb == "AbrirJuego")
         {
-            //contador--;
-            //Estado = contador + "";
-
-            string datos = GetDataForWidget();
-            Notificaciones.Toast(datos);
-
-            //await Launcher.LaunchUriAsync(new Uri(datos));
-
-            //WidgetUpdateRequestOptions actualizarOpciones = new WidgetUpdateRequestOptions(ID)
-            //{
-            //    Data = datos,
-            //    CustomState = Estado
-            //};
-
-            //WidgetManager.GetDefault().UpdateWidget(actualizarOpciones);
+            string plantilla = Ficheros.LeerFicheroFueraAplicacion(ApplicationData.Current.LocalFolder.Path + "/Plantillas/Juego" + ID + ".json");
+            Juego json = JsonSerializer.Deserialize<Juego>(plantilla);
+            await Launcher.LaunchUriAsync(new Uri(json.enlace));
         }
     }
 
-    public override string GetTemplateForWidget(string id)
+    public override string CogerPlantilla(string id)
     {
-        if (Ficheros.ExisteFichero(ApplicationData.Current.LocalFolder.Path + "/Plantillas/Juego" + id + ".json") == true)
+        if (Ficheros.ExisteFichero(ApplicationData.Current.LocalFolder.Path + "/Plantillas/Juego" + ID + ".json") == true)
         {
-            return Ficheros.LeerFicheroDentroAplicacion(ApplicationData.Current.LocalFolder.Path + "/Plantillas/Juego" + id + ".json");
+            return Ficheros.LeerFicheroDentroAplicacion(ApplicationData.Current.LocalFolder.Path + "/Plantillas/Juego" + ID + ".json");
         }
         else
         {
@@ -78,10 +32,5 @@ internal class WidgetJuego : WidgetBase
             Ficheros.EscribirFichero("Juego" + id + ".json", plantilla);
             return plantilla;
         }
-    }
-
-    public override string GetDataForWidget()
-    {
-        return "{ \"enlace\": " + Enlace + " }";
     }
 }

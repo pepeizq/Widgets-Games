@@ -20,6 +20,5 @@ public abstract class WidgetBase : IWidget
 
     public virtual void OnActionInvoked(WidgetActionInvokedArgs actionInvokedArgs) { }
     public virtual void OnWidgetContextChanged(WidgetContextChangedArgs contextChangedArgs) { }
-    public abstract string GetTemplateForWidget(string id);
-    public abstract string GetDataForWidget();
+    public abstract string CogerPlantilla(string id);
 }
