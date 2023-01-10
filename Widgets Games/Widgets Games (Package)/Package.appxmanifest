@@ -9,13 +9,13 @@
 	IgnorableNamespaces="uap uap3 rescap">
 
   <Identity
-    Name="fec776f1-609c-4d96-ab07-54347faeb2e6"
-    Publisher="CN=pepei"
+    Name="12041pepeizq.pepeizqsWidgetsforGames"
+    Publisher="CN=E6A59F16-60E0-4B88-A8A1-993C16A63CD0"
     Version="1.0.0.0" />
 
   <Properties>
-    <DisplayName>Widgets Games</DisplayName>
-    <PublisherDisplayName>pepei</PublisherDisplayName>
+    <DisplayName>pepeizq&apos;s Widgets for Games</DisplayName>
+    <PublisherDisplayName>pepeizq</PublisherDisplayName>
     <Logo>Images\StoreLogo.png</Logo>
   </Properties>
 
@@ -33,7 +33,7 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="$targetentrypoint$">
       <uap:VisualElements
-        DisplayName="Widgets Games"
+        DisplayName="pepeizq&apos;s Widgets for Games"
         Description="Widgets Games"
         BackgroundColor="transparent"
         Square150x150Logo="Images\Square150x150Logo.png"
@@ -62,7 +62,7 @@
 							</Activation>
 							<Definitions>
 								<Definition Id="Juego"
-									DisplayName="Widget Games"
+									DisplayName="pepeizq&apos;s Widgets for Games"
 									Description="Widget Games Description">
 									<Capabilities>
 										<Capability>

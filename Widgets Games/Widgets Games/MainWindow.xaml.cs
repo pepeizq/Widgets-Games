@@ -1,15 +1,8 @@
 using Herramientas;
 using Microsoft.UI.Xaml;
-using Microsoft.VisualBasic;
-using Microsoft.Windows.Widgets.Providers;
+using Microsoft.UI.Xaml.Controls;
 using Plantillas;
-using System;
 using System.Text.Json;
-using System.Text.Json.Nodes;
-using Windows.Storage;
-using Windows.System;
-using static System.Net.Mime.MediaTypeNames;
-using static System.Net.WebRequestMethods;
 
 //https://nicksnettravels.builttoroam.com/windows-widget/
 //https://www.adaptivecards.io/designer/
@@ -24,39 +17,82 @@ namespace Widgets_Games
         public MainWindow()
         {
             this.InitializeComponent();
+
+            CargarObjetosVentana();
+
+            ObjetosVentana.tbSteamEnlaceJuego.TextChanged += EnlaceSteamTextoCambia;
+            ObjetosVentana.botonSteamGenerarPlantilla.Click += GenerarPlantillaClick;
         }
 
-        private async void myButton_Click(object sender, RoutedEventArgs e)
+        public void CargarObjetosVentana()
         {
-         
+            ObjetosVentana.ventana = ventana;
+            ObjetosVentana.tbSteamEnlaceJuego = tbSteamEnlaceJuego;
+            ObjetosVentana.botonSteamGenerarPlantilla = botonSteamGenerarPlantilla;
+            ObjetosVentana.tbMensaje = tbMensaje;
+        }
 
-            string plantilla = Ficheros.LeerFicheroDentroAplicacion("ms-appx:///Plantillas/Juego.json");
+        public static class ObjetosVentana
+        {
+            public static Window ventana { get; set; }
 
-            Juego json = JsonSerializer.Deserialize<Juego>(plantilla);
-            json.enlace = "steam://rungameid/1659420/";
-            json.fondo.url = "https://cdn.cloudflare.steamstatic.com/steam/apps/1659420/library_600x900.jpg";
+            public static TextBox tbSteamEnlaceJuego { get; set; }
+            public static Button botonSteamGenerarPlantilla { get; set; }
+            public static TextBlock tbMensaje { get; set; }
+        }
 
-            Ficheros.EscribirFichero("Juego.json", JsonSerializer.Serialize(json));
+        private void EnlaceSteamTextoCambia(object sender, TextChangedEventArgs e)
+        {
+            TextBox tb = ObjetosVentana.tbSteamEnlaceJuego;
 
-            //await Launcher.LaunchFolderPathAsync(ApplicationData.Current.LocalFolder.Path);
+            if (tb.Text.Trim().Length > 0) 
+            { 
+                if (tb.Text.Contains("https://store.steampowered.com/app/") == true)
+                {
+                    ObjetosVentana.botonSteamGenerarPlantilla.IsEnabled = true;
+                }
+                else
+                {
+                    ObjetosVentana.botonSteamGenerarPlantilla.IsEnabled = false;
+                }
+            }
+            else
+            {
+                ObjetosVentana.botonSteamGenerarPlantilla.IsEnabled = false;
+            }
+        }
 
-            myButton.Content = "Clicked";
+        private void GenerarPlantillaClick(object sender, RoutedEventArgs e)
+        {
+            ObjetosVentana.tbSteamEnlaceJuego.IsEnabled = false;
+            ObjetosVentana.botonSteamGenerarPlantilla.IsEnabled = false;
 
-            //string plantilla = Herramientas.Ficheros.LeerFichero("ms-appx:///Plantillas/Test.json");
+            TextBox tb = ObjetosVentana.tbSteamEnlaceJuego;
 
-            //int int1 = plantilla.IndexOf(Strings.ChrW(34) + "url" + Strings.ChrW(34));
-            //string temp1 = plantilla.Remove(0, int1 + 8);
-            //int int2 = temp1.IndexOf(Strings.ChrW(34));
+            if (tb.Text.Contains("https://store.steampowered.com/app/") == true)
+            {
+                string id = tb.Text;
+                id = id.Replace("https://store.steampowered.com/app/", null);
 
-            //plantilla = plantilla.Remove(int1 + 8, int2);
-            //plantilla = plantilla.Insert(int1 + 8, "https://www.elotrolado.net/foro_pc-online_64");
+                if (id.Contains("/") == true)
+                {
+                    int int1 = id.IndexOf("/");
+                    id = id.Remove(int1, id.Length - int1);
+                }
 
-            //tbTest.Text = plantilla;
+                string plantilla = Ficheros.LeerFicheroDentroAplicacion("ms-appx:///Plantillas/Juego.json");
 
-            //Herramientas.Ficheros.EscribirFichero("ms-appx:///Plantillas/Test.json", plantilla);
+                Juego json = JsonSerializer.Deserialize<Juego>(plantilla);
+                json.enlace = "steam://rungameid/" + id + "/";
+                json.fondo.url = "https://cdn.cloudflare.steamstatic.com/steam/apps/" + id + "/library_600x900.jpg";
 
-            //WidgetProveedor test = new WidgetProveedor();
-            //test.Test();
+                Ficheros.EscribirFichero("Juego.json", JsonSerializer.Serialize(json));
+
+                tbMensaje.Text = "Preloaded widget, go to Widgets app and add game widget from 'Add widgets'";
+            }
+
+            ObjetosVentana.tbSteamEnlaceJuego.IsEnabled = true;
+            ObjetosVentana.botonSteamGenerarPlantilla.IsEnabled = true;
         }
     }
 }
