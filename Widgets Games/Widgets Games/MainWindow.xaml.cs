@@ -1,4 +1,5 @@
 using Herramientas;
+using Interfaz;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Plantillas;
@@ -20,13 +21,23 @@ namespace Widgets_Games
 
             CargarObjetosVentana();
 
-            ObjetosVentana.tbSteamEnlaceJuego.TextChanged += EnlaceSteamTextoCambia;
+            BarraTitulo.Generar(this);
+            BarraTitulo.CambiarTitulo(null);
+
+            
             ObjetosVentana.botonSteamGenerarPlantilla.Click += GenerarPlantillaClick;
         }
 
         public void CargarObjetosVentana()
         {
             ObjetosVentana.ventana = ventana;
+            ObjetosVentana.gridTitulo = gridTitulo;
+            ObjetosVentana.tbTitulo = tbTitulo;
+
+            ObjetosVentana.gridPresentacion = gridPresentacion;
+            ObjetosVentana.gridSteam = gridSteam;
+            ObjetosVentana.gridCargarWidget = gridCargarWidget;
+
             ObjetosVentana.tbSteamEnlaceJuego = tbSteamEnlaceJuego;
             ObjetosVentana.botonSteamGenerarPlantilla = botonSteamGenerarPlantilla;
             ObjetosVentana.tbMensaje = tbMensaje;
@@ -35,32 +46,22 @@ namespace Widgets_Games
         public static class ObjetosVentana
         {
             public static Window ventana { get; set; }
+            public static Grid gridTitulo { get; set; }
+            public static TextBlock tbTitulo { get; set; }
+            public static NavigationView nvPrincipal { get; set; }
+
+            public static Grid gridPresentacion { get; set; }
+            public static Grid gridSteam { get; set; }
+            public static Grid gridCargarWidget { get; set; }
+
+
 
             public static TextBox tbSteamEnlaceJuego { get; set; }
             public static Button botonSteamGenerarPlantilla { get; set; }
             public static TextBlock tbMensaje { get; set; }
         }
 
-        private void EnlaceSteamTextoCambia(object sender, TextChangedEventArgs e)
-        {
-            TextBox tb = ObjetosVentana.tbSteamEnlaceJuego;
 
-            if (tb.Text.Trim().Length > 0) 
-            { 
-                if (tb.Text.Contains("https://store.steampowered.com/app/") == true)
-                {
-                    ObjetosVentana.botonSteamGenerarPlantilla.IsEnabled = true;
-                }
-                else
-                {
-                    ObjetosVentana.botonSteamGenerarPlantilla.IsEnabled = false;
-                }
-            }
-            else
-            {
-                ObjetosVentana.botonSteamGenerarPlantilla.IsEnabled = false;
-            }
-        }
 
         private void GenerarPlantillaClick(object sender, RoutedEventArgs e)
         {
@@ -94,5 +95,20 @@ namespace Widgets_Games
             ObjetosVentana.tbSteamEnlaceJuego.IsEnabled = true;
             ObjetosVentana.botonSteamGenerarPlantilla.IsEnabled = true;
         }
-    }
+
+        private void nvPrincipal_Loaded(object sender, RoutedEventArgs e)
+        {
+            //ResourceLoader recursos = new ResourceLoader();
+
+            //Pestañas.CreadorItems(recursos.GetString("Subscriptions"), null);
+            //Pestañas.CreadorItems(recursos.GetString("Free"), null);
+            //Pestañas.CreadorItems(recursos.GetString("Bundles"), null);
+            //Pestañas.CreadorItems(recursos.GetString("Deals"), null);
+            //Pestañas.CreadorItems(recursos.GetString("All"), null);
+        }
+
+        private void nvPrincipal_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        {
+        }
+        }
 }

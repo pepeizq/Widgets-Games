@@ -5,15 +5,140 @@
 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals" 
+    xmlns:controls="using:CommunityToolkit.WinUI.UI.Controls"
+    xmlns:iconos="using:FontAwesome5"
+    
     mc:Ignorable="d" x:Name="ventana">
 
-    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock Text="Enter a link of a Steam game:" Margin="0,0,0,30" HorizontalAlignment="Center"/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="32"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <TextBox x:Name="tbSteamEnlaceJuego" MinWidth="300" Margin="0,0,0,30" HorizontalAlignment="Center"/>
+        <Grid.Background>
+            <SolidColorBrush Color="{StaticResource ColorPrimario}" Opacity="0.9"/>
+        </Grid.Background>
 
-        <Button x:Name="botonSteamGenerarPlantilla" Margin="0,0,0,30" HorizontalAlignment="Center" IsEnabled="False">Generate</Button>
+        <Grid x:Name="gridTitulo" Grid.Row="0">
+            <Grid.Background>
+                <SolidColorBrush Color="{StaticResource ColorPrimario}" Opacity="0.5"/>
+            </Grid.Background>
 
-        <TextBlock x:Name="tbMensaje" HorizontalAlignment="Center"/>
-    </StackPanel>
+            <TextBlock x:Name="tbTitulo" Margin="15,0,0,0" FontSize="12" Foreground="White" VerticalAlignment="Center"/>
+        </Grid>
+
+        <NavigationView x:Name="nvPrincipal" Grid.Row="1" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" 
+                        Loaded="nvPrincipal_Loaded" ItemInvoked="nvPrincipal_ItemInvoked" IsSettingsVisible="False">
+            <NavigationView.Background>
+                <SolidColorBrush Color="{StaticResource ColorPrimario}" Opacity="1"/>
+            </NavigationView.Background>
+
+            <NavigationView.Foreground>
+                <SolidColorBrush Color="{StaticResource ColorFuente}"/>
+            </NavigationView.Foreground>
+
+            <NavigationView.Resources>
+                <SolidColorBrush x:Key="NavigationViewTopPaneBackground" Color="{StaticResource ColorPrimario}"/>
+                <SolidColorBrush x:Key="NavigationViewSelectionIndicatorForeground" Color="{StaticResource ColorFuente}" />
+            </NavigationView.Resources>
+
+            <NavigationView.MenuItems>
+                <NavigationViewItem x:Name="nvItemMenu">
+                    <FlyoutBase.AttachedFlyout>
+                        <MenuFlyout x:Name="menuItemMenu">
+                            <MenuFlyout.MenuFlyoutPresenterStyle>
+                                <Style TargetType="MenuFlyoutPresenter">
+                                    <Setter Property="Background" Value="{StaticResource ColorPrimario}"/>
+                                    <Setter Property="Padding" Value="10,20"/>
+                                </Style>
+                            </MenuFlyout.MenuFlyoutPresenterStyle>
+                        </MenuFlyout>
+                    </FlyoutBase.AttachedFlyout>
+
+                    <NavigationViewItem.Content>
+                        <Grid Height="28" Width="28" Padding="5" CornerRadius="3">
+                            <AnimatedIcon Foreground="{StaticResource ColorFuente}">
+                                <AnimatedIcon.Source>
+                                    <animatedvisuals:AnimatedGlobalNavigationButtonVisualSource/>
+                                </AnimatedIcon.Source>
+                                <AnimatedIcon.FallbackIconSource>
+                                    <SymbolIconSource Symbol="GlobalNavigationButton"/>
+                                </AnimatedIcon.FallbackIconSource>
+                            </AnimatedIcon>
+                        </Grid>
+                    </NavigationViewItem.Content>
+                </NavigationViewItem>
+                <NavigationViewItem x:Name="nvItemVolver" Visibility="Collapsed">
+                    <Grid Height="28" Width="28" Padding="5" CornerRadius="3">
+                        <AnimatedIcon Foreground="{StaticResource ColorFuente}">
+                            <AnimatedIcon.Source>
+                                <animatedvisuals:AnimatedBackVisualSource/>
+                            </AnimatedIcon.Source>
+                            <AnimatedIcon.FallbackIconSource>
+                                <SymbolIconSource Symbol="Back"/>
+                            </AnimatedIcon.FallbackIconSource>
+                        </AnimatedIcon>
+                    </Grid>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+
+            <NavigationView.FooterMenuItems>
+                <NavigationViewItem x:Name="nvItemSubirArriba" Visibility="Collapsed">
+                    <Grid Height="28" Width="28" Padding="1" CornerRadius="3">
+                        <iconos:FontAwesome Icon="Solid_AngleUp" Foreground="{StaticResource ColorFuente}" FontSize="19"/>
+                    </Grid>
+                </NavigationViewItem>
+                <TextBox x:Name="tbBuscador" RequestedTheme="Dark" MinWidth="200" BorderThickness="0"/>
+                <NavigationViewItem x:Name="nvItemSteamDeseados">
+                    <Grid Height="28" Width="28" Padding="1" CornerRadius="3">
+                        <iconos:FontAwesome Icon="Brands_Steam" Foreground="{StaticResource ColorFuente}" FontSize="19"/>
+                    </Grid>
+                </NavigationViewItem>
+                <NavigationViewItem x:Name="nvItemOpciones">
+                    <Grid Height="28" Width="28" Padding="5" CornerRadius="3">
+                        <AnimatedIcon Foreground="{StaticResource ColorFuente}">
+                            <AnimatedIcon.Source>
+                                <animatedvisuals:AnimatedSettingsVisualSource/>
+                            </AnimatedIcon.Source>
+                            <AnimatedIcon.FallbackIconSource>
+                                <SymbolIconSource Symbol="Setting"/>
+                            </AnimatedIcon.FallbackIconSource>
+                        </AnimatedIcon>
+                    </Grid>
+                </NavigationViewItem>
+            </NavigationView.FooterMenuItems>
+
+            <Grid>
+                <Grid.Background>
+                    <SolidColorBrush Color="{StaticResource ColorPrimario}" Opacity="0.8"/>
+                </Grid.Background>
+
+                <Grid x:Name="gridPresentacion" Visibility="Collapsed">
+                    
+                </Grid>
+
+                <Grid x:Name="gridSteam" Visibility="Collapsed">
+                    
+                </Grid>
+
+                <Grid x:Name="gridCargarWidget" Visibility="Collapsed">
+
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock Text="Enter a link of a Steam game:" Margin="0,0,0,30" HorizontalAlignment="Center"/>
+
+                        <TextBox x:Name="tbSteamEnlaceJuego" MinWidth="300" Margin="0,0,0,30" HorizontalAlignment="Center"/>
+
+                        <Button x:Name="botonSteamGenerarPlantilla" Margin="0,0,0,30" HorizontalAlignment="Center" IsEnabled="False">Generate</Button>
+
+                        <TextBlock x:Name="tbMensaje" HorizontalAlignment="Center"/>
+                    </StackPanel>
+
+                </Grid>
+            </Grid>
+            
+        </NavigationView>
+    </Grid> 
+        
 </Window>
