@@ -90,12 +90,6 @@
                         <iconos:FontAwesome Icon="Solid_AngleUp" Foreground="{StaticResource ColorFuente}" FontSize="19"/>
                     </Grid>
                 </NavigationViewItem>
-                <TextBox x:Name="tbBuscador" RequestedTheme="Dark" MinWidth="200" BorderThickness="0"/>
-                <NavigationViewItem x:Name="nvItemSteamDeseados">
-                    <Grid Height="28" Width="28" Padding="1" CornerRadius="3">
-                        <iconos:FontAwesome Icon="Brands_Steam" Foreground="{StaticResource ColorFuente}" FontSize="19"/>
-                    </Grid>
-                </NavigationViewItem>
                 <NavigationViewItem x:Name="nvItemOpciones">
                     <Grid Height="28" Width="28" Padding="5" CornerRadius="3">
                         <AnimatedIcon Foreground="{StaticResource ColorFuente}">
@@ -116,11 +110,22 @@
                 </Grid.Background>
 
                 <Grid x:Name="gridPresentacion" Visibility="Collapsed">
-                    
+                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <TextBlock x:Uid="PresentationMessage" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+                        <controls:AdaptiveGridView x:Name="gvPresentacionPlataformas" HorizontalAlignment="Center"/>
+
+
+                    </StackPanel>
                 </Grid>
 
                 <Grid x:Name="gridSteam" Visibility="Collapsed">
-                    
+                    <TabView MinHeight="300" MinWidth="300">
+                        <TabViewItem Header="test1">
+                            <TextBlock Text="test3"/>
+                        </TabViewItem>
+                        <TabViewItem Header="test2"/>
+                    </TabView>
                 </Grid>
 
                 <Grid x:Name="gridCargarWidget" Visibility="Collapsed">
@@ -136,8 +141,11 @@
                     </StackPanel>
 
                 </Grid>
+
+                <Grid x:Name="gridOpciones" Visibility="Collapsed">
+
+                </Grid>
             </Grid>
-            
         </NavigationView>
     </Grid> 
         

@@ -16,11 +16,11 @@ namespace Interfaz
             ResourceLoader recursos = new ResourceLoader();
 
             ObjetosVentana.nvPrincipal.MenuItems.RemoveAt(0);
-            //ObjetosVentana.nvPrincipal.MenuItems.Insert(0, ObjetosVentana.nvItemMenu);
+            ObjetosVentana.nvPrincipal.MenuItems.Insert(0, ObjetosVentana.nvItemMenu);
 
-            //ObjetosVentana.nvItemMenu.PointerEntered += EntraRatonNvItemMenu;
-            //ObjetosVentana.nvItemMenu.PointerEntered += Animaciones.EntraRatonNvItem;
-            //ObjetosVentana.nvItemMenu.PointerExited += Animaciones.SaleRatonNvItem;
+            ObjetosVentana.nvItemMenu.PointerEntered += EntraRatonNvItemMenu;
+            ObjetosVentana.nvItemMenu.PointerEntered += Animaciones.EntraRatonNvItem;
+            ObjetosVentana.nvItemMenu.PointerExited += Animaciones.SaleRatonNvItem;
 
             //ObjetosVentana.nvItemVolver.PointerPressed += Ofertas.BotonCerrarExpandida;
             //ObjetosVentana.nvItemVolver.PointerEntered += Animaciones.EntraRatonNvItem;
@@ -30,31 +30,40 @@ namespace Interfaz
             //ObjetosVentana.nvItemSubirArriba.PointerEntered += Animaciones.EntraRatonNvItem;
             //ObjetosVentana.nvItemSubirArriba.PointerExited += Animaciones.SaleRatonNvItem;
 
-            //TextBlock tbSteamDeseadosTt = new TextBlock
-            //{
-            //    Text = recursos.GetString("SteamWishlist")
-            //};
+            TextBlock tbOpcionesTt = new TextBlock
+            {
+                Text = recursos.GetString("Options")
+            };
 
-            //ToolTipService.SetToolTip(ObjetosVentana.nvItemSteamDeseados, tbSteamDeseadosTt);
-            //ToolTipService.SetPlacement(ObjetosVentana.nvItemSteamDeseados, PlacementMode.Bottom);
+            ToolTipService.SetToolTip(ObjetosVentana.nvItemOpciones, tbOpcionesTt);
+            ToolTipService.SetPlacement(ObjetosVentana.nvItemOpciones, PlacementMode.Bottom);
 
-            //ObjetosVentana.nvItemSteamDeseados.PointerEntered += Animaciones.EntraRatonNvItem;
-            //ObjetosVentana.nvItemSteamDeseados.PointerExited += Animaciones.SaleRatonNvItem;
-
-            //TextBlock tbOpcionesTt = new TextBlock
-            //{
-            //    Text = recursos.GetString("Options")
-            //};
-
-            //ToolTipService.SetToolTip(ObjetosVentana.nvItemOpciones, tbOpcionesTt);
-            //ToolTipService.SetPlacement(ObjetosVentana.nvItemOpciones, PlacementMode.Bottom);
-
-            //ObjetosVentana.nvItemOpciones.PointerEntered += Animaciones.EntraRatonNvItem;
-            //ObjetosVentana.nvItemOpciones.PointerExited += Animaciones.SaleRatonNvItem;
+            ObjetosVentana.nvItemOpciones.PointerEntered += Animaciones.EntraRatonNvItem;
+            ObjetosVentana.nvItemOpciones.PointerExited += Animaciones.SaleRatonNvItem;
         }
 
-        public static void Visibilidad(Grid grid, bool nv)
+        public static void Visibilidad(Grid grid, bool nv, StackPanel sp, bool mostrarNombre)
         {
+            foreach (var item in ObjetosVentana.nvPrincipal.MenuItems)
+            {
+                if (item.GetType() == typeof(StackPanel))
+                {
+                    StackPanel spItem = item as StackPanel;
+
+                    if (spItem.Children.Count > 0)
+                    {
+                        if (spItem.Children[1] != null)
+                        {
+                            if (spItem.Children[1].GetType() == typeof(TextBlock))
+                            {
+                                TextBlock tb = spItem.Children[1] as TextBlock;
+                                tb.Visibility = Visibility.Collapsed;
+                            }
+                        }
+                    }                   
+                }
+            }
+
             ObjetosVentana.nvPrincipal.Visibility = Visibility.Collapsed;
             ObjetosVentana.gridPresentacion.Visibility = Visibility.Collapsed;
             ObjetosVentana.gridSteam.Visibility = Visibility.Collapsed;
@@ -70,30 +79,53 @@ namespace Interfaz
             {
                 ObjetosVentana.nvPrincipal.Visibility = Visibility.Collapsed;
             }
+
+            if (mostrarNombre == true) 
+            {
+                if (sp.Children[1] != null)
+                {
+                    if (sp.Children[1].GetType() == typeof(TextBlock))
+                    {
+                        TextBlock tb = sp.Children[1] as TextBlock;
+                        tb.Visibility = Visibility.Visible;
+                    }
+                }
+            }
         }
 
         public static void CreadorItems(string imagenEnlace, string nombre, string tooltip)
         {
-            Grid grid = new Grid
+            StackPanel sp = new StackPanel
             {
                 CornerRadius = new CornerRadius(3),
-                Padding = new Thickness(5)
+                Padding = new Thickness(5),
+                Orientation = Orientation.Horizontal
             };
 
-            grid.PointerEntered += Animaciones.EntraRatonGrid;
-            grid.PointerExited += Animaciones.SaleRatonGrid;
+            sp.PointerEntered += Animaciones.EntraRatonStackpanel;
+            sp.PointerExited += Animaciones.SaleRatonStackpanel;
 
-            ImageEx imagen = new ImageEx();
+            ImageEx imagen = new ImageEx
+            {
+                Source = imagenEnlace,
+                IsCacheEnabled = true,
+                EnableLazyLoading = true,
+                MaxHeight = 20,
+                MaxWidth = 20
+            };
+
+            sp.Children.Add(imagen);
 
             TextBlock tb = new TextBlock
             {
                 Text = nombre,
-                Foreground = new SolidColorBrush((Color)Application.Current.Resources["ColorFuente"])
+                Foreground = new SolidColorBrush((Color)Application.Current.Resources["ColorFuente"]),
+                Margin = new Thickness(15, 0, 0, 0),
+                VerticalAlignment = VerticalAlignment.Center,
+                Visibility = Visibility.Collapsed
             };
 
-            grid.Children.Add(tb);
-
-
+            sp.Children.Add(tb);
 
             if (tooltip != null)
             {
@@ -102,11 +134,11 @@ namespace Interfaz
                     Text = nombre
                 };
 
-                ToolTipService.SetToolTip(grid, tbTt);
-                ToolTipService.SetPlacement(grid, PlacementMode.Bottom);
+                ToolTipService.SetToolTip(sp, tbTt);
+                ToolTipService.SetPlacement(sp, PlacementMode.Bottom);
             }
             
-            ObjetosVentana.nvPrincipal.MenuItems.Insert(1, grid);
+            ObjetosVentana.nvPrincipal.MenuItems.Insert(1, sp);
         }
 
         public static void EntraRatonNvItemMenu(object sender, RoutedEventArgs e)

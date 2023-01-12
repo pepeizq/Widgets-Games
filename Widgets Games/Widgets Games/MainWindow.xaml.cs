@@ -1,8 +1,11 @@
+using CommunityToolkit.WinUI.UI.Controls;
 using Herramientas;
 using Interfaz;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.Windows.ApplicationModel.Resources;
 using Plantillas;
+using Plataformas;
 using System.Text.Json;
 
 //https://nicksnettravels.builttoroam.com/windows-widget/
@@ -23,8 +26,15 @@ namespace Widgets_Games
 
             BarraTitulo.Generar(this);
             BarraTitulo.CambiarTitulo(null);
+            Pestañas.Cargar();
 
-            
+            Presentacion.Cargar();
+
+            Steam steam = new Steam();
+            steam.Cargar();
+
+            Opciones.CargarDatos();
+
             ObjetosVentana.botonSteamGenerarPlantilla.Click += GenerarPlantillaClick;
         }
 
@@ -33,10 +43,16 @@ namespace Widgets_Games
             ObjetosVentana.ventana = ventana;
             ObjetosVentana.gridTitulo = gridTitulo;
             ObjetosVentana.tbTitulo = tbTitulo;
+            ObjetosVentana.nvPrincipal = nvPrincipal;
+            ObjetosVentana.nvItemMenu = nvItemMenu;
+            ObjetosVentana.nvItemOpciones = nvItemOpciones;
 
             ObjetosVentana.gridPresentacion = gridPresentacion;
             ObjetosVentana.gridSteam = gridSteam;
             ObjetosVentana.gridCargarWidget = gridCargarWidget;
+            ObjetosVentana.gridOpciones = gridOpciones;
+
+            ObjetosVentana.gvPresentacionPlataformas = gvPresentacionPlataformas;
 
             ObjetosVentana.tbSteamEnlaceJuego = tbSteamEnlaceJuego;
             ObjetosVentana.botonSteamGenerarPlantilla = botonSteamGenerarPlantilla;
@@ -49,11 +65,16 @@ namespace Widgets_Games
             public static Grid gridTitulo { get; set; }
             public static TextBlock tbTitulo { get; set; }
             public static NavigationView nvPrincipal { get; set; }
+            public static NavigationViewItem nvItemMenu { get; set; }
+            public static NavigationViewItem nvItemOpciones { get; set; }
 
             public static Grid gridPresentacion { get; set; }
             public static Grid gridSteam { get; set; }
             public static Grid gridCargarWidget { get; set; }
+            public static Grid gridOpciones { get; set; }
 
+
+            public static AdaptiveGridView gvPresentacionPlataformas { get; set; }
 
 
             public static TextBox tbSteamEnlaceJuego { get; set; }
@@ -98,17 +119,58 @@ namespace Widgets_Games
 
         private void nvPrincipal_Loaded(object sender, RoutedEventArgs e)
         {
-            //ResourceLoader recursos = new ResourceLoader();
+            Pestañas.CreadorItems("/Assets/Plataformas/logo_steam.png", "Steam", null);
 
-            //Pestañas.CreadorItems(recursos.GetString("Subscriptions"), null);
-            //Pestañas.CreadorItems(recursos.GetString("Free"), null);
-            //Pestañas.CreadorItems(recursos.GetString("Bundles"), null);
-            //Pestañas.CreadorItems(recursos.GetString("Deals"), null);
-            //Pestañas.CreadorItems(recursos.GetString("All"), null);
+            Presentacion.CreadorItems("/Assets/Plataformas/logo_steam_completo.png", "Steam");
         }
 
         private void nvPrincipal_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
         {
+            ResourceLoader recursos = new ResourceLoader();
+
+            if (args.InvokedItemContainer != null)
+            {
+                if (args.InvokedItemContainer.GetType() == typeof(NavigationViewItem))
+                {
+                    NavigationViewItem item = args.InvokedItemContainer as NavigationViewItem;
+
+                    if (item.Name == "nvItemMenu")
+                    {
+
+                    }
+                    else if (item.Name == "nvItemOpciones")
+                    {
+                        //Opciones.CargarPestaña();
+                        Pestañas.Visibilidad(gridOpciones, true, null, false);
+                        BarraTitulo.CambiarTitulo(recursos.GetString("Options"));
+                        //ScrollViewers.EnseñarSubir(svOpciones);
+                    }
+                }
+            }
+
+            if (args.InvokedItem != null)
+            {
+                if (args.InvokedItem.GetType() == typeof(StackPanel))
+                {
+                    StackPanel sp = (StackPanel)args.InvokedItem;
+
+                    if (sp.Children[1] != null)
+                    {
+                        if (sp.Children[1].GetType() == typeof(TextBlock))
+                        {
+                            TextBlock tb = sp.Children[1] as TextBlock;
+
+                            if (tb.Text == "Steam")
+                            {
+                                Pestañas.Visibilidad(gridSteam, true, sp, true);
+                                BarraTitulo.CambiarTitulo(null);
+                                //ScrollViewers.EnseñarSubir(svEntradas);
+                            }
+
+                        }
+                    }
+                }
+            }
         }
-        }
+     }
 }

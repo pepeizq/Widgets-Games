@@ -3,9 +3,9 @@ using static Widgets_Games.MainWindow;
 
 namespace Plataformas
 {
-    public static class Steam
+    public class Steam
     {
-        public static void Cargar()
+        public void Cargar()
         {
             ObjetosVentana.tbSteamEnlaceJuego.TextChanged += EnlaceSteamTextoCambia;
         }

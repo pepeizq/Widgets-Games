@@ -26,6 +26,23 @@ namespace Interfaz
             grid.Background = new SolidColorBrush(Colors.Transparent);
         }
 
+        public static void EntraRatonStackpanel(object sender, PointerRoutedEventArgs e)
+        {
+            SolidColorBrush fondo = new SolidColorBrush((Color)Application.Current.Resources["ColorFuente"])
+            {
+                Opacity = 0.2
+            };
+
+            StackPanel sp = sender as StackPanel;
+            sp.Background = fondo;
+        }
+
+        public static void SaleRatonStackpanel(object sender, PointerRoutedEventArgs e)
+        {
+            StackPanel sp = sender as StackPanel;
+            sp.Background = new SolidColorBrush(Colors.Transparent);
+        }
+
         public static void EntraRatonNvItem(object sender, PointerRoutedEventArgs e)
         {
             SolidColorBrush fondo = new SolidColorBrush((Color)Application.Current.Resources["ColorFuente"])
