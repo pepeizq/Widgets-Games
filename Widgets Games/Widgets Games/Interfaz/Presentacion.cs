@@ -1,23 +1,33 @@
 ﻿using CommunityToolkit.WinUI.UI.Controls;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using static Widgets_Games.MainWindow;
+using Microsoft.UI.Xaml.Media;
+using Windows.UI;
 
 namespace Interfaz
 {
     public static class Presentacion
     {
-        public static void Cargar()
+        public static Button CreadorItems(string imagenEnlace, string nombre)
         {
+            Button boton = new Button
+            {
+                Height = 80,
+                Width = 220,
+                Padding = new Thickness(20),
+                Background = new SolidColorBrush((Color)Application.Current.Resources["ColorPrimario"])
+            };
 
-        }
+            ImageEx imagen = new ImageEx
+            {
+                Source = imagenEnlace,
+                IsCacheEnabled = true,
+                EnableLazyLoading = true
+            };
 
-        public static void CreadorItems(string imagenEnlace, string nombre)
-        {
-            Button boton = new Button();
+            boton.Content = imagen;
 
-            ImageEx imagen = new ImageEx();
-
-            ObjetosVentana.gvPresentacionPlataformas.Items.Add(boton);
+            return boton;
         }
     }
 }

@@ -120,26 +120,78 @@
                 </Grid>
 
                 <Grid x:Name="gridSteam" Visibility="Collapsed">
-                    <TabView MinHeight="300" MinWidth="300">
-                        <TabViewItem Header="test1">
-                            <TextBlock Text="test3"/>
-                        </TabViewItem>
-                        <TabViewItem Header="test2"/>
-                    </TabView>
-                </Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
 
-                <Grid x:Name="gridCargarWidget" Visibility="Collapsed">
-
-                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock Text="Enter a link of a Steam game:" Margin="0,0,0,30" HorizontalAlignment="Center"/>
-
-                        <TextBox x:Name="tbSteamEnlaceJuego" MinWidth="300" Margin="0,0,0,30" HorizontalAlignment="Center"/>
-
-                        <Button x:Name="botonSteamGenerarPlantilla" Margin="0,0,0,30" HorizontalAlignment="Center" IsEnabled="False">Generate</Button>
-
-                        <TextBlock x:Name="tbMensaje" HorizontalAlignment="Center"/>
+                    <StackPanel Grid.Row="0" Padding="20" Orientation="Horizontal">
+                        <Button x:Name="botonSteamJuegosInstalados" Background="Transparent" BorderBrush="{StaticResource ColorFuente}" BorderThickness="0" CornerRadius="0" Padding="15,10" Margin="0,0,30,0">
+                            <Button.Content>
+                                <StackPanel>
+                                    <TextBlock x:Uid="SteamInstalledGames" Foreground="{StaticResource ColorFuente}"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
+                        <Button x:Name="botonSteamCualquierJuego" Background="Transparent" BorderBrush="{StaticResource ColorFuente}" BorderThickness="0" CornerRadius="0" Padding="15,10" Margin="0,0,30,0">
+                            <Button.Content>
+                                <StackPanel>
+                                    <TextBlock x:Uid="SteamAnyGames" Foreground="{StaticResource ColorFuente}"/>
+                                </StackPanel>
+                            </Button.Content>
+                        </Button>
                     </StackPanel>
 
+                    <Grid Grid.Row="1" Padding="20">
+                        <Grid x:Name="gridSteamJuegosInstalados" Visibility="Collapsed">
+                            <TextBlock Text="test1"/>
+                        </Grid>
+
+                        <Grid x:Name="gridSteamCualquierJuego" Visibility="Collapsed">
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <TextBlock x:Uid="SteamAnyGamesMessage" Foreground="{StaticResource ColorFuente}" HorizontalAlignment="Center"/>
+                                <TextBox x:Name="tbSteamEnlaceJuego" MinWidth="400" Margin="0,30" HorizontalAlignment="Center"/>
+                                <TextBlock x:Uid="SteamAnyGamesMessage2" Foreground="{StaticResource ColorFuente}" HorizontalAlignment="Center"/>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </Grid>
+
+                <Grid x:Name="gridWidgetPrecarga" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <TextBlock x:Name="tbWidgetPrecargaTitulo" Foreground="{StaticResource ColorFuente}" Margin="20"/>
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" Orientation="Vertical" Padding="20" VerticalAlignment="Top">
+                            <TextBlock x:Uid="ImageSmall" Foreground="{StaticResource ColorFuente}"/>
+                            <controls:ImageEx x:Name="imagenWidgetPrecargaPequena" Margin="0,30,0,0" IsCacheEnabled="True" EnableLazyLoading="True" Width="460" Stretch="UniformToFill"/>
+                            <TextBox x:Name="tbWidgetPrecargaPequena" Margin="0,30,0,0"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="1" Orientation="Vertical" Padding="20" VerticalAlignment="Top">
+                            <TextBlock x:Uid="ImageBig" Foreground="{StaticResource ColorFuente}"/>
+                            <controls:ImageEx x:Name="imagenWidgetPrecargaGrande" Margin="0,30,0,0" IsCacheEnabled="True" EnableLazyLoading="True" Width="300" Stretch="UniformToFill"/>
+                            <TextBox x:Name="tbWidgetPrecargaGrande" Margin="0,30,0,0"/>
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2" Orientation="Vertical" Padding="20" VerticalAlignment="Top">
+                            <Button x:Name="botonSteamGenerarPlantilla" Margin="0,0,0,30" HorizontalAlignment="Center" IsEnabled="False">Generate</Button>
+
+                            <TextBlock x:Name="tbMensaje" HorizontalAlignment="Center"/>
+                        </StackPanel>
+                    </Grid>
                 </Grid>
 
                 <Grid x:Name="gridOpciones" Visibility="Collapsed">

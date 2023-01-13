@@ -67,7 +67,7 @@ namespace Interfaz
             ObjetosVentana.nvPrincipal.Visibility = Visibility.Collapsed;
             ObjetosVentana.gridPresentacion.Visibility = Visibility.Collapsed;
             ObjetosVentana.gridSteam.Visibility = Visibility.Collapsed;
-            ObjetosVentana.gridCargarWidget.Visibility = Visibility.Collapsed;
+            ObjetosVentana.gridWidgetPrecarga.Visibility = Visibility.Collapsed;
 
             grid.Visibility = Visibility.Visible;
 

@@ -117,10 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ImageBig.Text" xml:space="preserve">
+    <value>Imagen Grande</value>
+  </data>
+  <data name="ImageSmall.Text" xml:space="preserve">
+    <value>Imagen Pequeña</value>
+  </data>
   <data name="Options" xml:space="preserve">
     <value>Opciones</value>
   </data>
   <data name="PresentationMessage.Text" xml:space="preserve">
     <value>Selecciona la plataforma donde tienes el juego para añadir como widget:</value>
+  </data>
+  <data name="SteamAnyGames.Text" xml:space="preserve">
+    <value>Cualquier juego</value>
+  </data>
+  <data name="SteamAnyGamesMessage.Text" xml:space="preserve">
+    <value>Introduce el enlace de cualquier juego en Steam:</value>
+  </data>
+  <data name="SteamAnyGamesMessage2.Text" xml:space="preserve">
+    <value>Recuerda, para ejecutarlo desde Widgets debes tener el juego en Steam.</value>
+  </data>
+  <data name="SteamInstalledGames.Text" xml:space="preserve">
+    <value>Juegos instalados</value>
   </data>
 </root>

@@ -28,14 +28,15 @@ namespace Widgets_Games
             BarraTitulo.CambiarTitulo(null);
             Pestañas.Cargar();
 
-            Presentacion.Cargar();
-
             Steam steam = new Steam();
             steam.Cargar();
 
+            WidgetPrecarga precarga = new WidgetPrecarga();
+            precarga.Cargar();
+
             Opciones.CargarDatos();
 
-            ObjetosVentana.botonSteamGenerarPlantilla.Click += GenerarPlantillaClick;
+            Pestañas.Visibilidad(gridPresentacion, true, null, false);
         }
 
         public void CargarObjetosVentana()
@@ -49,12 +50,23 @@ namespace Widgets_Games
 
             ObjetosVentana.gridPresentacion = gridPresentacion;
             ObjetosVentana.gridSteam = gridSteam;
-            ObjetosVentana.gridCargarWidget = gridCargarWidget;
+            ObjetosVentana.gridWidgetPrecarga = gridWidgetPrecarga;
             ObjetosVentana.gridOpciones = gridOpciones;
 
             ObjetosVentana.gvPresentacionPlataformas = gvPresentacionPlataformas;
 
+            ObjetosVentana.botonSteamJuegosInstalados = botonSteamJuegosInstalados;
+            ObjetosVentana.botonSteamCualquierJuego = botonSteamCualquierJuego;
+            ObjetosVentana.gridSteamJuegosInstalados = gridSteamJuegosInstalados;
+            ObjetosVentana.gridSteamCualquierJuego = gridSteamCualquierJuego;
             ObjetosVentana.tbSteamEnlaceJuego = tbSteamEnlaceJuego;
+
+            ObjetosVentana.tbWidgetPrecargaTitulo = tbWidgetPrecargaTitulo;
+            ObjetosVentana.imagenWidgetPrecargaPequeña = imagenWidgetPrecargaPequena;
+            ObjetosVentana.tbWidgetPrecargaPequeña = tbWidgetPrecargaPequena;
+            ObjetosVentana.imagenWidgetPrecargaGrande = imagenWidgetPrecargaGrande;
+            ObjetosVentana.tbWidgetPrecargaGrande = tbWidgetPrecargaGrande;
+
             ObjetosVentana.botonSteamGenerarPlantilla = botonSteamGenerarPlantilla;
             ObjetosVentana.tbMensaje = tbMensaje;
         }
@@ -68,60 +80,44 @@ namespace Widgets_Games
             public static NavigationViewItem nvItemMenu { get; set; }
             public static NavigationViewItem nvItemOpciones { get; set; }
 
+
             public static Grid gridPresentacion { get; set; }
             public static Grid gridSteam { get; set; }
-            public static Grid gridCargarWidget { get; set; }
+            public static Grid gridWidgetPrecarga { get; set; }
             public static Grid gridOpciones { get; set; }
 
 
             public static AdaptiveGridView gvPresentacionPlataformas { get; set; }
 
 
+            public static Button botonSteamJuegosInstalados { get; set; }
+            public static Button botonSteamCualquierJuego { get; set; }
+            public static Grid gridSteamJuegosInstalados { get; set; }
+            public static Grid gridSteamCualquierJuego { get; set; }
             public static TextBox tbSteamEnlaceJuego { get; set; }
+
+
+            public static TextBlock tbWidgetPrecargaTitulo { get; set; }
+            public static ImageEx imagenWidgetPrecargaPequeña { get; set; }
+            public static TextBox tbWidgetPrecargaPequeña { get; set; }
+            public static ImageEx imagenWidgetPrecargaGrande { get; set; }
+            public static TextBox tbWidgetPrecargaGrande { get; set; }
+
+
+
+
+
             public static Button botonSteamGenerarPlantilla { get; set; }
             public static TextBlock tbMensaje { get; set; }
-        }
-
-
-
-        private void GenerarPlantillaClick(object sender, RoutedEventArgs e)
-        {
-            ObjetosVentana.tbSteamEnlaceJuego.IsEnabled = false;
-            ObjetosVentana.botonSteamGenerarPlantilla.IsEnabled = false;
-
-            TextBox tb = ObjetosVentana.tbSteamEnlaceJuego;
-
-            if (tb.Text.Contains("https://store.steampowered.com/app/") == true)
-            {
-                string id = tb.Text;
-                id = id.Replace("https://store.steampowered.com/app/", null);
-
-                if (id.Contains("/") == true)
-                {
-                    int int1 = id.IndexOf("/");
-                    id = id.Remove(int1, id.Length - int1);
-                }
-
-                string plantilla = Ficheros.LeerFicheroDentroAplicacion("ms-appx:///Plantillas/Juego.json");
-
-                Juego json = JsonSerializer.Deserialize<Juego>(plantilla);
-                json.enlace = "steam://rungameid/" + id + "/";
-                json.fondo.url = "https://cdn.cloudflare.steamstatic.com/steam/apps/" + id + "/library_600x900.jpg";
-
-                Ficheros.EscribirFichero("Juego.json", JsonSerializer.Serialize(json));
-
-                tbMensaje.Text = "Preloaded widget, go to Widgets app and add game widget from 'Add widgets'";
-            }
-
-            ObjetosVentana.tbSteamEnlaceJuego.IsEnabled = true;
-            ObjetosVentana.botonSteamGenerarPlantilla.IsEnabled = true;
         }
 
         private void nvPrincipal_Loaded(object sender, RoutedEventArgs e)
         {
             Pestañas.CreadorItems("/Assets/Plataformas/logo_steam.png", "Steam", null);
 
-            Presentacion.CreadorItems("/Assets/Plataformas/logo_steam_completo.png", "Steam");
+            Button botonSteam = Presentacion.CreadorItems("/Assets/Plataformas/logo_steam_completo.png", "Steam");
+            botonSteam.Click += AbrirSteamClick;
+            ObjetosVentana.gvPresentacionPlataformas.Items.Add(botonSteam);
         }
 
         private void nvPrincipal_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
@@ -172,5 +168,13 @@ namespace Widgets_Games
                 }
             }
         }
-     }
+
+        private void AbrirSteamClick(object sender, RoutedEventArgs e)
+        {
+            StackPanel sp = (StackPanel)ObjetosVentana.nvPrincipal.MenuItems[1];
+            Pestañas.Visibilidad(gridSteam, true, sp, true);
+            BarraTitulo.CambiarTitulo(null);
+            //ScrollViewers.EnseñarSubir(svEntradas);
+        }
+    }
 }

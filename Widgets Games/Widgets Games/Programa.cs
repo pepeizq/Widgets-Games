@@ -20,12 +20,16 @@ public class Programa
         }
         else
         {
-            Application.Start((p) =>
+            try
             {
-                DispatcherQueueSynchronizationContext contexto = new DispatcherQueueSynchronizationContext(DispatcherQueue.GetForCurrentThread());
-                SynchronizationContext.SetSynchronizationContext(contexto);
-                new App();
-            });
+                Application.Start((p) =>
+                {
+                    DispatcherQueueSynchronizationContext contexto = new DispatcherQueueSynchronizationContext(DispatcherQueue.GetForCurrentThread());
+                    SynchronizationContext.SetSynchronizationContext(contexto);
+                    new App();
+                });
+            }
+            catch { }
         }
     }
 
