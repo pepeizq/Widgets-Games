@@ -3,58 +3,22 @@ using System.Runtime.InteropServices;
 
 namespace COMServer;
 
-/// <summary>
-/// Native methods
-/// </summary>
 internal static class MetodosNativos
 {
-    /// <summary>
-    /// Get current thread ID.
-    /// </summary>
-    /// <returns></returns>
     [DllImport("kernel32.dll")]
     [return: MarshalAs(UnmanagedType.U4)]
     public static extern int GetCurrentThreadId();
 
-    /// <summary>
-    /// Get current process ID.
-    /// </summary>
     [DllImport("kernel32.dll")]
     [return: MarshalAs(UnmanagedType.U4)]
     public static extern int GetCurrentProcessId();
 
     [DllImport("ole32.dll")]
-    public static extern int CoWaitForMultipleObjects(
-    CWMO_FLAGS dwFlags, uint dwTimeout,
-int cHandles, IntPtr[] pHandles, out uint lpdwindex);
+    public static extern int CoWaitForMultipleObjects(CWMO_FLAGS dwFlags, uint dwTimeout, int cHandles, IntPtr[] pHandles, out uint lpdwindex);
 
     [DllImport("kernel32.dll", SetLastError = true)]
-    public static extern IntPtr CreateEvent(IntPtr eventAttributes,
-[MarshalAs(UnmanagedType.Bool)] bool manualReset,
-[MarshalAs(UnmanagedType.Bool)] bool initialState,
-IntPtr name);
+    public static extern IntPtr CreateEvent(IntPtr eventAttributes, [MarshalAs(UnmanagedType.Bool)] bool manualReset, [MarshalAs(UnmanagedType.Bool)] bool initialState, IntPtr name);
 
-    /// <summary>
-    /// The GetMessage function retrieves a message from the calling thread's 
-    /// message queue. The function dispatches incoming sent messages until a 
-    /// posted message is available for retrieval. 
-    /// </summary>
-    /// <param name="lpMsg">
-    /// Pointer to an MSG structure that receives message information from 
-    /// the thread's message queue.
-    /// </param>
-    /// <param name="hWnd">
-    /// Handle to the window whose messages are to be retrieved.
-    /// </param>
-    /// <param name="wMsgFilterMin">
-    /// Specifies the integer value of the lowest message value to be 
-    /// retrieved. 
-    /// </param>
-    /// <param name="wMsgFilterMax">
-    /// Specifies the integer value of the highest message value to be 
-    /// retrieved.
-    /// </param>
-    /// <returns></returns>
     [DllImport("user32.dll")]
     [return: MarshalAs(UnmanagedType.Bool)]
     public static extern bool GetMessage(

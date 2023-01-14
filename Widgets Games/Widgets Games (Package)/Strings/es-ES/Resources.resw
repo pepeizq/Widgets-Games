@@ -117,17 +117,41 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Bottom.Text" xml:space="preserve">
+    <value>Abajo</value>
+  </data>
+  <data name="Center.Text" xml:space="preserve">
+    <value>Centrada</value>
+  </data>
+  <data name="ChooseImage.Text" xml:space="preserve">
+    <value>Elige el tipo de imagen antes de precargar el Widget:</value>
+  </data>
+  <data name="ChooseImageBig" xml:space="preserve">
+    <value>La imagen grande se adapta mejor a los widgets de tamaño mediano y grande.</value>
+  </data>
+  <data name="ChooseImageSmall" xml:space="preserve">
+    <value>La imagen pequeña se adapta mejor al widget de tamaño pequeño.</value>
+  </data>
+  <data name="Executable.Text" xml:space="preserve">
+    <value>Ejecutable</value>
+  </data>
   <data name="ImageBig.Text" xml:space="preserve">
     <value>Imagen Grande</value>
   </data>
   <data name="ImageSmall.Text" xml:space="preserve">
     <value>Imagen Pequeña</value>
   </data>
+  <data name="Left.Text" xml:space="preserve">
+    <value>Izquierda</value>
+  </data>
   <data name="Options" xml:space="preserve">
     <value>Opciones</value>
   </data>
   <data name="PresentationMessage.Text" xml:space="preserve">
     <value>Selecciona la plataforma donde tienes el juego para añadir como widget:</value>
+  </data>
+  <data name="Right.Text" xml:space="preserve">
+    <value>Derecha</value>
   </data>
   <data name="SteamAnyGames.Text" xml:space="preserve">
     <value>Cualquier juego</value>
@@ -140,5 +164,23 @@
   </data>
   <data name="SteamInstalledGames.Text" xml:space="preserve">
     <value>Juegos instalados</value>
+  </data>
+  <data name="Top.Text" xml:space="preserve">
+    <value>Arriba</value>
+  </data>
+  <data name="WidgetImageOrientation.Text" xml:space="preserve">
+    <value>Orientación de la imagen en el Widget:</value>
+  </data>
+  <data name="WidgetImageOrientationHorizontal.Text" xml:space="preserve">
+    <value>Horizontal</value>
+  </data>
+  <data name="WidgetImageOrientationVertical.Text" xml:space="preserve">
+    <value>Vertical</value>
+  </data>
+  <data name="WidgetLoadGame.Text" xml:space="preserve">
+    <value>Cargar juego en la app Widgets</value>
+  </data>
+  <data name="WidgetLoadGameMessage" xml:space="preserve">
+    <value>Cargado widget del juego, abre la app Widgets y añade el widget del juego desde 'Añadir Widgets'.</value>
   </data>
 </root>

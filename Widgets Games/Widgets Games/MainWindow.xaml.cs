@@ -27,6 +27,7 @@ namespace Widgets_Games
             BarraTitulo.Generar(this);
             BarraTitulo.CambiarTitulo(null);
             Pestañas.Cargar();
+            ScrollViewers.Cargar();
 
             Steam steam = new Steam();
             steam.Cargar();
@@ -47,6 +48,7 @@ namespace Widgets_Games
             ObjetosVentana.nvPrincipal = nvPrincipal;
             ObjetosVentana.nvItemMenu = nvItemMenu;
             ObjetosVentana.nvItemOpciones = nvItemOpciones;
+            ObjetosVentana.nvItemSubirArriba = nvItemSubirArriba;
 
             ObjetosVentana.gridPresentacion = gridPresentacion;
             ObjetosVentana.gridSteam = gridSteam;
@@ -58,17 +60,23 @@ namespace Widgets_Games
             ObjetosVentana.botonSteamJuegosInstalados = botonSteamJuegosInstalados;
             ObjetosVentana.botonSteamCualquierJuego = botonSteamCualquierJuego;
             ObjetosVentana.gridSteamJuegosInstalados = gridSteamJuegosInstalados;
+            ObjetosVentana.svSteamJuegosInstalados = svSteamJuegosInstalados;
+            ObjetosVentana.gvSteamJuegosInstalados = gvSteamJuegosInstalados;
             ObjetosVentana.gridSteamCualquierJuego = gridSteamCualquierJuego;
-            ObjetosVentana.tbSteamEnlaceJuego = tbSteamEnlaceJuego;
+            ObjetosVentana.tbSteamCualquierJuego = tbSteamEnlaceJuego;
 
+            ObjetosVentana.svWidgetPrecarga = svWidgetPrecarga;
             ObjetosVentana.tbWidgetPrecargaTitulo = tbWidgetPrecargaTitulo;
-            ObjetosVentana.imagenWidgetPrecargaPequeña = imagenWidgetPrecargaPequena;
+            ObjetosVentana.tbWidgetPrecargaEjecutable = tbWidgetPrecargaEjecutable;
             ObjetosVentana.tbWidgetPrecargaPequeña = tbWidgetPrecargaPequena;
-            ObjetosVentana.imagenWidgetPrecargaGrande = imagenWidgetPrecargaGrande;
             ObjetosVentana.tbWidgetPrecargaGrande = tbWidgetPrecargaGrande;
-
-            ObjetosVentana.botonSteamGenerarPlantilla = botonSteamGenerarPlantilla;
-            ObjetosVentana.tbMensaje = tbMensaje;
+            ObjetosVentana.cbWidgetPrecargaImagen = cbWidgetPrecargaImagen;
+            ObjetosVentana.tbWidgetPrecargaMensajeImagen = tbWidgetPrecargaMensajeImagen;
+            ObjetosVentana.imagenWidgetPrecargaElegida = imagenWidgetPrecargaElegida;
+            ObjetosVentana.cbWidgetPrecargaImagenOrientacionHorizontal = cbWidgetPrecargaImagenOrientacionHorizontal;
+            ObjetosVentana.cbWidgetPrecargaImagenOrientacionVertical = cbWidgetPrecargaImagenOrientacionVertical;
+            ObjetosVentana.botonWidgetPrecargaCargarJuego = botonWidgetPrecargaCargarJuego;
+            ObjetosVentana.tbWidgetCargarJuegoMensaje = tbWidgetCargarJuegoMensaje;
         }
 
         public static class ObjetosVentana
@@ -79,6 +87,7 @@ namespace Widgets_Games
             public static NavigationView nvPrincipal { get; set; }
             public static NavigationViewItem nvItemMenu { get; set; }
             public static NavigationViewItem nvItemOpciones { get; set; }
+            public static NavigationViewItem nvItemSubirArriba { get; set; }
 
 
             public static Grid gridPresentacion { get; set; }
@@ -93,22 +102,24 @@ namespace Widgets_Games
             public static Button botonSteamJuegosInstalados { get; set; }
             public static Button botonSteamCualquierJuego { get; set; }
             public static Grid gridSteamJuegosInstalados { get; set; }
+            public static ScrollViewer svSteamJuegosInstalados { get; set; }
+            public static AdaptiveGridView gvSteamJuegosInstalados { get; set; }
             public static Grid gridSteamCualquierJuego { get; set; }
-            public static TextBox tbSteamEnlaceJuego { get; set; }
+            public static TextBox tbSteamCualquierJuego { get; set; }
 
 
+            public static ScrollViewer svWidgetPrecarga { get; set; }
             public static TextBlock tbWidgetPrecargaTitulo { get; set; }
-            public static ImageEx imagenWidgetPrecargaPequeña { get; set; }
+            public static TextBox tbWidgetPrecargaEjecutable { get; set; }
             public static TextBox tbWidgetPrecargaPequeña { get; set; }
-            public static ImageEx imagenWidgetPrecargaGrande { get; set; }
             public static TextBox tbWidgetPrecargaGrande { get; set; }
-
-
-
-
-
-            public static Button botonSteamGenerarPlantilla { get; set; }
-            public static TextBlock tbMensaje { get; set; }
+            public static ComboBox cbWidgetPrecargaImagen { get; set; }
+            public static TextBlock tbWidgetPrecargaMensajeImagen { get; set; }
+            public static ImageEx imagenWidgetPrecargaElegida { get; set; }
+            public static ComboBox cbWidgetPrecargaImagenOrientacionHorizontal { get; set; }
+            public static ComboBox cbWidgetPrecargaImagenOrientacionVertical { get; set; }
+            public static Button botonWidgetPrecargaCargarJuego { get; set; }
+            public static TextBlock tbWidgetCargarJuegoMensaje { get; set; }
         }
 
         private void nvPrincipal_Loaded(object sender, RoutedEventArgs e)
@@ -160,9 +171,11 @@ namespace Widgets_Games
                             {
                                 Pestañas.Visibilidad(gridSteam, true, sp, true);
                                 BarraTitulo.CambiarTitulo(null);
-                                //ScrollViewers.EnseñarSubir(svEntradas);
-                            }
+                                ScrollViewers.EnseñarSubir(svSteamJuegosInstalados);
 
+                                Steam steam = new Steam();
+                                steam.CargarJuegosInstalados();
+                            }
                         }
                     }
                 }
@@ -174,7 +187,10 @@ namespace Widgets_Games
             StackPanel sp = (StackPanel)ObjetosVentana.nvPrincipal.MenuItems[1];
             Pestañas.Visibilidad(gridSteam, true, sp, true);
             BarraTitulo.CambiarTitulo(null);
-            //ScrollViewers.EnseñarSubir(svEntradas);
+            ScrollViewers.EnseñarSubir(svSteamJuegosInstalados);
+
+            Steam steam = new Steam();
+            steam.CargarJuegosInstalados();
         }
     }
 }

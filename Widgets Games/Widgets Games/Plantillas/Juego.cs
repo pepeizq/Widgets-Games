@@ -27,6 +27,10 @@ namespace Plantillas
     {
         [JsonPropertyName("url")]
         public string url { get; set; }
+        [JsonPropertyName("horizontalAlignment")]
+        public string horizontal { get; set; }
+        [JsonPropertyName("verticalAlignment")]
+        public string vertical { get; set; }
     }
 
     public class JuegoAccion

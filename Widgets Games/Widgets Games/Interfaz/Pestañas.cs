@@ -26,10 +26,6 @@ namespace Interfaz
             //ObjetosVentana.nvItemVolver.PointerEntered += Animaciones.EntraRatonNvItem;
             //ObjetosVentana.nvItemVolver.PointerExited += Animaciones.SaleRatonNvItem;
 
-            //ObjetosVentana.nvItemSubirArriba.PointerPressed += ScrollViewers.SubirArriba;
-            //ObjetosVentana.nvItemSubirArriba.PointerEntered += Animaciones.EntraRatonNvItem;
-            //ObjetosVentana.nvItemSubirArriba.PointerExited += Animaciones.SaleRatonNvItem;
-
             TextBlock tbOpcionesTt = new TextBlock
             {
                 Text = recursos.GetString("Options")

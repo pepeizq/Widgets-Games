@@ -52,7 +52,7 @@
 				</com:ComServer>
 			</com:Extension>
 			<uap3:Extension Category="windows.appExtension">
-				<uap3:AppExtension Name="com.microsoft.windows.widgets" DisplayName="WidgetGames" Id="WidgetsGames" PublicFolder="Public">
+				<uap3:AppExtension Name="com.microsoft.windows.widgets" DisplayName="pepeizq&apos;s Widgets for Games" Id="WidgetsGames" PublicFolder="Public">
 					<uap3:Properties>
 						<WidgetProvider>
 							<ProviderIcons>
@@ -88,7 +88,6 @@
 										<LightMode />
 									</ThemeResources>
 								</Definition>
-
 							</Definitions>
 						</WidgetProvider>
 					</uap3:Properties>
