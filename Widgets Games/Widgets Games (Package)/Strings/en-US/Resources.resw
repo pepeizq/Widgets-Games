@@ -144,8 +144,29 @@
   <data name="Left.Text" xml:space="preserve">
     <value>Left</value>
   </data>
+  <data name="MenuContact" xml:space="preserve">
+    <value>Contact</value>
+  </data>
+  <data name="MenuExit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="MenuGithub" xml:space="preserve">
+    <value>Source Code</value>
+  </data>
+  <data name="MenuPatchNotes" xml:space="preserve">
+    <value>Last Patch Notes</value>
+  </data>
+  <data name="MenuRate" xml:space="preserve">
+    <value>Rate the App</value>
+  </data>
   <data name="Options" xml:space="preserve">
     <value>Options</value>
+  </data>
+  <data name="OptionsLanguage.Text" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="OptionsLanguageInfo.Text" xml:space="preserve">
+    <value>Select the language of the application, a restart is necessary in the application to make the change.</value>
   </data>
   <data name="PresentationMessage.Text" xml:space="preserve">
     <value>Select the platform where you have the game to add as a widget:</value>
@@ -164,6 +185,11 @@
   </data>
   <data name="SteamInstalledGames.Text" xml:space="preserve">
     <value>Installed games</value>
+  </data>
+  <data name="StoreDescription" xml:space="preserve">
+    <value>Add widgets from your Steam games to the Windows 11 Widgets app. 
+
+Once you've added a game widget you can run it from the Widget app.</value>
   </data>
   <data name="Top.Text" xml:space="preserve">
     <value>Top</value>

@@ -16,6 +16,7 @@ namespace Interfaz
 
             ObjetosVentana.svWidgetPrecarga.ViewChanging += svScroll;
             ObjetosVentana.svSteamJuegosInstalados.ViewChanging += svScroll;
+            ObjetosVentana.svOpciones.ViewChanging += svScroll;
         }
 
         private static void svScroll(object sender, ScrollViewerViewChangingEventArgs args)
@@ -47,6 +48,10 @@ namespace Interfaz
             else if (ObjetosVentana.gridWidgetPrecarga.Visibility == Visibility.Visible)
             {
                 ObjetosVentana.svWidgetPrecarga.ChangeView(null, 0, null);
+            }
+            else if (ObjetosVentana.gridOpciones.Visibility == Visibility.Visible)
+            {
+                ObjetosVentana.svOpciones.ChangeView(null, 0, null);
             }
         }
 

@@ -144,8 +144,29 @@
   <data name="Left.Text" xml:space="preserve">
     <value>Izquierda</value>
   </data>
+  <data name="MenuContact" xml:space="preserve">
+    <value>Contactar</value>
+  </data>
+  <data name="MenuExit" xml:space="preserve">
+    <value>Salir</value>
+  </data>
+  <data name="MenuGithub" xml:space="preserve">
+    <value>Código Fuente</value>
+  </data>
+  <data name="MenuPatchNotes" xml:space="preserve">
+    <value>Últimas Actualizaciones</value>
+  </data>
+  <data name="MenuRate" xml:space="preserve">
+    <value>Calificar la Aplicación</value>
+  </data>
   <data name="Options" xml:space="preserve">
     <value>Opciones</value>
+  </data>
+  <data name="OptionsLanguage.Text" xml:space="preserve">
+    <value>Idioma</value>
+  </data>
+  <data name="OptionsLanguageInfo.Text" xml:space="preserve">
+    <value>Selecciona el idioma de la aplicación, es necesario un reinicio en la aplicación para efectuar el cambio.</value>
   </data>
   <data name="PresentationMessage.Text" xml:space="preserve">
     <value>Selecciona la plataforma donde tienes el juego para añadir como widget:</value>
@@ -164,6 +185,11 @@
   </data>
   <data name="SteamInstalledGames.Text" xml:space="preserve">
     <value>Juegos instalados</value>
+  </data>
+  <data name="StoreDescription" xml:space="preserve">
+    <value>Añade widgets para tus juegos de de Steam en la app Widgets de Windows 11.
+
+Una vez añadido el widget del juego, puedes ejecutarlo desde la app de Widgets.</value>
   </data>
   <data name="Top.Text" xml:space="preserve">
     <value>Arriba</value>

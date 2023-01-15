@@ -28,6 +28,7 @@ namespace Widgets_Games
             BarraTitulo.CambiarTitulo(null);
             Pestañas.Cargar();
             ScrollViewers.Cargar();
+            Interfaz.Menu.Cargar();
 
             Steam steam = new Steam();
             steam.Cargar();
@@ -47,15 +48,22 @@ namespace Widgets_Games
             ObjetosVentana.tbTitulo = tbTitulo;
             ObjetosVentana.nvPrincipal = nvPrincipal;
             ObjetosVentana.nvItemMenu = nvItemMenu;
+            ObjetosVentana.menuItemMenu = menuItemMenu;
             ObjetosVentana.nvItemOpciones = nvItemOpciones;
             ObjetosVentana.nvItemSubirArriba = nvItemSubirArriba;
+
+            //-------------------------------------------------------------------
 
             ObjetosVentana.gridPresentacion = gridPresentacion;
             ObjetosVentana.gridSteam = gridSteam;
             ObjetosVentana.gridWidgetPrecarga = gridWidgetPrecarga;
             ObjetosVentana.gridOpciones = gridOpciones;
 
+            //-------------------------------------------------------------------
+
             ObjetosVentana.gvPresentacionPlataformas = gvPresentacionPlataformas;
+
+            //-------------------------------------------------------------------
 
             ObjetosVentana.botonSteamJuegosInstalados = botonSteamJuegosInstalados;
             ObjetosVentana.botonSteamCualquierJuego = botonSteamCualquierJuego;
@@ -64,6 +72,8 @@ namespace Widgets_Games
             ObjetosVentana.gvSteamJuegosInstalados = gvSteamJuegosInstalados;
             ObjetosVentana.gridSteamCualquierJuego = gridSteamCualquierJuego;
             ObjetosVentana.tbSteamCualquierJuego = tbSteamEnlaceJuego;
+
+            //-------------------------------------------------------------------
 
             ObjetosVentana.svWidgetPrecarga = svWidgetPrecarga;
             ObjetosVentana.tbWidgetPrecargaTitulo = tbWidgetPrecargaTitulo;
@@ -77,6 +87,11 @@ namespace Widgets_Games
             ObjetosVentana.cbWidgetPrecargaImagenOrientacionVertical = cbWidgetPrecargaImagenOrientacionVertical;
             ObjetosVentana.botonWidgetPrecargaCargarJuego = botonWidgetPrecargaCargarJuego;
             ObjetosVentana.tbWidgetCargarJuegoMensaje = tbWidgetCargarJuegoMensaje;
+
+            //-------------------------------------------------------------------
+
+            ObjetosVentana.svOpciones = svOpciones;
+            ObjetosVentana.cbOpcionesIdioma = cbOpcionesIdioma;
         }
 
         public static class ObjetosVentana
@@ -86,18 +101,22 @@ namespace Widgets_Games
             public static TextBlock tbTitulo { get; set; }
             public static NavigationView nvPrincipal { get; set; }
             public static NavigationViewItem nvItemMenu { get; set; }
+            public static MenuFlyout menuItemMenu { get; set; }
             public static NavigationViewItem nvItemOpciones { get; set; }
             public static NavigationViewItem nvItemSubirArriba { get; set; }
 
+            //-------------------------------------------------------------------
 
             public static Grid gridPresentacion { get; set; }
             public static Grid gridSteam { get; set; }
             public static Grid gridWidgetPrecarga { get; set; }
             public static Grid gridOpciones { get; set; }
 
+            //-------------------------------------------------------------------
 
             public static AdaptiveGridView gvPresentacionPlataformas { get; set; }
 
+            //-------------------------------------------------------------------
 
             public static Button botonSteamJuegosInstalados { get; set; }
             public static Button botonSteamCualquierJuego { get; set; }
@@ -107,6 +126,7 @@ namespace Widgets_Games
             public static Grid gridSteamCualquierJuego { get; set; }
             public static TextBox tbSteamCualquierJuego { get; set; }
 
+            //-------------------------------------------------------------------
 
             public static ScrollViewer svWidgetPrecarga { get; set; }
             public static TextBlock tbWidgetPrecargaTitulo { get; set; }
@@ -120,6 +140,11 @@ namespace Widgets_Games
             public static ComboBox cbWidgetPrecargaImagenOrientacionVertical { get; set; }
             public static Button botonWidgetPrecargaCargarJuego { get; set; }
             public static TextBlock tbWidgetCargarJuegoMensaje { get; set; }
+
+            //-------------------------------------------------------------------
+
+            public static ScrollViewer svOpciones { get; set; }
+            public static ComboBox cbOpcionesIdioma { get; set; }
         }
 
         private void nvPrincipal_Loaded(object sender, RoutedEventArgs e)
@@ -150,7 +175,7 @@ namespace Widgets_Games
                         //Opciones.CargarPestaña();
                         Pestañas.Visibilidad(gridOpciones, true, null, false);
                         BarraTitulo.CambiarTitulo(recursos.GetString("Options"));
-                        //ScrollViewers.EnseñarSubir(svOpciones);
+                        ScrollViewers.EnseñarSubir(svOpciones);
                     }
                 }
             }

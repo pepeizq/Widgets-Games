@@ -11,7 +11,7 @@
             </ResourceDictionary.MergedDictionaries>
 
             <Color x:Key="ColorFuente">#f7fcff</Color>
-            <Color x:Key="ColorPrimario">#343434</Color>
+            <Color x:Key="ColorPrimario">#193748</Color>
 
         </ResourceDictionary>
     </Application.Resources>

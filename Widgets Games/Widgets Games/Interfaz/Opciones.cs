@@ -1,49 +1,56 @@
-﻿namespace Interfaz
+﻿using Microsoft.UI.Xaml.Controls;
+using System.Collections.Generic;
+using Windows.Globalization;
+using Windows.Storage;
+using Windows.System.UserProfile;
+using static Widgets_Games.MainWindow;
+
+namespace Interfaz
 {
     public static class Opciones
     {
         public static void CargarDatos()
         {
-            //ApplicationDataContainer datos = ApplicationData.Current.LocalSettings;
+            ApplicationDataContainer datos = ApplicationData.Current.LocalSettings;
 
-            //IReadOnlyList<string> idiomasApp = ApplicationLanguages.ManifestLanguages;
+            IReadOnlyList<string> idiomasApp = ApplicationLanguages.ManifestLanguages;
 
-            //foreach (var idioma in idiomasApp)
-            //{
-            //    ObjetosVentana.cbOpcionesIdioma.Items.Add(idioma);
-            //}
+            foreach (var idioma in idiomasApp)
+            {
+                ObjetosVentana.cbOpcionesIdioma.Items.Add(idioma);
+            }
 
-            //if (datos.Values["OpcionesIdioma"] == null)
-            //{
-            //    IReadOnlyList<string> idiomasUsuario = GlobalizationPreferences.Languages;
-            //    bool seleccionado = false;
+            if (datos.Values["OpcionesIdioma"] == null)
+            {
+                IReadOnlyList<string> idiomasUsuario = GlobalizationPreferences.Languages;
+                bool seleccionado = false;
 
-            //    foreach (var idioma in idiomasUsuario)
-            //    {
-            //        foreach (var idioma2 in idiomasApp)
-            //        {
-            //            if (idioma2 == idioma)
-            //            {
-            //                ObjetosVentana.cbOpcionesIdioma.SelectedItem = idioma2;
-            //                seleccionado = true;
-            //            }
-            //        }
-            //    }
+                foreach (var idioma in idiomasUsuario)
+                {
+                    foreach (var idioma2 in idiomasApp)
+                    {
+                        if (idioma2 == idioma)
+                        {
+                            ObjetosVentana.cbOpcionesIdioma.SelectedItem = idioma2;
+                            seleccionado = true;
+                        }
+                    }
+                }
 
-            //    if (seleccionado == false)
-            //    {
-            //        ObjetosVentana.cbOpcionesIdioma.SelectedIndex = 0;
-            //    }
+                if (seleccionado == false)
+                {
+                    ObjetosVentana.cbOpcionesIdioma.SelectedIndex = 0;
+                }
 
-            //    datos.Values["OpcionesIdioma"] = ObjetosVentana.cbOpcionesIdioma.SelectedItem;
-            //}
-            //else
-            //{
-            //    ObjetosVentana.cbOpcionesIdioma.SelectedItem = datos.Values["OpcionesIdioma"];
-            //}
+                datos.Values["OpcionesIdioma"] = ObjetosVentana.cbOpcionesIdioma.SelectedItem;
+            }
+            else
+            {
+                ObjetosVentana.cbOpcionesIdioma.SelectedItem = datos.Values["OpcionesIdioma"];
+            }
 
-            //ApplicationLanguages.PrimaryLanguageOverride = ObjetosVentana.cbOpcionesIdioma.SelectedItem.ToString();
-            //ObjetosVentana.cbOpcionesIdioma.SelectionChanged += CbOpcionIdioma;
+            ApplicationLanguages.PrimaryLanguageOverride = ObjetosVentana.cbOpcionesIdioma.SelectedItem.ToString();
+            ObjetosVentana.cbOpcionesIdioma.SelectionChanged += CbOpcionIdioma;
 
             ////---------------------------------
 
@@ -118,15 +125,15 @@
             //ObjetosVentana.botonOpcionesLimpiar.Click += BotonOpcionLimpiar;
         }
 
-        //public static void CbOpcionIdioma(object sender, SelectionChangedEventArgs e)
-        //{
-        //    ComboBox cb = sender as ComboBox;
+        public static void CbOpcionIdioma(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cb = sender as ComboBox;
 
-        //    ApplicationDataContainer datos = ApplicationData.Current.LocalSettings;
-        //    datos.Values["OpcionesIdioma"] = cb.SelectedItem;
+            ApplicationDataContainer datos = ApplicationData.Current.LocalSettings;
+            datos.Values["OpcionesIdioma"] = cb.SelectedItem;
 
-        //    ApplicationLanguages.PrimaryLanguageOverride = datos.Values["OpcionesIdioma"].ToString();
-        //}
+            ApplicationLanguages.PrimaryLanguageOverride = datos.Values["OpcionesIdioma"].ToString();
+        }
 
         //public static void ToggleOpcionNotificaciones(object sender, RoutedEventArgs e)
         //{

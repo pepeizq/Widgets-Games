@@ -4,6 +4,7 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.Windows.ApplicationModel.Resources;
+using System.Security.Cryptography;
 using Windows.UI;
 using static Widgets_Games.MainWindow;
 
@@ -64,6 +65,7 @@ namespace Interfaz
             ObjetosVentana.gridPresentacion.Visibility = Visibility.Collapsed;
             ObjetosVentana.gridSteam.Visibility = Visibility.Collapsed;
             ObjetosVentana.gridWidgetPrecarga.Visibility = Visibility.Collapsed;
+            ObjetosVentana.gridOpciones.Visibility = Visibility.Collapsed;
 
             grid.Visibility = Visibility.Visible;
 
