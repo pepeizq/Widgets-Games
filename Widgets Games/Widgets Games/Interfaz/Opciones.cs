@@ -1,8 +1,14 @@
-﻿using Microsoft.UI.Xaml.Controls;
+﻿using Microsoft.UI;
+using Microsoft.UI.Windowing;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.Windows.AppLifecycle;
+using System;
 using System.Collections.Generic;
 using Windows.Globalization;
 using Windows.Storage;
 using Windows.System.UserProfile;
+using WinRT.Interop;
 using static Widgets_Games.MainWindow;
 
 namespace Interfaz
@@ -111,18 +117,18 @@ namespace Interfaz
 
             ////---------------------------------
 
-            //if (datos.Values["OpcionesPantalla"] == null)
-            //{
-            //    datos.Values["OpcionesPantalla"] = 0;
-            //}
+            if (datos.Values["OpcionesPantalla"] == null)
+            {
+                datos.Values["OpcionesPantalla"] = 0;
+            }
 
-            //ObjetosVentana.cbOpcionesPantalla.SelectionChanged += CbOpcionPantalla;
-            //ObjetosVentana.cbOpcionesPantalla.SelectedIndex = (int)datos.Values["OpcionesPantalla"];
+            ObjetosVentana.cbOpcionesPantalla.SelectionChanged += CbOpcionPantalla;
+            ObjetosVentana.cbOpcionesPantalla.SelectedIndex = (int)datos.Values["OpcionesPantalla"];
 
             ////---------------------------------
 
             //ObjetosVentana.botonOpcionesActualizar.Click += BotonOpcionActualizar;
-            //ObjetosVentana.botonOpcionesLimpiar.Click += BotonOpcionLimpiar;
+            ObjetosVentana.botonOpcionesLimpiar.Click += BotonOpcionLimpiar;
         }
 
         public static void CbOpcionIdioma(object sender, SelectionChangedEventArgs e)
@@ -174,34 +180,35 @@ namespace Interfaz
         //    Wordpress.Cargar();
         //}
 
-        //public static void CbOpcionPantalla(object sender, SelectionChangedEventArgs e)
-        //{
-        //    ComboBox cb = sender as ComboBox;
+        public static void CbOpcionPantalla(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cb = sender as ComboBox;
 
-        //    ApplicationDataContainer datos = ApplicationData.Current.LocalSettings;
-        //    datos.Values["OpcionesPantalla"] = cb.SelectedIndex;
+            ApplicationDataContainer datos = ApplicationData.Current.LocalSettings;
+            datos.Values["OpcionesPantalla"] = cb.SelectedIndex;
 
-        //    IntPtr ventanaInt = WindowNative.GetWindowHandle(ObjetosVentana.ventana);
-        //    WindowId ventanaID = Win32Interop.GetWindowIdFromWindow(ventanaInt);
-        //    AppWindow ventana2 = AppWindow.GetFromWindowId(ventanaID);
+            IntPtr ventanaInt = WindowNative.GetWindowHandle(ObjetosVentana.ventana);
+            WindowId ventanaID = Win32Interop.GetWindowIdFromWindow(ventanaInt);
+            AppWindow ventana2 = AppWindow.GetFromWindowId(ventanaID);
 
-        //    if (cb.SelectedIndex == 0)
-        //    {
-        //        ventana2.SetPresenter(AppWindowPresenterKind.Default);
-        //    }
-        //    else if (cb.SelectedIndex == 1)
-        //    {
-        //        ventana2.SetPresenter(AppWindowPresenterKind.FullScreen);
-        //    }
-        //    else if (cb.SelectedIndex == 2)
-        //    {
-        //        ventana2.SetPresenter(AppWindowPresenterKind.Overlapped);
-        //    }
-        //}
+            if (cb.SelectedIndex == 0)
+            {
+                ventana2.SetPresenter(AppWindowPresenterKind.Default);
+            }
+            else if (cb.SelectedIndex == 1)
+            {
+                ventana2.SetPresenter(AppWindowPresenterKind.FullScreen);
+            }
+            else if (cb.SelectedIndex == 2)
+            {
+                ventana2.SetPresenter(AppWindowPresenterKind.Overlapped);
+            }
+        }
 
-        //public static async void BotonOpcionLimpiar(object sender, RoutedEventArgs e)
-        //{
-        //    await ApplicationData.Current.ClearAsync();         
-        //}
+        public static async void BotonOpcionLimpiar(object sender, RoutedEventArgs e)
+        {
+            await ApplicationData.Current.ClearAsync();
+            AppInstance.Restart(null);
+        }
     }
 }

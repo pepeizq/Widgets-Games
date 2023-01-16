@@ -1,8 +1,7 @@
 ﻿using Microsoft.VisualBasic;
-using Plantillas;
 using System;
-using System.IO;
-using System.Text.Json;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Windows.Storage;
 
 namespace Herramientas
@@ -61,5 +60,14 @@ namespace Herramientas
             await FileIO.WriteTextAsync(fichero, contenido);
         }
 
+        public static async Task<int> LeerCantidadFicheros()
+        {
+            StorageFolder carpetaApp = ApplicationData.Current.LocalFolder;
+            StorageFolder carpetaPlantillas = await carpetaApp.GetFolderAsync("Plantillas");
+
+            IReadOnlyList<StorageFile> ficheros = await carpetaPlantillas.GetFilesAsync();
+
+            return ficheros.Count;
+        }
     }
 }

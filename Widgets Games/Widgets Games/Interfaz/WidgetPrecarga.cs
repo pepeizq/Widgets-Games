@@ -10,23 +10,43 @@ namespace Interfaz
 {
     public class WidgetPrecarga
     {
-        public void Cargar()
+        public static void Cargar()
         {
             ObjetosVentana.tbWidgetPrecargaEjecutable.TextChanged += ActivarBotonCargaJuego;
-            ObjetosVentana.tbWidgetPrecargaPequeña.TextChanged += ActivarBotonCargaJuego;
-            ObjetosVentana.tbWidgetPrecargaGrande.TextChanged += ActivarBotonCargaJuego;
+            ObjetosVentana.tbWidgetPrecargaImagenPequeña.TextChanged += ActualizarImagenPequeña;
+            ObjetosVentana.tbWidgetPrecargaImagenGrande.TextChanged += ActualizarImagenGrande;
 
             ObjetosVentana.cbWidgetPrecargaImagen.SelectionChanged += CambiarImagenElegida;
 
             ObjetosVentana.botonWidgetPrecargaCargarJuego.Click += CargarJuego;
         }
 
-        private void ActivarBotonCargaJuego(object sender, TextChangedEventArgs e)
+        private static void ActivarBotonCargaJuego(object sender, TextChangedEventArgs e)
         {
             ActivarBotonCargaJuego();
         }
 
-        private static void ActivarBotonCargaJuego()
+        private static void ActualizarImagenPequeña(object sender, TextChangedEventArgs e)
+        {
+            ActivarBotonCargaJuego();
+
+            if (ObjetosVentana.cbWidgetPrecargaImagen.SelectedIndex == 0)
+            {
+                ObjetosVentana.imagenWidgetPrecargaElegida.Source = ObjetosVentana.tbWidgetPrecargaImagenPequeña;
+            }
+        }
+
+        private static void ActualizarImagenGrande(object sender, TextChangedEventArgs e)
+        {
+            ActivarBotonCargaJuego();
+
+            if (ObjetosVentana.cbWidgetPrecargaImagen.SelectedIndex == 1)
+            {
+                ObjetosVentana.imagenWidgetPrecargaElegida.Source = ObjetosVentana.tbWidgetPrecargaImagenGrande;
+            }
+        }
+
+        private static async void ActivarBotonCargaJuego()
         {
             bool activar1 = false;
             bool activar2 = false;
@@ -40,9 +60,9 @@ namespace Interfaz
                 }
             }
 
-            if (ObjetosVentana.tbWidgetPrecargaPequeña.Text != null)
+            if (ObjetosVentana.tbWidgetPrecargaImagenPequeña.Text != null)
             {
-                if (ObjetosVentana.tbWidgetPrecargaPequeña.Text.Trim().Length > 0)
+                if (ObjetosVentana.tbWidgetPrecargaImagenPequeña.Text.Trim().Length > 0)
                 {
                     activar2 = true;
                 }
@@ -56,9 +76,9 @@ namespace Interfaz
                 activar2 = false;
             }
 
-            if (ObjetosVentana.tbWidgetPrecargaGrande.Text != null)
+            if (ObjetosVentana.tbWidgetPrecargaImagenGrande.Text != null)
             {
-                if (ObjetosVentana.tbWidgetPrecargaGrande.Text.Trim().Length > 0)
+                if (ObjetosVentana.tbWidgetPrecargaImagenGrande.Text.Trim().Length > 0)
                 {
                     activar3 = true;
                 }
@@ -88,9 +108,26 @@ namespace Interfaz
             {
                 ObjetosVentana.botonWidgetPrecargaCargarJuego.IsEnabled = false;
             }
+
+            //-----------------------------------------------------
+
+            if (ObjetosVentana.botonWidgetPrecargaCargarJuego.IsEnabled == true)
+            {
+                if (await Trial.Detectar() == true)
+                {
+                    if (await Ficheros.LeerCantidadFicheros() < 1)
+                    {
+                        ObjetosVentana.botonWidgetPrecargaCargarJuego.IsEnabled = true;
+                    }
+                    else
+                    {
+                        ObjetosVentana.botonWidgetPrecargaCargarJuego.IsEnabled = false;
+                    }
+                }
+            }
         }
 
-        private void CambiarImagenElegida(object sender, SelectionChangedEventArgs e)
+        private static void CambiarImagenElegida(object sender, SelectionChangedEventArgs e)
         {
             ResourceLoader recursos = new ResourceLoader();
 
@@ -100,7 +137,7 @@ namespace Interfaz
                 
                 try
                 {
-                    ObjetosVentana.imagenWidgetPrecargaElegida.Source = ObjetosVentana.tbWidgetPrecargaPequeña.Text;
+                    ObjetosVentana.imagenWidgetPrecargaElegida.Source = ObjetosVentana.tbWidgetPrecargaImagenPequeña.Text;
                 }
                 catch { }
             }
@@ -110,7 +147,7 @@ namespace Interfaz
 
                 try
                 {
-                    ObjetosVentana.imagenWidgetPrecargaElegida.Source = ObjetosVentana.tbWidgetPrecargaGrande.Text;
+                    ObjetosVentana.imagenWidgetPrecargaElegida.Source = ObjetosVentana.tbWidgetPrecargaImagenGrande.Text;
                 }
                 catch { }
             }
@@ -121,15 +158,24 @@ namespace Interfaz
             Pestañas.Visibilidad(ObjetosVentana.gridWidgetPrecarga, true, null, false);
             BarraTitulo.CambiarTitulo(null);
 
-            ObjetosVentana.tbWidgetPrecargaTitulo.Text = nombre;
+            if (nombre != null)
+            {
+                ObjetosVentana.tbWidgetPrecargaTitulo.Text = nombre;
+                ObjetosVentana.tbWidgetPrecargaTitulo.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                ObjetosVentana.tbWidgetPrecargaTitulo.Visibility = Visibility.Collapsed;
+            }
+
             ObjetosVentana.tbWidgetPrecargaEjecutable.Text = ejecutable;
-            ObjetosVentana.tbWidgetPrecargaPequeña.Text = imagenPequeña;
-            ObjetosVentana.tbWidgetPrecargaGrande.Text = imagenMedianaGrande;
+            ObjetosVentana.tbWidgetPrecargaImagenPequeña.Text = imagenPequeña;
+            ObjetosVentana.tbWidgetPrecargaImagenGrande.Text = imagenMedianaGrande;
 
             ActivarBotonCargaJuego();
 
             ObjetosVentana.cbWidgetPrecargaImagen.SelectedIndex = 0;
-            ObjetosVentana.imagenWidgetPrecargaElegida.Source = ObjetosVentana.tbWidgetPrecargaPequeña.Text;
+            ObjetosVentana.imagenWidgetPrecargaElegida.Source = ObjetosVentana.tbWidgetPrecargaImagenPequeña.Text;
 
             ObjetosVentana.cbWidgetPrecargaImagenOrientacionHorizontal.SelectedIndex = 1;
             ObjetosVentana.cbWidgetPrecargaImagenOrientacionVertical.SelectedIndex = 1;
@@ -137,7 +183,7 @@ namespace Interfaz
             ObjetosVentana.tbWidgetCargarJuegoMensaje.Visibility = Visibility.Collapsed;
         }
 
-        public void CargarJuego(object sender, RoutedEventArgs e)
+        public static void CargarJuego(object sender, RoutedEventArgs e)
         {
             ActivarDesactivar(false);
 
@@ -152,11 +198,11 @@ namespace Interfaz
 
             if (ObjetosVentana.cbWidgetPrecargaImagen.SelectedIndex == 0)
             {
-                imagen = ObjetosVentana.tbWidgetPrecargaPequeña.Text.Trim();
+                imagen = ObjetosVentana.tbWidgetPrecargaImagenPequeña.Text.Trim();
             }
             else if (ObjetosVentana.cbWidgetPrecargaImagen.SelectedIndex == 1)
             {
-                imagen = ObjetosVentana.tbWidgetPrecargaGrande.Text.Trim();
+                imagen = ObjetosVentana.tbWidgetPrecargaImagenGrande.Text.Trim();
             }
 
             json.fondo.url = imagen;
@@ -210,11 +256,11 @@ namespace Interfaz
             ActivarDesactivar(true);
         }
 
-        private void ActivarDesactivar(bool estado)
+        private static void ActivarDesactivar(bool estado)
         {
             ObjetosVentana.tbWidgetPrecargaEjecutable.IsEnabled = estado;
-            ObjetosVentana.tbWidgetPrecargaPequeña.IsEnabled = estado;
-            ObjetosVentana.tbWidgetPrecargaGrande.IsEnabled = estado;
+            ObjetosVentana.tbWidgetPrecargaImagenPequeña.IsEnabled = estado;
+            ObjetosVentana.tbWidgetPrecargaImagenGrande.IsEnabled = estado;
 
             ObjetosVentana.cbWidgetPrecargaImagen.IsEnabled = estado;
 

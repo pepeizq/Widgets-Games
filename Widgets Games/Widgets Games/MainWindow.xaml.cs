@@ -29,13 +29,9 @@ namespace Widgets_Games
             Pestañas.Cargar();
             ScrollViewers.Cargar();
             Interfaz.Menu.Cargar();
-
-            Steam steam = new Steam();
-            steam.Cargar();
-
-            WidgetPrecarga precarga = new WidgetPrecarga();
-            precarga.Cargar();
-
+            Trial.Cargar();
+            Steam.Cargar();
+            WidgetPrecarga.Cargar();
             Opciones.CargarDatos();
 
             Pestañas.Visibilidad(gridPresentacion, true, null, false);
@@ -62,6 +58,8 @@ namespace Widgets_Games
             //-------------------------------------------------------------------
 
             ObjetosVentana.gvPresentacionPlataformas = gvPresentacionPlataformas;
+            ObjetosVentana.spPresentacionTrial = spPresentacionTrial;
+            ObjetosVentana.botonPresentacionTrialComprar = botonPresentacionTrialComprar;
 
             //-------------------------------------------------------------------
 
@@ -69,6 +67,7 @@ namespace Widgets_Games
             ObjetosVentana.botonSteamCualquierJuego = botonSteamCualquierJuego;
             ObjetosVentana.gridSteamJuegosInstalados = gridSteamJuegosInstalados;
             ObjetosVentana.svSteamJuegosInstalados = svSteamJuegosInstalados;
+            ObjetosVentana.prSteamJuegosInstalados = prSteamJuegosInstalados;
             ObjetosVentana.gvSteamJuegosInstalados = gvSteamJuegosInstalados;
             ObjetosVentana.gridSteamCualquierJuego = gridSteamCualquierJuego;
             ObjetosVentana.tbSteamCualquierJuego = tbSteamEnlaceJuego;
@@ -78,8 +77,8 @@ namespace Widgets_Games
             ObjetosVentana.svWidgetPrecarga = svWidgetPrecarga;
             ObjetosVentana.tbWidgetPrecargaTitulo = tbWidgetPrecargaTitulo;
             ObjetosVentana.tbWidgetPrecargaEjecutable = tbWidgetPrecargaEjecutable;
-            ObjetosVentana.tbWidgetPrecargaPequeña = tbWidgetPrecargaPequena;
-            ObjetosVentana.tbWidgetPrecargaGrande = tbWidgetPrecargaGrande;
+            ObjetosVentana.tbWidgetPrecargaImagenPequeña = tbWidgetPrecargaPequena;
+            ObjetosVentana.tbWidgetPrecargaImagenGrande = tbWidgetPrecargaGrande;
             ObjetosVentana.cbWidgetPrecargaImagen = cbWidgetPrecargaImagen;
             ObjetosVentana.tbWidgetPrecargaMensajeImagen = tbWidgetPrecargaMensajeImagen;
             ObjetosVentana.imagenWidgetPrecargaElegida = imagenWidgetPrecargaElegida;
@@ -92,6 +91,8 @@ namespace Widgets_Games
 
             ObjetosVentana.svOpciones = svOpciones;
             ObjetosVentana.cbOpcionesIdioma = cbOpcionesIdioma;
+            ObjetosVentana.cbOpcionesPantalla = cbOpcionesPantalla;
+            ObjetosVentana.botonOpcionesLimpiar = botonOpcionesLimpiar;
         }
 
         public static class ObjetosVentana
@@ -115,6 +116,8 @@ namespace Widgets_Games
             //-------------------------------------------------------------------
 
             public static AdaptiveGridView gvPresentacionPlataformas { get; set; }
+            public static StackPanel spPresentacionTrial { get; set; }
+            public static Button botonPresentacionTrialComprar { get; set; }
 
             //-------------------------------------------------------------------
 
@@ -122,6 +125,7 @@ namespace Widgets_Games
             public static Button botonSteamCualquierJuego { get; set; }
             public static Grid gridSteamJuegosInstalados { get; set; }
             public static ScrollViewer svSteamJuegosInstalados { get; set; }
+            public static ProgressRing prSteamJuegosInstalados { get; set; }
             public static AdaptiveGridView gvSteamJuegosInstalados { get; set; }
             public static Grid gridSteamCualquierJuego { get; set; }
             public static TextBox tbSteamCualquierJuego { get; set; }
@@ -131,8 +135,8 @@ namespace Widgets_Games
             public static ScrollViewer svWidgetPrecarga { get; set; }
             public static TextBlock tbWidgetPrecargaTitulo { get; set; }
             public static TextBox tbWidgetPrecargaEjecutable { get; set; }
-            public static TextBox tbWidgetPrecargaPequeña { get; set; }
-            public static TextBox tbWidgetPrecargaGrande { get; set; }
+            public static TextBox tbWidgetPrecargaImagenPequeña { get; set; }
+            public static TextBox tbWidgetPrecargaImagenGrande { get; set; }
             public static ComboBox cbWidgetPrecargaImagen { get; set; }
             public static TextBlock tbWidgetPrecargaMensajeImagen { get; set; }
             public static ImageEx imagenWidgetPrecargaElegida { get; set; }
@@ -145,15 +149,25 @@ namespace Widgets_Games
 
             public static ScrollViewer svOpciones { get; set; }
             public static ComboBox cbOpcionesIdioma { get; set; }
+            public static ComboBox cbOpcionesPantalla { get; set; }
+            public static Button botonOpcionesLimpiar { get; set; }
         }
 
         private void nvPrincipal_Loaded(object sender, RoutedEventArgs e)
         {
-            Pestañas.CreadorItems("/Assets/Plataformas/logo_steam.png", "Steam", null);
+            ResourceLoader recursos = new ResourceLoader();
 
-            Button botonSteam = Presentacion.CreadorItems("/Assets/Plataformas/logo_steam_completo.png", "Steam");
+            Pestañas.CreadorItems("/Assets/Plataformas/logo_cualquierjuego.png", recursos.GetString("AnyGame"), null);
+            Pestañas.CreadorItems("/Assets/Plataformas/logo_steam.png", "Steam", null);
+            
+
+            Button botonSteam = Presentacion.CreadorBotones("/Assets/Plataformas/logo_steam_completo.png", "Steam", false);
             botonSteam.Click += AbrirSteamClick;
             ObjetosVentana.gvPresentacionPlataformas.Items.Add(botonSteam);
+
+            Button botonCualquierJuego = Presentacion.CreadorBotones("/Assets/Plataformas/logo_cualquierjuego.png", recursos.GetString("AnyGame"), true);
+            botonCualquierJuego.Click += AbrirCualquierJuegoClick;
+            ObjetosVentana.gvPresentacionPlataformas.Items.Add(botonCualquierJuego);
         }
 
         private void nvPrincipal_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
@@ -172,7 +186,6 @@ namespace Widgets_Games
                     }
                     else if (item.Name == "nvItemOpciones")
                     {
-                        //Opciones.CargarPestaña();
                         Pestañas.Visibilidad(gridOpciones, true, null, false);
                         BarraTitulo.CambiarTitulo(recursos.GetString("Options"));
                         ScrollViewers.EnseñarSubir(svOpciones);
@@ -197,9 +210,13 @@ namespace Widgets_Games
                                 Pestañas.Visibilidad(gridSteam, true, sp, true);
                                 BarraTitulo.CambiarTitulo(null);
                                 ScrollViewers.EnseñarSubir(svSteamJuegosInstalados);
-
-                                Steam steam = new Steam();
-                                steam.CargarJuegosInstalados();
+                                Steam.CargarJuegosInstalados();
+                            }
+                            else if (tb.Text == recursos.GetString("AnyGame"))
+                            {
+                                Pestañas.Visibilidad(gridWidgetPrecarga, true, null, false);
+                                BarraTitulo.CambiarTitulo(null);
+                                WidgetPrecarga.PrecargarJuego(null, null, null, null);
                             }
                         }
                     }
@@ -213,9 +230,14 @@ namespace Widgets_Games
             Pestañas.Visibilidad(gridSteam, true, sp, true);
             BarraTitulo.CambiarTitulo(null);
             ScrollViewers.EnseñarSubir(svSteamJuegosInstalados);
+            Steam.CargarJuegosInstalados();
+        }
 
-            Steam steam = new Steam();
-            steam.CargarJuegosInstalados();
+        private void AbrirCualquierJuegoClick(object sender, RoutedEventArgs e)
+        {
+            Pestañas.Visibilidad(gridWidgetPrecarga, true, null, false);
+            BarraTitulo.CambiarTitulo(null);
+            WidgetPrecarga.PrecargarJuego(null, null, null, null);
         }
     }
 }

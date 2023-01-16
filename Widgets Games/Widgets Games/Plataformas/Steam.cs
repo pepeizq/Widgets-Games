@@ -16,9 +16,9 @@ using static Widgets_Games.MainWindow;
 
 namespace Plataformas
 {
-    public class Steam
+    public static class Steam
     {
-        public void Cargar()
+        public static void Cargar()
         {
             CambiarSubPestañaInstalados();
 
@@ -28,12 +28,12 @@ namespace Plataformas
             ObjetosVentana.tbSteamCualquierJuego.TextChanged += EnlaceCualquierJuegoTextoCambia;
         }
 
-        private void CambiarSubPestañaInstalados(object sender, RoutedEventArgs e)
+        private static void CambiarSubPestañaInstalados(object sender, RoutedEventArgs e)
         {
             CambiarSubPestañaInstalados();
         }
 
-        private void CambiarSubPestañaInstalados()
+        private static void CambiarSubPestañaInstalados()
         {
             ObjetosVentana.gridSteamJuegosInstalados.Visibility = Visibility.Visible;
             ObjetosVentana.gridSteamCualquierJuego.Visibility = Visibility.Collapsed;
@@ -42,12 +42,12 @@ namespace Plataformas
             ObjetosVentana.botonSteamCualquierJuego.BorderThickness = new Thickness(0, 0, 0, 0);
         }
 
-        private void CambiarSubPestañaCualquiera(object sender, RoutedEventArgs e)
+        private static void CambiarSubPestañaCualquiera(object sender, RoutedEventArgs e)
         {
             CambiarSubPestañaCualquiera();
         }
 
-        private void CambiarSubPestañaCualquiera()
+        private static void CambiarSubPestañaCualquiera()
         {
             ObjetosVentana.gridSteamJuegosInstalados.Visibility = Visibility.Collapsed;
             ObjetosVentana.gridSteamCualquierJuego.Visibility = Visibility.Visible;
@@ -56,9 +56,12 @@ namespace Plataformas
             ObjetosVentana.botonSteamCualquierJuego.BorderThickness = new Thickness(0, 0, 0, 1);
         }
 
-        public async void CargarJuegosInstalados()
+        public async static void CargarJuegosInstalados()
         {
             ActivarDesactivar(false);
+
+            ObjetosVentana.prSteamJuegosInstalados.Visibility = Visibility.Visible;
+            ObjetosVentana.gvSteamJuegosInstalados.Visibility = Visibility.Collapsed;
 
             string contenidoLibreria = string.Empty;
 
@@ -187,7 +190,10 @@ namespace Plataformas
                         }
                     }
                 }
-            }       
+            }
+
+            ObjetosVentana.prSteamJuegosInstalados.Visibility = Visibility.Collapsed;
+            ObjetosVentana.gvSteamJuegosInstalados.Visibility = Visibility.Visible;
 
             if (ObjetosVentana.gvSteamJuegosInstalados.Items.Count == 0)
             {
@@ -199,7 +205,7 @@ namespace Plataformas
             ActivarDesactivar(true);
         }
 
-        private void ImagenJuegoFalla(object sender, ImageExFailedEventArgs e)
+        private static void ImagenJuegoFalla(object sender, ImageExFailedEventArgs e)
         {
             ImageEx imagen = sender as ImageEx;
             string enlace = imagen.Source.ToString();
@@ -212,7 +218,7 @@ namespace Plataformas
             }
         }
 
-        private void ImagenJuegoClick(object sender, RoutedEventArgs e) 
+        private static void ImagenJuegoClick(object sender, RoutedEventArgs e) 
         { 
             Button boton = sender as Button;
             SteamJuego juego = boton.Tag as SteamJuego;
@@ -223,7 +229,7 @@ namespace Plataformas
                     "https://cdn.cloudflare.steamstatic.com/steam/apps/" + juego.id + "/library_600x900.jpg");
         }
 
-        private async void EnlaceCualquierJuegoTextoCambia(object sender, TextChangedEventArgs e)
+        private async static void EnlaceCualquierJuegoTextoCambia(object sender, TextChangedEventArgs e)
         {
             TextBox tb = ObjetosVentana.tbSteamCualquierJuego;
 
@@ -272,7 +278,7 @@ namespace Plataformas
             }
         }
 
-        private void ActivarDesactivar(bool estado)
+        private static void ActivarDesactivar(bool estado)
         {
             ObjetosVentana.botonSteamJuegosInstalados.IsEnabled = estado;
             ObjetosVentana.botonSteamCualquierJuego.IsEnabled = estado;
