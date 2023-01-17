@@ -1,12 +1,9 @@
 using CommunityToolkit.WinUI.UI.Controls;
-using Herramientas;
 using Interfaz;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.Windows.ApplicationModel.Resources;
-using Plantillas;
 using Plataformas;
-using System.Text.Json;
 
 //https://nicksnettravels.builttoroam.com/windows-widget/
 //https://www.adaptivecards.io/designer/
@@ -31,6 +28,7 @@ namespace Widgets_Games
             Interfaz.Menu.Cargar();
             Trial.Cargar();
             Steam.Cargar();
+            EAPlay.Cargar();
             WidgetPrecarga.Cargar();
             Opciones.CargarDatos();
 
@@ -52,11 +50,14 @@ namespace Widgets_Games
 
             ObjetosVentana.gridPresentacion = gridPresentacion;
             ObjetosVentana.gridSteam = gridSteam;
+            ObjetosVentana.gridGOG = gridGOG;
+            ObjetosVentana.gridEAPlay = gridEAPlay;
             ObjetosVentana.gridWidgetPrecarga = gridWidgetPrecarga;
             ObjetosVentana.gridOpciones = gridOpciones;
 
             //-------------------------------------------------------------------
 
+            ObjetosVentana.svPresentacion = svPresentacion;
             ObjetosVentana.gvPresentacionPlataformas = gvPresentacionPlataformas;
             ObjetosVentana.spPresentacionTrial = spPresentacionTrial;
             ObjetosVentana.botonPresentacionTrialComprar = botonPresentacionTrialComprar;
@@ -74,11 +75,30 @@ namespace Widgets_Games
 
             //-------------------------------------------------------------------
 
+            ObjetosVentana.svGOGJuegosInstalados = svGOGJuegosInstalados;
+            ObjetosVentana.prGOGJuegosInstalados = prGOGJuegosInstalados;
+            ObjetosVentana.gvGOGJuegosInstalados = gvGOGJuegosInstalados;
+            ObjetosVentana.tbGOGMensajeNoJuegos = tbGOGMensajeNoJuegos;
+
+            //-------------------------------------------------------------------
+
+            ObjetosVentana.botonEAPlayBuscarJuegosInstalados = botonEAPlayBuscarJuegosInstalados;
+            ObjetosVentana.tbEAPlayCarpetaJuegosInstalados = tbEAPlayCarpetaJuegosInstalados;
+            ObjetosVentana.svEAPlayJuegosInstalados = svEAPlayJuegosInstalados;
+            ObjetosVentana.prEAPlayJuegosInstalados = prEAPlayJuegosInstalados;
+            ObjetosVentana.gvEAPlayJuegosInstalados = gvEAPlayJuegosInstalados;
+            ObjetosVentana.tbEAPlayMensajeNoJuegos = tbEAPlayMensajeNoJuegos;
+
+            //-------------------------------------------------------------------
+
             ObjetosVentana.svWidgetPrecarga = svWidgetPrecarga;
             ObjetosVentana.tbWidgetPrecargaTitulo = tbWidgetPrecargaTitulo;
+            ObjetosVentana.expanderWidgetPrecargaDatos = expanderWidgetPrecargaDatos;
             ObjetosVentana.tbWidgetPrecargaEjecutable = tbWidgetPrecargaEjecutable;
+            ObjetosVentana.tbWidgetPrecargaArgumentos = tbWidgetPrecargaArgumentos;
             ObjetosVentana.tbWidgetPrecargaImagenPequeña = tbWidgetPrecargaPequena;
             ObjetosVentana.tbWidgetPrecargaImagenGrande = tbWidgetPrecargaGrande;
+            ObjetosVentana.expanderWidgetPrecargaPersonalizacion = expanderWidgetPrecargaPersonalizacion;
             ObjetosVentana.cbWidgetPrecargaImagen = cbWidgetPrecargaImagen;
             ObjetosVentana.tbWidgetPrecargaMensajeImagen = tbWidgetPrecargaMensajeImagen;
             ObjetosVentana.imagenWidgetPrecargaElegida = imagenWidgetPrecargaElegida;
@@ -110,11 +130,14 @@ namespace Widgets_Games
 
             public static Grid gridPresentacion { get; set; }
             public static Grid gridSteam { get; set; }
+            public static Grid gridGOG { get; set; }
+            public static Grid gridEAPlay { get; set; }
             public static Grid gridWidgetPrecarga { get; set; }
             public static Grid gridOpciones { get; set; }
 
             //-------------------------------------------------------------------
 
+            public static ScrollViewer svPresentacion { get; set; }
             public static AdaptiveGridView gvPresentacionPlataformas { get; set; }
             public static StackPanel spPresentacionTrial { get; set; }
             public static Button botonPresentacionTrialComprar { get; set; }
@@ -132,11 +155,30 @@ namespace Widgets_Games
 
             //-------------------------------------------------------------------
 
+            public static ScrollViewer svGOGJuegosInstalados { get; set; }
+            public static ProgressRing prGOGJuegosInstalados { get; set; }
+            public static AdaptiveGridView gvGOGJuegosInstalados { get; set; }
+            public static TextBlock tbGOGMensajeNoJuegos { get; set; }
+
+            //-------------------------------------------------------------------
+
+            public static Button botonEAPlayBuscarJuegosInstalados { get; set; }
+            public static TextBlock tbEAPlayCarpetaJuegosInstalados { get; set; }
+            public static ScrollViewer svEAPlayJuegosInstalados { get; set; }
+            public static ProgressRing prEAPlayJuegosInstalados { get; set; }
+            public static AdaptiveGridView gvEAPlayJuegosInstalados { get; set; }
+            public static TextBlock tbEAPlayMensajeNoJuegos { get; set; }
+
+            //-------------------------------------------------------------------
+
             public static ScrollViewer svWidgetPrecarga { get; set; }
             public static TextBlock tbWidgetPrecargaTitulo { get; set; }
+            public static Microsoft.UI.Xaml.Controls.Expander expanderWidgetPrecargaDatos { get; set; }
             public static TextBox tbWidgetPrecargaEjecutable { get; set; }
+            public static TextBox tbWidgetPrecargaArgumentos { get; set; }
             public static TextBox tbWidgetPrecargaImagenPequeña { get; set; }
             public static TextBox tbWidgetPrecargaImagenGrande { get; set; }
+            public static Microsoft.UI.Xaml.Controls.Expander expanderWidgetPrecargaPersonalizacion { get; set; }
             public static ComboBox cbWidgetPrecargaImagen { get; set; }
             public static TextBlock tbWidgetPrecargaMensajeImagen { get; set; }
             public static ImageEx imagenWidgetPrecargaElegida { get; set; }
@@ -157,13 +199,28 @@ namespace Widgets_Games
         {
             ResourceLoader recursos = new ResourceLoader();
 
-            Pestañas.CreadorItems("/Assets/Plataformas/logo_cualquierjuego.png", recursos.GetString("AnyGame"), null);
-            Pestañas.CreadorItems("/Assets/Plataformas/logo_steam.png", "Steam", null);
+            Pestañas.CreadorItems("/Assets/Plataformas/logo_cualquierjuego.png", recursos.GetString("AnyGame"));
+            Pestañas.CreadorItems("/Assets/Plataformas/logo_ubisoft.png", "Ubisoft Connect");
+            Pestañas.CreadorItems("/Assets/Plataformas/logo_eaplay.png", "EA Play");
+            Pestañas.CreadorItems("/Assets/Plataformas/logo_gog.png", "GOG");           
+            Pestañas.CreadorItems("/Assets/Plataformas/logo_steam.png", "Steam");
             
 
             Button botonSteam = Presentacion.CreadorBotones("/Assets/Plataformas/logo_steam_completo.png", "Steam", false);
             botonSteam.Click += AbrirSteamClick;
             ObjetosVentana.gvPresentacionPlataformas.Items.Add(botonSteam);
+
+            Button botonGOG = Presentacion.CreadorBotones("/Assets/Plataformas/logo_gog.png", "GOG", false);
+            botonGOG.Click += AbrirGOGClick;
+            ObjetosVentana.gvPresentacionPlataformas.Items.Add(botonGOG);
+
+            Button botonEAPlay = Presentacion.CreadorBotones("/Assets/Plataformas/logo_eaplay_completo.png", "EA Play", false);
+            botonEAPlay.Click += AbrirEAPlayClick;
+            ObjetosVentana.gvPresentacionPlataformas.Items.Add(botonEAPlay);
+
+            Button botonUbisoft = Presentacion.CreadorBotones("/Assets/Plataformas/logo_ubisoft_completo.png", "Ubisoft Connect", false);
+            botonUbisoft.Click += AbrirEAPlayClick;
+            ObjetosVentana.gvPresentacionPlataformas.Items.Add(botonUbisoft);
 
             Button botonCualquierJuego = Presentacion.CreadorBotones("/Assets/Plataformas/logo_cualquierjuego.png", recursos.GetString("AnyGame"), true);
             botonCualquierJuego.Click += AbrirCualquierJuegoClick;
@@ -212,11 +269,25 @@ namespace Widgets_Games
                                 ScrollViewers.EnseñarSubir(svSteamJuegosInstalados);
                                 Steam.CargarJuegosInstalados();
                             }
+                            else if (tb.Text == "GOG")
+                            {
+                                Pestañas.Visibilidad(gridGOG, true, sp, true);
+                                BarraTitulo.CambiarTitulo(null);
+                                ScrollViewers.EnseñarSubir(svGOGJuegosInstalados);
+                                GOG.Cargar();
+                            }
+                            else if (tb.Text == "EA Play")
+                            {
+                                Pestañas.Visibilidad(gridEAPlay, true, sp, true);
+                                BarraTitulo.CambiarTitulo(null);
+                                ScrollViewers.EnseñarSubir(svEAPlayJuegosInstalados);
+                                EAPlay.CargarJuegosInstalados();
+                            }
                             else if (tb.Text == recursos.GetString("AnyGame"))
                             {
                                 Pestañas.Visibilidad(gridWidgetPrecarga, true, null, false);
                                 BarraTitulo.CambiarTitulo(null);
-                                WidgetPrecarga.PrecargarJuego(null, null, null, null);
+                                WidgetPrecarga.PrecargarJuego(null, null, null, null, null);
                             }
                         }
                     }
@@ -233,11 +304,29 @@ namespace Widgets_Games
             Steam.CargarJuegosInstalados();
         }
 
+        private void AbrirGOGClick(object sender, RoutedEventArgs e) 
+        {
+            StackPanel sp = (StackPanel)ObjetosVentana.nvPrincipal.MenuItems[2];
+            Pestañas.Visibilidad(gridGOG, true, sp, true);
+            BarraTitulo.CambiarTitulo(null);
+            ScrollViewers.EnseñarSubir(svGOGJuegosInstalados);
+            GOG.Cargar();
+        }
+
+        private void AbrirEAPlayClick(object sender, RoutedEventArgs e)
+        {
+            StackPanel sp = (StackPanel)ObjetosVentana.nvPrincipal.MenuItems[3];
+            Pestañas.Visibilidad(gridEAPlay, true, sp, true);
+            BarraTitulo.CambiarTitulo(null);
+            ScrollViewers.EnseñarSubir(svEAPlayJuegosInstalados);
+            EAPlay.CargarJuegosInstalados();
+        }
+
         private void AbrirCualquierJuegoClick(object sender, RoutedEventArgs e)
         {
             Pestañas.Visibilidad(gridWidgetPrecarga, true, null, false);
             BarraTitulo.CambiarTitulo(null);
-            WidgetPrecarga.PrecargarJuego(null, null, null, null);
+            WidgetPrecarga.PrecargarJuego(null, null, null, null, null);
         }
     }
 }

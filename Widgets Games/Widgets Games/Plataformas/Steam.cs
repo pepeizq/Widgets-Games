@@ -224,7 +224,7 @@ namespace Plataformas
             SteamJuego juego = boton.Tag as SteamJuego;
 
             WidgetPrecarga.PrecargarJuego(juego.nombre,
-                    "steam://rungameid/" + juego.id + "/",
+                    "steam://rungameid/" + juego.id + "/", null,
                     "https://cdn.cloudflare.steamstatic.com/steam/apps/" + juego.id + "/header.jpg",
                     "https://cdn.cloudflare.steamstatic.com/steam/apps/" + juego.id + "/library_600x900.jpg");
         }
@@ -264,7 +264,7 @@ namespace Plataformas
                             if (json != null)
                             {
                                 WidgetPrecarga.PrecargarJuego(json.datos.titulo,
-                                    "steam://rungameid/" + id + "/",
+                                    "steam://rungameid/" + id + "/", null,
                                     "https://cdn.cloudflare.steamstatic.com/steam/apps/" + id + "/header.jpg", 
                                     "https://cdn.cloudflare.steamstatic.com/steam/apps/" + id + "/library_600x900.jpg");
 

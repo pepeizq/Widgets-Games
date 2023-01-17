@@ -16,6 +16,9 @@ namespace Plantillas
         [JsonPropertyName("enlace")]
         public string enlace { get; set; }
 
+        [JsonPropertyName("argumentos")]
+        public string argumentos { get; set; }
+
         [JsonPropertyName("backgroundImage")]
         public JuegoFondo fondo { get; set; }
 

@@ -32,7 +32,7 @@ namespace Interfaz
 
             if (ObjetosVentana.cbWidgetPrecargaImagen.SelectedIndex == 0)
             {
-                ObjetosVentana.imagenWidgetPrecargaElegida.Source = ObjetosVentana.tbWidgetPrecargaImagenPequeña;
+                ObjetosVentana.imagenWidgetPrecargaElegida.Source = ObjetosVentana.tbWidgetPrecargaImagenPequeña.Text;
             }
         }
 
@@ -42,7 +42,7 @@ namespace Interfaz
 
             if (ObjetosVentana.cbWidgetPrecargaImagen.SelectedIndex == 1)
             {
-                ObjetosVentana.imagenWidgetPrecargaElegida.Source = ObjetosVentana.tbWidgetPrecargaImagenGrande;
+                ObjetosVentana.imagenWidgetPrecargaElegida.Source = ObjetosVentana.tbWidgetPrecargaImagenGrande.Text;
             }
         }
 
@@ -153,29 +153,40 @@ namespace Interfaz
             }
         }
 
-        public static void PrecargarJuego(string nombre, string ejecutable, string imagenPequeña, string imagenMedianaGrande)
+        public static void PrecargarJuego(string nombre, string ejecutable, string argumentos, string imagenPequeña, string imagenMedianaGrande)
         {
             Pestañas.Visibilidad(ObjetosVentana.gridWidgetPrecarga, true, null, false);
             BarraTitulo.CambiarTitulo(null);
 
             if (nombre != null)
             {
+                ObjetosVentana.expanderWidgetPrecargaDatos.IsExpanded = false;
                 ObjetosVentana.tbWidgetPrecargaTitulo.Text = nombre;
                 ObjetosVentana.tbWidgetPrecargaTitulo.Visibility = Visibility.Visible;
             }
             else
             {
+                ObjetosVentana.expanderWidgetPrecargaDatos.IsExpanded = true;
                 ObjetosVentana.tbWidgetPrecargaTitulo.Visibility = Visibility.Collapsed;
             }
 
             ObjetosVentana.tbWidgetPrecargaEjecutable.Text = ejecutable;
+            ObjetosVentana.tbWidgetPrecargaArgumentos.Text = argumentos;
             ObjetosVentana.tbWidgetPrecargaImagenPequeña.Text = imagenPequeña;
             ObjetosVentana.tbWidgetPrecargaImagenGrande.Text = imagenMedianaGrande;
 
             ActivarBotonCargaJuego();
 
-            ObjetosVentana.cbWidgetPrecargaImagen.SelectedIndex = 0;
-            ObjetosVentana.imagenWidgetPrecargaElegida.Source = ObjetosVentana.tbWidgetPrecargaImagenPequeña.Text;
+            if (imagenPequeña == string.Empty && imagenMedianaGrande != string.Empty)
+            {
+                ObjetosVentana.cbWidgetPrecargaImagen.SelectedIndex = 1;
+                ObjetosVentana.imagenWidgetPrecargaElegida.Source = ObjetosVentana.tbWidgetPrecargaImagenGrande.Text;
+            }
+            else
+            {
+                ObjetosVentana.cbWidgetPrecargaImagen.SelectedIndex = 0;
+                ObjetosVentana.imagenWidgetPrecargaElegida.Source = ObjetosVentana.tbWidgetPrecargaImagenPequeña.Text;
+            }           
 
             ObjetosVentana.cbWidgetPrecargaImagenOrientacionHorizontal.SelectedIndex = 1;
             ObjetosVentana.cbWidgetPrecargaImagenOrientacionVertical.SelectedIndex = 1;
@@ -192,6 +203,11 @@ namespace Interfaz
             Juego json = JsonSerializer.Deserialize<Juego>(plantilla);
             json.enlace = ObjetosVentana.tbWidgetPrecargaEjecutable.Text.Trim();
 
+            if (ObjetosVentana.tbWidgetPrecargaArgumentos.Text.Trim().Length > 0)
+            {
+                json.argumentos = ObjetosVentana.tbWidgetPrecargaArgumentos.Text.Trim();
+            }
+            
             //------------------------------------------------
 
             string imagen = string.Empty;
@@ -253,12 +269,15 @@ namespace Interfaz
             ResourceLoader recursos = new ResourceLoader();
             ObjetosVentana.tbWidgetCargarJuegoMensaje.Text = recursos.GetString("WidgetLoadGameMessage");
 
+            ActivarBotonCargaJuego();
+
             ActivarDesactivar(true);
         }
 
         private static void ActivarDesactivar(bool estado)
         {
             ObjetosVentana.tbWidgetPrecargaEjecutable.IsEnabled = estado;
+            ObjetosVentana.tbWidgetPrecargaArgumentos.IsEnabled = estado;
             ObjetosVentana.tbWidgetPrecargaImagenPequeña.IsEnabled = estado;
             ObjetosVentana.tbWidgetPrecargaImagenGrande.IsEnabled = estado;
 

@@ -63,11 +63,23 @@ namespace Herramientas
         public static async Task<int> LeerCantidadFicheros()
         {
             StorageFolder carpetaApp = ApplicationData.Current.LocalFolder;
-            StorageFolder carpetaPlantillas = await carpetaApp.GetFolderAsync("Plantillas");
+            StorageFolder carpetaPlantillas = null;
 
-            IReadOnlyList<StorageFile> ficheros = await carpetaPlantillas.GetFilesAsync();
-
-            return ficheros.Count;
+            try
+            {
+                carpetaPlantillas = await carpetaApp.GetFolderAsync("Plantillas");
+            }
+            catch { }
+            
+            if (carpetaPlantillas != null)
+            {
+                IReadOnlyList<StorageFile> ficheros = await carpetaPlantillas.GetFilesAsync();
+                return ficheros.Count;
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 }

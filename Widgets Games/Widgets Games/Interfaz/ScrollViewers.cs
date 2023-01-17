@@ -14,8 +14,11 @@ namespace Interfaz
             ObjetosVentana.nvItemSubirArriba.PointerEntered += Animaciones.EntraRatonNvItem;
             ObjetosVentana.nvItemSubirArriba.PointerExited += Animaciones.SaleRatonNvItem;
 
-            ObjetosVentana.svWidgetPrecarga.ViewChanging += svScroll;
+            ObjetosVentana.svPresentacion.ViewChanging += svScroll;
             ObjetosVentana.svSteamJuegosInstalados.ViewChanging += svScroll;
+            ObjetosVentana.svGOGJuegosInstalados.ViewChanging += svScroll;
+            ObjetosVentana.svEAPlayJuegosInstalados.ViewChanging += svScroll;
+            ObjetosVentana.svWidgetPrecarga.ViewChanging += svScroll;
             ObjetosVentana.svOpciones.ViewChanging += svScroll;
         }
 
@@ -44,6 +47,14 @@ namespace Interfaz
             if (ObjetosVentana.gridSteam.Visibility == Visibility.Visible)
             {
                 ObjetosVentana.svSteamJuegosInstalados.ChangeView(null, 0, null);
+            }
+            else if (ObjetosVentana.gridGOG.Visibility == Visibility.Visible)
+            {
+                ObjetosVentana.svGOGJuegosInstalados.ChangeView(null, 0, null);
+            }
+            else if (ObjetosVentana.gridEAPlay.Visibility == Visibility.Visible)
+            {
+                ObjetosVentana.svEAPlayJuegosInstalados.ChangeView(null, 0, null);
             }
             else if (ObjetosVentana.gridWidgetPrecarga.Visibility == Visibility.Visible)
             {

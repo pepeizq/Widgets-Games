@@ -110,24 +110,32 @@
                 </Grid.Background>
 
                 <Grid x:Name="gridPresentacion" Visibility="Collapsed">
-                    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock x:Uid="PresentationMessage" HorizontalAlignment="Center" Margin="0,0,0,30"/>
+                    <ScrollViewer x:Name="svPresentacion" VerticalScrollBarVisibility="Visible" Padding="0,0,15,0" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <StackPanel CornerRadius="5" Padding="20" Margin="20">
+                                <StackPanel.Background>
+                                    <SolidColorBrush Color="{StaticResource ColorPrimario}" Opacity="0.4"/>
+                                </StackPanel.Background>
 
-                        <controls:AdaptiveGridView x:Name="gvPresentacionPlataformas" HorizontalAlignment="Center"/>
+                                <TextBlock x:Uid="PresentationMessage" FontSize="16" HorizontalAlignment="Center" Margin="0,20,0,30"/>
 
-                        <StackPanel x:Name="spPresentacionTrial" Orientation="Vertical" Background="{StaticResource ColorTrialFondo}" Margin="0,50,0,0" CornerRadius="5" Padding="30">
-                            <TextBlock x:Uid="TrialMessage" Foreground="{StaticResource ColorTrialFuente}" FontSize="16"/>
+                                <controls:AdaptiveGridView x:Name="gvPresentacionPlataformas" HorizontalAlignment="Center"/>
+                            </StackPanel>
 
-                            <Button x:Name="botonPresentacionTrialComprar" Background="{StaticResource ColorTrialBoton}" HorizontalAlignment="Center" Margin="0,30,0,0" Padding="15,12">
-                                <Button.Content>
-                                    <StackPanel Orientation="Horizontal">
-                                        <iconos:FontAwesome Icon="Solid_ShoppingCart" Foreground="{StaticResource ColorFuente}" Margin="0,0,10,0"/>
-                                        <TextBlock x:Uid="TrialBuyApp" Foreground="{StaticResource ColorFuente}" FontSize="16"/>
-                                    </StackPanel>
-                                </Button.Content>
-                            </Button>
+                            <StackPanel x:Name="spPresentacionTrial" Orientation="Vertical" Background="{StaticResource ColorTrialFondo}" CornerRadius="5" Padding="30" Margin="20" HorizontalAlignment="Center">
+                                <TextBlock x:Uid="TrialMessage" Foreground="{StaticResource ColorTrialFuente}" FontSize="16" HorizontalAlignment="Center"/>
+
+                                <Button x:Name="botonPresentacionTrialComprar" Background="{StaticResource ColorTrialBoton}" HorizontalAlignment="Center" Margin="0,30,0,0" Padding="15,12">
+                                    <Button.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <iconos:FontAwesome Icon="Solid_ShoppingCart" Foreground="{StaticResource ColorFuente}" Margin="0,0,10,0"/>
+                                            <TextBlock x:Uid="TrialBuyApp" Foreground="{StaticResource ColorFuente}" FontSize="16"/>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
+                            </StackPanel>
                         </StackPanel>
-                    </StackPanel>
+                    </ScrollViewer>                    
                 </Grid>
 
                 <Grid x:Name="gridSteam" Visibility="Collapsed">
@@ -159,7 +167,7 @@
                                 <StackPanel Orientation="Vertical">
                                     <ProgressRing x:Name="prSteamJuegosInstalados" IsIndeterminate="True" Foreground="{StaticResource ColorFuente}" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Collapsed" Margin="30"/>
 
-                                    <controls:AdaptiveGridView x:Name="gvSteamJuegosInstalados" DesiredWidth="200" ItemHeight="300"/>
+                                    <controls:AdaptiveGridView x:Name="gvSteamJuegosInstalados" DesiredWidth="200"/>
                                 </StackPanel>
                             </ScrollViewer>
                         </Grid>
@@ -182,89 +190,156 @@
                     </Grid>
                 </Grid>
 
-                <Grid x:Name="gridWidgetPrecarga" Visibility="Collapsed">
-                    <ScrollViewer x:Name="svWidgetPrecarga" VerticalScrollBarVisibility="Visible" Padding="0,0,15,0" HorizontalAlignment="Stretch" VerticalAlignment="Center">
-                        <StackPanel Orientation="Vertical" Margin="20">
-                            <TextBlock x:Name="tbWidgetPrecargaTitulo" Foreground="{StaticResource ColorFuente}" Margin="30,0,0,20"/>
+                <Grid x:Name="gridGOG" Visibility="Collapsed">
+                    <ScrollViewer x:Name="svGOGJuegosInstalados" VerticalScrollBarVisibility="Visible" Padding="0,0,15,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                        <StackPanel Orientation="Vertical">
+                            <ProgressRing x:Name="prGOGJuegosInstalados" IsIndeterminate="True" Foreground="{StaticResource ColorFuente}" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Collapsed" Margin="30"/>
 
-                            <StackPanel Orientation="Vertical" Padding="30" Margin="0,0,0,30" CornerRadius="5">
-                                <StackPanel.Background>
-                                    <SolidColorBrush Color="{StaticResource ColorPrimario}" Opacity="0.6"/>
-                                </StackPanel.Background>
-                                
-                                <TextBlock x:Uid="Executable" Foreground="{StaticResource ColorFuente}" Margin="0,0,0,10"/>
-                                <TextBox x:Name="tbWidgetPrecargaEjecutable" Margin="0,0,0,20"/>
+                            <controls:AdaptiveGridView x:Name="gvGOGJuegosInstalados" DesiredWidth="250" Padding="20"/>
 
-                                <TextBlock x:Uid="ImageSmall" Foreground="{StaticResource ColorFuente}" Margin="0,0,0,10"/>
-                                <TextBox x:Name="tbWidgetPrecargaPequena" Margin="0,0,0,20"/>
+                            <TextBlock x:Name="tbGOGMensajeNoJuegos" x:Uid="NoGamesDetected" Foreground="{StaticResource ColorFuente}" Margin="30,0" Visibility="Collapsed"/>
+                        </StackPanel>
+                    </ScrollViewer> 
+                </Grid>
 
-                                <TextBlock x:Uid="ImageBig" Foreground="{StaticResource ColorFuente}" Margin="0,0,0,10"/>
-                                <TextBox x:Name="tbWidgetPrecargaGrande"/>
-                            </StackPanel>
+                <Grid x:Name="gridEAPlay" Visibility="Collapsed">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-                            <Grid Padding="30" Margin="0,0,0,30" CornerRadius="5">
-                                <Grid.Background>
-                                    <SolidColorBrush Color="{StaticResource ColorPrimario}" Opacity="0.6"/>
-                                </Grid.Background>
+                        <StackPanel Grid.Row="0" Orientation="Vertical" Padding="30,30,30,0">
+                            <TextBlock x:Uid="SelectFolderInstalledGames" Foreground="{StaticResource ColorFuente}" Margin="0,0,0,20"/>
 
+                            <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <StackPanel Orientation="Vertical" Grid.Column="0" VerticalAlignment="Top">
-                                    <TextBlock x:Uid="ChooseImage" Foreground="{StaticResource ColorFuente}" Margin="0,0,0,20"/>
-                                    <ComboBox x:Name="cbWidgetPrecargaImagen" Margin="0,0,0,20">
-                                        <ComboBoxItem>
-                                            <TextBlock x:Uid="ImageSmall"/>
-                                        </ComboBoxItem>
-                                        <ComboBoxItem>
-                                            <TextBlock x:Uid="ImageBig"/>
-                                        </ComboBoxItem>
-                                    </ComboBox>
-                                    <Grid Margin="0,0,0,50">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-                                        
-                                        <iconos:FontAwesome Icon="Solid_InfoCircle" Grid.Column="0" Foreground="{StaticResource ColorFuente}" Margin="0,0,15,0"/>
-                                        <TextBlock x:Name="tbWidgetPrecargaMensajeImagen" Grid.Column="1" Foreground="{StaticResource ColorFuente}" TextWrapping="Wrap"/>
-                                    </Grid>
-                                    
-                                    <TextBlock x:Uid="WidgetImageOrientation" Foreground="{StaticResource ColorFuente}" Margin="0,0,0,20"/>
-                                    
-                                    <TextBlock x:Uid="WidgetImageOrientationHorizontal" Foreground="{StaticResource ColorFuente}" Margin="0,0,0,15"/>
-                                    <ComboBox x:Name="cbWidgetPrecargaImagenOrientacionHorizontal" Margin="0,0,0,20">
-                                        <ComboBoxItem>
-                                            <TextBlock x:Uid="Left"/>
-                                        </ComboBoxItem>
-                                        <ComboBoxItem>
-                                            <TextBlock x:Uid="Center"/>
-                                        </ComboBoxItem>
-                                        <ComboBoxItem>
-                                            <TextBlock x:Uid="Right"/>
-                                        </ComboBoxItem>
-                                    </ComboBox>
+                                <Button x:Name="botonEAPlayBuscarJuegosInstalados" Grid.Column="0" Background="{StaticResource ColorPrimario}" Padding="15,8">
+                                    <Button.Content>
+                                        <StackPanel Orientation="Horizontal">
+                                            <iconos:FontAwesome Icon="Solid_Folder" Foreground="{StaticResource ColorFuente}"/>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
 
-                                    <TextBlock x:Uid="WidgetImageOrientationVertical" Foreground="{StaticResource ColorFuente}" Margin="0,0,0,15"/>
-                                    <ComboBox x:Name="cbWidgetPrecargaImagenOrientacionVertical">
-                                        <ComboBoxItem>
-                                            <TextBlock x:Uid="Top"/>
-                                        </ComboBoxItem>
-                                        <ComboBoxItem>
-                                            <TextBlock x:Uid="Center"/>
-                                        </ComboBoxItem>
-                                        <ComboBoxItem>
-                                            <TextBlock x:Uid="Bottom"/>
-                                        </ComboBoxItem>
-                                    </ComboBox>
-                                </StackPanel>
-
-                                <StackPanel Orientation="Vertical" Grid.Column="1" VerticalAlignment="Top">
-                                    <controls:ImageEx x:Name="imagenWidgetPrecargaElegida" IsCacheEnabled="True" EnableLazyLoading="True" MaxWidth="350" Stretch="UniformToFill" VerticalAlignment="Top"/>
-                                </StackPanel>
+                                <TextBlock x:Name="tbEAPlayCarpetaJuegosInstalados" Grid.Column="1" Margin="20,0,0,0" VerticalAlignment="Center"/>
                             </Grid>
+                        </StackPanel>
+
+                        <ScrollViewer x:Name="svEAPlayJuegosInstalados" Grid.Row="1" VerticalScrollBarVisibility="Visible" Padding="0,0,15,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                            <StackPanel Orientation="Vertical">
+                                <ProgressRing x:Name="prEAPlayJuegosInstalados" IsIndeterminate="True" Foreground="{StaticResource ColorFuente}" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Collapsed" Margin="30"/>
+
+                                <controls:AdaptiveGridView x:Name="gvEAPlayJuegosInstalados" DesiredWidth="250" Padding="20"/>
+
+                                <TextBlock x:Name="tbEAPlayMensajeNoJuegos" x:Uid="NoGamesDetected" Foreground="{StaticResource ColorFuente}" Margin="30" Visibility="Collapsed"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </Grid>
+
+                <Grid x:Name="gridWidgetPrecarga" Visibility="Collapsed">
+                    <ScrollViewer x:Name="svWidgetPrecarga" VerticalScrollBarVisibility="Visible" Padding="0,0,15,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                        <StackPanel Orientation="Vertical" Margin="20">
+                            <TextBlock x:Name="tbWidgetPrecargaTitulo" Foreground="{StaticResource ColorFuente}" Margin="30,0,0,20"/>
+
+                            <Expander x:Name="expanderWidgetPrecargaDatos" Margin="0,0,0,30" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" RequestedTheme="Dark" CornerRadius="5" IsExpanded="True">
+                                <Expander.Header>
+                                    <TextBlock x:Uid="Data" Foreground="{StaticResource ColorFuente}" Margin="10,0,0,0"/>
+                                </Expander.Header>
+
+                                <Expander.Background>
+                                    <SolidColorBrush Color="{StaticResource ColorPrimario}" Opacity="0.6"/>
+                                </Expander.Background>
+
+                                <StackPanel Orientation="Vertical" Padding="10">
+                                    <TextBlock x:Uid="Executable" Foreground="{StaticResource ColorFuente}" Margin="0,0,0,10"/>
+                                    <TextBox x:Name="tbWidgetPrecargaEjecutable" Margin="0,0,0,20" TextWrapping="Wrap"/>
+
+                                    <TextBlock x:Uid="Arguments" Foreground="{StaticResource ColorFuente}" Margin="0,0,0,10"/>
+                                    <TextBox x:Name="tbWidgetPrecargaArgumentos" Margin="0,0,0,20" TextWrapping="Wrap"/>
+
+                                    <TextBlock x:Uid="ImageSmall" Foreground="{StaticResource ColorFuente}" Margin="0,0,0,10"/>
+                                    <TextBox x:Name="tbWidgetPrecargaPequena" Margin="0,0,0,20" TextWrapping="Wrap"/>
+
+                                    <TextBlock x:Uid="ImageBig" Foreground="{StaticResource ColorFuente}" Margin="0,0,0,10"/>
+                                    <TextBox x:Name="tbWidgetPrecargaGrande" TextWrapping="Wrap"/>
+                                </StackPanel>
+                            </Expander>
+
+                            <Expander x:Name="expanderWidgetPrecargaPersonalizacion" Margin="0,0,0,30" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" RequestedTheme="Dark" CornerRadius="5" IsExpanded="True">
+                                <Expander.Header>
+                                    <TextBlock x:Uid="Customization" Foreground="{StaticResource ColorFuente}" Margin="10,0,0,0"/>
+                                </Expander.Header>
+
+                                <Expander.Background>
+                                    <SolidColorBrush Color="{StaticResource ColorPrimario}" Opacity="0.6"/>
+                                </Expander.Background>
+
+                                <Grid Padding="10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <StackPanel Orientation="Vertical" Grid.Column="0" VerticalAlignment="Top">
+                                        <TextBlock x:Uid="ChooseImage" Foreground="{StaticResource ColorFuente}" Margin="0,0,0,20"/>
+                                        <ComboBox x:Name="cbWidgetPrecargaImagen" Margin="0,0,0,20">
+                                            <ComboBoxItem>
+                                                <TextBlock x:Uid="ImageSmall"/>
+                                            </ComboBoxItem>
+                                            <ComboBoxItem>
+                                                <TextBlock x:Uid="ImageBig"/>
+                                            </ComboBoxItem>
+                                        </ComboBox>
+                                        <Grid Margin="0,0,0,50">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+
+                                            <iconos:FontAwesome Icon="Solid_InfoCircle" Grid.Column="0" Foreground="{StaticResource ColorFuente}" Margin="0,0,15,0"/>
+                                            <TextBlock x:Name="tbWidgetPrecargaMensajeImagen" Grid.Column="1" Foreground="{StaticResource ColorFuente}" TextWrapping="Wrap"/>
+                                        </Grid>
+
+                                        <TextBlock x:Uid="WidgetImageOrientation" Foreground="{StaticResource ColorFuente}" Margin="0,0,0,20"/>
+
+                                        <TextBlock x:Uid="WidgetImageOrientationHorizontal" Foreground="{StaticResource ColorFuente}" Margin="0,0,0,15"/>
+                                        <ComboBox x:Name="cbWidgetPrecargaImagenOrientacionHorizontal" Margin="0,0,0,20">
+                                            <ComboBoxItem>
+                                                <TextBlock x:Uid="Left"/>
+                                            </ComboBoxItem>
+                                            <ComboBoxItem>
+                                                <TextBlock x:Uid="Center"/>
+                                            </ComboBoxItem>
+                                            <ComboBoxItem>
+                                                <TextBlock x:Uid="Right"/>
+                                            </ComboBoxItem>
+                                        </ComboBox>
+
+                                        <TextBlock x:Uid="WidgetImageOrientationVertical" Foreground="{StaticResource ColorFuente}" Margin="0,0,0,15"/>
+                                        <ComboBox x:Name="cbWidgetPrecargaImagenOrientacionVertical">
+                                            <ComboBoxItem>
+                                                <TextBlock x:Uid="Top"/>
+                                            </ComboBoxItem>
+                                            <ComboBoxItem>
+                                                <TextBlock x:Uid="Center"/>
+                                            </ComboBoxItem>
+                                            <ComboBoxItem>
+                                                <TextBlock x:Uid="Bottom"/>
+                                            </ComboBoxItem>
+                                        </ComboBox>
+                                    </StackPanel>
+
+                                    <StackPanel Orientation="Vertical" Grid.Column="1" VerticalAlignment="Top">
+                                        <controls:ImageEx x:Name="imagenWidgetPrecargaElegida" IsCacheEnabled="True" EnableLazyLoading="True" MaxWidth="350" Stretch="UniformToFill" VerticalAlignment="Top"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Expander>
 
                             <StackPanel Orientation="Vertical" Padding="30" CornerRadius="5">
                                 <StackPanel.Background>

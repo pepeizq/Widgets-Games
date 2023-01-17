@@ -120,6 +120,9 @@
   <data name="AnyGame" xml:space="preserve">
     <value>Cualquier Juego</value>
   </data>
+  <data name="Arguments.Text" xml:space="preserve">
+    <value>Argumentos</value>
+  </data>
   <data name="Bottom.Text" xml:space="preserve">
     <value>Abajo</value>
   </data>
@@ -134,6 +137,12 @@
   </data>
   <data name="ChooseImageSmall" xml:space="preserve">
     <value>La imagen pequeña se adapta mejor al widget de tamaño pequeño.</value>
+  </data>
+  <data name="Customization.Text" xml:space="preserve">
+    <value>Personalización</value>
+  </data>
+  <data name="Data.Text" xml:space="preserve">
+    <value>Datos</value>
   </data>
   <data name="Executable.Text" xml:space="preserve">
     <value>Ejecutable</value>
@@ -161,6 +170,9 @@
   </data>
   <data name="MenuRate" xml:space="preserve">
     <value>Calificar la Aplicación</value>
+  </data>
+  <data name="NoGamesDetected.Text" xml:space="preserve">
+    <value>Ningún juego detectado</value>
   </data>
   <data name="Options" xml:space="preserve">
     <value>Opciones</value>
@@ -197,6 +209,9 @@
   </data>
   <data name="Right.Text" xml:space="preserve">
     <value>Derecha</value>
+  </data>
+  <data name="SelectFolderInstalledGames.Text" xml:space="preserve">
+    <value>Selecciona la carpeta donde tengas instalados los juegos:</value>
   </data>
   <data name="SteamAnyGames.Text" xml:space="preserve">
     <value>Cualquier juego</value>

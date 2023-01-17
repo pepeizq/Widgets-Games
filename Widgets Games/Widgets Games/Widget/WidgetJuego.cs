@@ -24,7 +24,21 @@ internal class WidgetJuego : WidgetBase
             }
             else
             {
-                Process.Start(json.enlace);
+                string ejecutable = json.enlace.Trim();
+                string argumentos = json.argumentos.Trim();
+               
+                Process proceso = new Process();
+                proceso.StartInfo.FileName = ejecutable;
+                
+                if (argumentos.Length > 0)
+                {
+                    proceso.StartInfo.Arguments = argumentos;
+                    proceso.StartInfo.RedirectStandardInput = true;
+                    proceso.StartInfo.UseShellExecute = false;
+                    proceso.StartInfo.CreateNoWindow = true;
+                }
+                
+                proceso.Start();
             }           
         }
     }

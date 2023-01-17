@@ -64,6 +64,8 @@ namespace Interfaz
             ObjetosVentana.nvPrincipal.Visibility = Visibility.Collapsed;
             ObjetosVentana.gridPresentacion.Visibility = Visibility.Collapsed;
             ObjetosVentana.gridSteam.Visibility = Visibility.Collapsed;
+            ObjetosVentana.gridGOG.Visibility = Visibility.Collapsed;
+            ObjetosVentana.gridEAPlay.Visibility = Visibility.Collapsed;
             ObjetosVentana.gridWidgetPrecarga.Visibility = Visibility.Collapsed;
             ObjetosVentana.gridOpciones.Visibility = Visibility.Collapsed;
 
@@ -91,7 +93,7 @@ namespace Interfaz
             }
         }
 
-        public static void CreadorItems(string imagenEnlace, string nombre, string tooltip)
+        public static void CreadorItems(string imagenEnlace, string nombre)
         {
             StackPanel sp = new StackPanel
             {
@@ -125,7 +127,7 @@ namespace Interfaz
 
             sp.Children.Add(tb);
 
-            if (tooltip != null)
+            if (nombre != null)
             {
                 TextBlock tbTt = new TextBlock
                 {
