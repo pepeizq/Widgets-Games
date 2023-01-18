@@ -66,6 +66,7 @@ namespace Interfaz
             ObjetosVentana.gridSteam.Visibility = Visibility.Collapsed;
             ObjetosVentana.gridGOG.Visibility = Visibility.Collapsed;
             ObjetosVentana.gridEAPlay.Visibility = Visibility.Collapsed;
+            ObjetosVentana.gridUbisoft.Visibility = Visibility.Collapsed;
             ObjetosVentana.gridWidgetPrecarga.Visibility = Visibility.Collapsed;
             ObjetosVentana.gridOpciones.Visibility = Visibility.Collapsed;
 

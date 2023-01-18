@@ -197,7 +197,8 @@ namespace Plataformas
                                 Padding = new Thickness(0),
                                 BorderBrush = new SolidColorBrush((Color)Application.Current.Resources["ColorPrimario"]),
                                 BorderThickness = new Thickness(2),
-                                Tag = juego
+                                Tag = juego,
+                                MaxWidth = 300
                             };
 
                             botonJuego.Click += ImagenJuegoClick;

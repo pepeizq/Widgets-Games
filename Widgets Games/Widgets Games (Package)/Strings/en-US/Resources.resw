@@ -138,6 +138,9 @@
   <data name="ChooseImageSmall" xml:space="preserve">
     <value>The small image is best suited to the small size widget.</value>
   </data>
+  <data name="Contact.Text" xml:space="preserve">
+    <value>Contact</value>
+  </data>
   <data name="Customization.Text" xml:space="preserve">
     <value>Customization</value>
   </data>
@@ -170,6 +173,12 @@
   </data>
   <data name="MenuRate" xml:space="preserve">
     <value>Rate the App</value>
+  </data>
+  <data name="NoGamesBBDDMessage1.Text" xml:space="preserve">
+    <value>There are games that you have installed and have not been detected by the app.</value>
+  </data>
+  <data name="NoGamesBBDDMessage2.Text" xml:space="preserve">
+    <value>If you want to help with the app, you can contact with the developer saying what games and ids are missing.</value>
   </data>
   <data name="NoGamesDetected.Text" xml:space="preserve">
     <value>No Games Detected</value>

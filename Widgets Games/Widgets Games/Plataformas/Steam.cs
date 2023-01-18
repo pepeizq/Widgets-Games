@@ -18,6 +18,8 @@ namespace Plataformas
 {
     public static class Steam
     {
+        public static string dominioImagenes = "https://cdn.cloudflare.steamstatic.com";
+
         public static void Cargar()
         {
             CambiarSubPestañaInstalados();
@@ -180,7 +182,8 @@ namespace Plataformas
                                     Padding = new Thickness(0),
                                     BorderBrush = new SolidColorBrush((Color)Application.Current.Resources["ColorPrimario"]),
                                     BorderThickness = new Thickness(2),
-                                    Tag = juego
+                                    Tag = juego,
+                                    MaxWidth = 300
                                 };
 
                                 botonJuego.Click += ImagenJuegoClick;
@@ -265,8 +268,8 @@ namespace Plataformas
                             {
                                 WidgetPrecarga.PrecargarJuego(json.datos.titulo,
                                     "steam://rungameid/" + id + "/", null,
-                                    "https://cdn.cloudflare.steamstatic.com/steam/apps/" + id + "/header.jpg", 
-                                    "https://cdn.cloudflare.steamstatic.com/steam/apps/" + id + "/library_600x900.jpg");
+                                    dominioImagenes + "/steam/apps/" + id + "/header.jpg",
+                                    dominioImagenes + "/steam/apps/" + id + "/library_600x900.jpg");
 
                                 tb.Text = string.Empty;
                             }

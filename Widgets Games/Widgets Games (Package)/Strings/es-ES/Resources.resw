@@ -138,6 +138,9 @@
   <data name="ChooseImageSmall" xml:space="preserve">
     <value>La imagen pequeña se adapta mejor al widget de tamaño pequeño.</value>
   </data>
+  <data name="Contact.Text" xml:space="preserve">
+    <value>Contactar</value>
+  </data>
   <data name="Customization.Text" xml:space="preserve">
     <value>Personalización</value>
   </data>
@@ -170,6 +173,12 @@
   </data>
   <data name="MenuRate" xml:space="preserve">
     <value>Calificar la Aplicación</value>
+  </data>
+  <data name="NoGamesBBDDMessage1.Text" xml:space="preserve">
+    <value>Hay juegos que tienes instalados y no han sido detectados por la aplicación.</value>
+  </data>
+  <data name="NoGamesBBDDMessage2.Text" xml:space="preserve">
+    <value>Si deseas ayudar con la aplicación, puedes contactar con el desarrollador diciendo que juegos e ids faltan.</value>
   </data>
   <data name="NoGamesDetected.Text" xml:space="preserve">
     <value>Ningún juego detectado</value>
@@ -237,7 +246,7 @@ Una vez añadido el widget del juego, puedes ejecutarlo desde la app de Widgets.
     <value>Comprar Aplicación</value>
   </data>
   <data name="TrialMessage.Text" xml:space="preserve">
-    <value>Estás usando una version trial de la app, solo podrás añadir 1 widget.</value>
+    <value>Estás usando una version trial de la aplicación, solo podrás añadir 1 widget.</value>
   </data>
   <data name="WidgetImageOrientation.Text" xml:space="preserve">
     <value>Orientación de la imagen en el Widget:</value>

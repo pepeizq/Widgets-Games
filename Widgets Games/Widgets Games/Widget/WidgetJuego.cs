@@ -18,7 +18,7 @@ internal class WidgetJuego : WidgetBase
             string plantilla = Ficheros.LeerFicheroFueraAplicacion(ApplicationData.Current.LocalFolder.Path + "/Plantillas/Juego" + ID + ".json");
             Juego json = JsonSerializer.Deserialize<Juego>(plantilla);
 
-            if (json.enlace.Contains("steam://rungameid/") == true)
+            if (json.enlace.Contains("steam://rungameid/") == true || json.enlace.Contains("uplay://launch/") == true)
             {
                 await Launcher.LaunchUriAsync(new Uri(json.enlace));
             }

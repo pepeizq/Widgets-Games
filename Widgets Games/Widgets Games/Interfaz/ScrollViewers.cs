@@ -18,6 +18,7 @@ namespace Interfaz
             ObjetosVentana.svSteamJuegosInstalados.ViewChanging += svScroll;
             ObjetosVentana.svGOGJuegosInstalados.ViewChanging += svScroll;
             ObjetosVentana.svEAPlayJuegosInstalados.ViewChanging += svScroll;
+            ObjetosVentana.svUbisoftJuegosInstalados.ViewChanging += svScroll;
             ObjetosVentana.svWidgetPrecarga.ViewChanging += svScroll;
             ObjetosVentana.svOpciones.ViewChanging += svScroll;
         }
@@ -55,6 +56,10 @@ namespace Interfaz
             else if (ObjetosVentana.gridEAPlay.Visibility == Visibility.Visible)
             {
                 ObjetosVentana.svEAPlayJuegosInstalados.ChangeView(null, 0, null);
+            }
+            else if (ObjetosVentana.gridUbisoft.Visibility == Visibility.Visible)
+            {
+                ObjetosVentana.svUbisoftJuegosInstalados.ChangeView(null, 0, null);
             }
             else if (ObjetosVentana.gridWidgetPrecarga.Visibility == Visibility.Visible)
             {

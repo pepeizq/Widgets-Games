@@ -29,6 +29,7 @@ namespace Widgets_Games
             Trial.Cargar();
             Steam.Cargar();
             EAPlay.Cargar();
+            Ubisoft.Cargar();
             WidgetPrecarga.Cargar();
             Opciones.CargarDatos();
 
@@ -52,6 +53,7 @@ namespace Widgets_Games
             ObjetosVentana.gridSteam = gridSteam;
             ObjetosVentana.gridGOG = gridGOG;
             ObjetosVentana.gridEAPlay = gridEAPlay;
+            ObjetosVentana.gridUbisoft = gridUbisoft;
             ObjetosVentana.gridWidgetPrecarga = gridWidgetPrecarga;
             ObjetosVentana.gridOpciones = gridOpciones;
 
@@ -88,6 +90,16 @@ namespace Widgets_Games
             ObjetosVentana.prEAPlayJuegosInstalados = prEAPlayJuegosInstalados;
             ObjetosVentana.gvEAPlayJuegosInstalados = gvEAPlayJuegosInstalados;
             ObjetosVentana.tbEAPlayMensajeNoJuegos = tbEAPlayMensajeNoJuegos;
+
+            //-------------------------------------------------------------------
+
+            ObjetosVentana.expanderUbisoftJuegosNoBBDD = expanderUbisoftJuegosNoBBDD;
+            ObjetosVentana.tbUbisoftJuegosNoBBDDIds = tbUbisoftJuegosNoBBDDIds;
+            ObjetosVentana.botonUbisoftJuegosNoBBDDContactar = botonUbisoftJuegosNoBBDDContactar;
+            ObjetosVentana.svUbisoftJuegosInstalados = svUbisoftJuegosInstalados;
+            ObjetosVentana.prUbisoftJuegosInstalados = prUbisoftJuegosInstalados;
+            ObjetosVentana.gvUbisoftJuegosInstalados = gvUbisoftJuegosInstalados;
+            ObjetosVentana.tbUbisoftMensajeNoJuegos = tbUbisoftMensajeNoJuegos;
 
             //-------------------------------------------------------------------
 
@@ -132,6 +144,7 @@ namespace Widgets_Games
             public static Grid gridSteam { get; set; }
             public static Grid gridGOG { get; set; }
             public static Grid gridEAPlay { get; set; }
+            public static Grid gridUbisoft { get; set; }
             public static Grid gridWidgetPrecarga { get; set; }
             public static Grid gridOpciones { get; set; }
 
@@ -168,6 +181,16 @@ namespace Widgets_Games
             public static ProgressRing prEAPlayJuegosInstalados { get; set; }
             public static AdaptiveGridView gvEAPlayJuegosInstalados { get; set; }
             public static TextBlock tbEAPlayMensajeNoJuegos { get; set; }
+
+            //-------------------------------------------------------------------
+
+            public static Microsoft.UI.Xaml.Controls.Expander expanderUbisoftJuegosNoBBDD { get; set; }
+            public static TextBlock tbUbisoftJuegosNoBBDDIds { get; set; }
+            public static Button botonUbisoftJuegosNoBBDDContactar { get; set; }
+            public static ScrollViewer svUbisoftJuegosInstalados { get; set; }
+            public static ProgressRing prUbisoftJuegosInstalados { get; set; }
+            public static AdaptiveGridView gvUbisoftJuegosInstalados { get; set; }
+            public static TextBlock tbUbisoftMensajeNoJuegos { get; set; }
 
             //-------------------------------------------------------------------
 
@@ -219,7 +242,7 @@ namespace Widgets_Games
             ObjetosVentana.gvPresentacionPlataformas.Items.Add(botonEAPlay);
 
             Button botonUbisoft = Presentacion.CreadorBotones("/Assets/Plataformas/logo_ubisoft_completo.png", "Ubisoft Connect", false);
-            botonUbisoft.Click += AbrirEAPlayClick;
+            botonUbisoft.Click += AbrirUbisoftClick;
             ObjetosVentana.gvPresentacionPlataformas.Items.Add(botonUbisoft);
 
             Button botonCualquierJuego = Presentacion.CreadorBotones("/Assets/Plataformas/logo_cualquierjuego.png", recursos.GetString("AnyGame"), true);
@@ -283,6 +306,13 @@ namespace Widgets_Games
                                 ScrollViewers.EnseñarSubir(svEAPlayJuegosInstalados);
                                 EAPlay.CargarJuegosInstalados();
                             }
+                            else if (tb.Text == "Ubisoft Connect")
+                            {
+                                Pestañas.Visibilidad(gridUbisoft, true, sp, true);
+                                BarraTitulo.CambiarTitulo(null);
+                                ScrollViewers.EnseñarSubir(svUbisoftJuegosInstalados);
+                                Ubisoft.CargarJuegosInstalados();
+                            }
                             else if (tb.Text == recursos.GetString("AnyGame"))
                             {
                                 Pestañas.Visibilidad(gridWidgetPrecarga, true, null, false);
@@ -320,6 +350,15 @@ namespace Widgets_Games
             BarraTitulo.CambiarTitulo(null);
             ScrollViewers.EnseñarSubir(svEAPlayJuegosInstalados);
             EAPlay.CargarJuegosInstalados();
+        }
+
+        private void AbrirUbisoftClick(object sender, RoutedEventArgs e) 
+        {
+            StackPanel sp = (StackPanel)ObjetosVentana.nvPrincipal.MenuItems[4];
+            Pestañas.Visibilidad(gridUbisoft, true, sp, true);
+            BarraTitulo.CambiarTitulo(null);
+            ScrollViewers.EnseñarSubir(svUbisoftJuegosInstalados);
+            Ubisoft.CargarJuegosInstalados();
         }
 
         private void AbrirCualquierJuegoClick(object sender, RoutedEventArgs e)
