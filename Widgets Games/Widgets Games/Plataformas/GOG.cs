@@ -18,6 +18,7 @@ namespace Plataformas
         {
             ObjetosVentana.prGOGJuegosInstalados.Visibility = Visibility.Visible;
             ObjetosVentana.gvGOGJuegosInstalados.Visibility = Visibility.Collapsed;
+            ObjetosVentana.tbGOGMensajeNoJuegos.Visibility = Visibility.Collapsed;
 
             List<GOGJuego> listaJuegos = new List<GOGJuego>();
 

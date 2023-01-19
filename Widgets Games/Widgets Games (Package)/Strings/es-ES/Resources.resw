@@ -123,6 +123,9 @@
   <data name="Arguments.Text" xml:space="preserve">
     <value>Argumentos</value>
   </data>
+  <data name="BattlenetInstalledGamesMessage.Text" xml:space="preserve">
+    <value>Recuerda, para ejecutar el juego desde Widgets debes tenerlo instalado en la aplicación de Battle.net.</value>
+  </data>
   <data name="Bottom.Text" xml:space="preserve">
     <value>Abajo</value>
   </data>

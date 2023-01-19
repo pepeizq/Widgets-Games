@@ -5,11 +5,6 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.Windows.ApplicationModel.Resources;
 using Plataformas;
 
-//https://nicksnettravels.builttoroam.com/windows-widget/
-//https://www.adaptivecards.io/designer/
-//https://learn.microsoft.com/es-es/windows/apps/develop/widgets/widget-providers
-//https://learn.microsoft.com/en-us/windows/windows-app-sdk/api/winrt/microsoft.windows.widgets.providers.widgetmanager.updatewidget?view=windows-app-sdk-1.2
-
 namespace Widgets_Games
 {
 
@@ -30,6 +25,7 @@ namespace Widgets_Games
             Steam.Cargar();
             EAPlay.Cargar();
             Ubisoft.Cargar();
+            EpicGames.Cargar();
             WidgetPrecarga.Cargar();
             Opciones.CargarDatos();
 
@@ -54,6 +50,9 @@ namespace Widgets_Games
             ObjetosVentana.gridGOG = gridGOG;
             ObjetosVentana.gridEAPlay = gridEAPlay;
             ObjetosVentana.gridUbisoft = gridUbisoft;
+            ObjetosVentana.gridBattlenet = gridBattlenet;
+            ObjetosVentana.gridAmazon = gridAmazon;
+            ObjetosVentana.gridEpicGames = gridEpicGames;
             ObjetosVentana.gridWidgetPrecarga = gridWidgetPrecarga;
             ObjetosVentana.gridOpciones = gridOpciones;
 
@@ -103,6 +102,31 @@ namespace Widgets_Games
 
             //-------------------------------------------------------------------
 
+            ObjetosVentana.spBattlenetJuegosInstaladosMensaje = spBattlenetJuegosInstaladosMensaje;
+            ObjetosVentana.svBattlenetJuegosInstalados = svBattlenetJuegosInstalados;
+            ObjetosVentana.prBattlenetJuegosInstalados = prBattlenetJuegosInstalados;
+            ObjetosVentana.gvBattlenetJuegosInstalados = gvBattlenetJuegosInstalados;
+            ObjetosVentana.tbBattlenetMensajeNoJuegos = tbBattlenetMensajeNoJuegos;
+
+            //-------------------------------------------------------------------
+
+            ObjetosVentana.svAmazonJuegosInstalados = svAmazonJuegosInstalados;
+            ObjetosVentana.prAmazonJuegosInstalados = prAmazonJuegosInstalados;
+            ObjetosVentana.gvAmazonJuegosInstalados = gvAmazonJuegosInstalados;
+            ObjetosVentana.tbAmazonMensajeNoJuegos = tbAmazonMensajeNoJuegos;
+
+            //-------------------------------------------------------------------
+
+            ObjetosVentana.expanderEpicGamesJuegosNoBBDD = expanderEpicGamesJuegosNoBBDD;
+            ObjetosVentana.tbEpicGamesJuegosNoBBDDIds = tbEpicGamesJuegosNoBBDDIds;
+            ObjetosVentana.botonEpicGamesJuegosNoBBDDContactar = botonEpicGamesJuegosNoBBDDContactar;
+            ObjetosVentana.svEpicGamesJuegosInstalados = svEpicGamesJuegosInstalados;
+            ObjetosVentana.prEpicGamesJuegosInstalados = prEpicGamesJuegosInstalados;
+            ObjetosVentana.gvEpicGamesJuegosInstalados = gvEpicGamesJuegosInstalados;
+            ObjetosVentana.tbEpicGamesMensajeNoJuegos = tbEpicGamesMensajeNoJuegos;
+
+            //-------------------------------------------------------------------
+
             ObjetosVentana.svWidgetPrecarga = svWidgetPrecarga;
             ObjetosVentana.tbWidgetPrecargaTitulo = tbWidgetPrecargaTitulo;
             ObjetosVentana.expanderWidgetPrecargaDatos = expanderWidgetPrecargaDatos;
@@ -145,6 +169,9 @@ namespace Widgets_Games
             public static Grid gridGOG { get; set; }
             public static Grid gridEAPlay { get; set; }
             public static Grid gridUbisoft { get; set; }
+            public static Grid gridBattlenet { get; set; }
+            public static Grid gridAmazon { get; set; }
+            public static Grid gridEpicGames { get; set; }
             public static Grid gridWidgetPrecarga { get; set; }
             public static Grid gridOpciones { get; set; }
 
@@ -185,12 +212,37 @@ namespace Widgets_Games
             //-------------------------------------------------------------------
 
             public static Microsoft.UI.Xaml.Controls.Expander expanderUbisoftJuegosNoBBDD { get; set; }
-            public static TextBlock tbUbisoftJuegosNoBBDDIds { get; set; }
+            public static TextBox tbUbisoftJuegosNoBBDDIds { get; set; }
             public static Button botonUbisoftJuegosNoBBDDContactar { get; set; }
             public static ScrollViewer svUbisoftJuegosInstalados { get; set; }
             public static ProgressRing prUbisoftJuegosInstalados { get; set; }
             public static AdaptiveGridView gvUbisoftJuegosInstalados { get; set; }
             public static TextBlock tbUbisoftMensajeNoJuegos { get; set; }
+
+            //-------------------------------------------------------------------
+
+            public static StackPanel spBattlenetJuegosInstaladosMensaje { get; set; }
+            public static ScrollViewer svBattlenetJuegosInstalados { get; set; }
+            public static ProgressRing prBattlenetJuegosInstalados { get; set; }
+            public static AdaptiveGridView gvBattlenetJuegosInstalados { get; set; }
+            public static TextBlock tbBattlenetMensajeNoJuegos { get; set; }
+
+            //-------------------------------------------------------------------
+
+            public static ScrollViewer svAmazonJuegosInstalados { get; set; }
+            public static ProgressRing prAmazonJuegosInstalados { get; set; }
+            public static AdaptiveGridView gvAmazonJuegosInstalados { get; set; }
+            public static TextBlock tbAmazonMensajeNoJuegos { get; set; }
+
+            //-------------------------------------------------------------------
+
+            public static Microsoft.UI.Xaml.Controls.Expander expanderEpicGamesJuegosNoBBDD { get; set; }
+            public static TextBox tbEpicGamesJuegosNoBBDDIds { get; set; }
+            public static Button botonEpicGamesJuegosNoBBDDContactar { get; set; }
+            public static ScrollViewer svEpicGamesJuegosInstalados { get; set; }
+            public static ProgressRing prEpicGamesJuegosInstalados { get; set; }
+            public static AdaptiveGridView gvEpicGamesJuegosInstalados { get; set; }
+            public static TextBlock tbEpicGamesMensajeNoJuegos { get; set; }
 
             //-------------------------------------------------------------------
 
@@ -223,11 +275,15 @@ namespace Widgets_Games
             ResourceLoader recursos = new ResourceLoader();
 
             Pestañas.CreadorItems("/Assets/Plataformas/logo_cualquierjuego.png", recursos.GetString("AnyGame"));
+            Pestañas.CreadorItems("/Assets/Plataformas/logo_epicgames.png", "Epic Games");
+            Pestañas.CreadorItems("/Assets/Plataformas/logo_amazon.png", "Amazon Games");
+            Pestañas.CreadorItems("/Assets/Plataformas/logo_battlenet.png", "Battle.net");            
             Pestañas.CreadorItems("/Assets/Plataformas/logo_ubisoft.png", "Ubisoft Connect");
             Pestañas.CreadorItems("/Assets/Plataformas/logo_eaplay.png", "EA Play");
             Pestañas.CreadorItems("/Assets/Plataformas/logo_gog.png", "GOG");           
             Pestañas.CreadorItems("/Assets/Plataformas/logo_steam.png", "Steam");
             
+            //----------------------------------------------------------
 
             Button botonSteam = Presentacion.CreadorBotones("/Assets/Plataformas/logo_steam_completo.png", "Steam", false);
             botonSteam.Click += AbrirSteamClick;
@@ -244,6 +300,18 @@ namespace Widgets_Games
             Button botonUbisoft = Presentacion.CreadorBotones("/Assets/Plataformas/logo_ubisoft_completo.png", "Ubisoft Connect", false);
             botonUbisoft.Click += AbrirUbisoftClick;
             ObjetosVentana.gvPresentacionPlataformas.Items.Add(botonUbisoft);
+
+            Button botonBattlenet = Presentacion.CreadorBotones("/Assets/Plataformas/logo_battlenet_completo.png", "Battle.net", false);
+            botonBattlenet.Click += AbrirBattlenetClick;
+            ObjetosVentana.gvPresentacionPlataformas.Items.Add(botonBattlenet);
+
+            Button botonAmazon = Presentacion.CreadorBotones("/Assets/Plataformas/logo_amazon.png", "Amazon Games", false);
+            botonAmazon.Click += AbrirAmazonClick;
+            ObjetosVentana.gvPresentacionPlataformas.Items.Add(botonAmazon);
+
+            Button botonEpicGames = Presentacion.CreadorBotones("/Assets/Plataformas/logo_epicgames.png", "Epic Games", false);
+            botonEpicGames.Click += AbrirEpicGamesClick;
+            ObjetosVentana.gvPresentacionPlataformas.Items.Add(botonEpicGames);
 
             Button botonCualquierJuego = Presentacion.CreadorBotones("/Assets/Plataformas/logo_cualquierjuego.png", recursos.GetString("AnyGame"), true);
             botonCualquierJuego.Click += AbrirCualquierJuegoClick;
@@ -313,6 +381,27 @@ namespace Widgets_Games
                                 ScrollViewers.EnseñarSubir(svUbisoftJuegosInstalados);
                                 Ubisoft.CargarJuegosInstalados();
                             }
+                            else if (tb.Text == "Battle.net")
+                            {
+                                Pestañas.Visibilidad(gridBattlenet, true, sp, true);
+                                BarraTitulo.CambiarTitulo(null);
+                                ScrollViewers.EnseñarSubir(svBattlenetJuegosInstalados);
+                                Battlenet.CargarJuegosInstalados();
+                            }
+                            else if (tb.Text == "Amazon Games")
+                            {
+                                Pestañas.Visibilidad(gridAmazon, true, sp, true);
+                                BarraTitulo.CambiarTitulo(null);
+                                ScrollViewers.EnseñarSubir(svAmazonJuegosInstalados);
+                                Amazon.CargarJuegosInstalados();
+                            }
+                            else if (tb.Text == "Epic Games")
+                            {
+                                Pestañas.Visibilidad(gridEpicGames, true, sp, true);
+                                BarraTitulo.CambiarTitulo(null);
+                                ScrollViewers.EnseñarSubir(svEpicGamesJuegosInstalados);
+                                EpicGames.CargarJuegosInstalados();
+                            }
                             else if (tb.Text == recursos.GetString("AnyGame"))
                             {
                                 Pestañas.Visibilidad(gridWidgetPrecarga, true, null, false);
@@ -359,6 +448,33 @@ namespace Widgets_Games
             BarraTitulo.CambiarTitulo(null);
             ScrollViewers.EnseñarSubir(svUbisoftJuegosInstalados);
             Ubisoft.CargarJuegosInstalados();
+        }
+
+        private void AbrirBattlenetClick(object sender, RoutedEventArgs e)
+        {
+            StackPanel sp = (StackPanel)ObjetosVentana.nvPrincipal.MenuItems[5];
+            Pestañas.Visibilidad(gridBattlenet, true, sp, true);
+            BarraTitulo.CambiarTitulo(null);
+            ScrollViewers.EnseñarSubir(svBattlenetJuegosInstalados);
+            Battlenet.CargarJuegosInstalados();
+        }
+
+        private void AbrirAmazonClick(object sender, RoutedEventArgs e)
+        {
+            StackPanel sp = (StackPanel)ObjetosVentana.nvPrincipal.MenuItems[6];
+            Pestañas.Visibilidad(gridAmazon, true, sp, true);
+            BarraTitulo.CambiarTitulo(null);
+            ScrollViewers.EnseñarSubir(svAmazonJuegosInstalados);
+            Amazon.CargarJuegosInstalados();
+        }
+
+        private void AbrirEpicGamesClick(object sender, RoutedEventArgs e)
+        {
+            StackPanel sp = (StackPanel)ObjetosVentana.nvPrincipal.MenuItems[7];
+            Pestañas.Visibilidad(gridEpicGames, true, sp, true);
+            BarraTitulo.CambiarTitulo(null);
+            ScrollViewers.EnseñarSubir(svEpicGamesJuegosInstalados);
+            EpicGames.CargarJuegosInstalados();
         }
 
         private void AbrirCualquierJuegoClick(object sender, RoutedEventArgs e)

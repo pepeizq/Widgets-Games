@@ -197,7 +197,7 @@
 
                             <controls:AdaptiveGridView x:Name="gvGOGJuegosInstalados" DesiredWidth="250" Padding="20"/>
 
-                            <TextBlock x:Name="tbGOGMensajeNoJuegos" x:Uid="NoGamesDetected" Foreground="{StaticResource ColorFuente}" Margin="30,0" Visibility="Collapsed"/>
+                            <TextBlock x:Name="tbGOGMensajeNoJuegos" x:Uid="NoGamesDetected" Foreground="{StaticResource ColorFuente}" Margin="30" Visibility="Collapsed"/>
                         </StackPanel>
                     </ScrollViewer> 
                 </Grid>
@@ -263,8 +263,8 @@
                                 </Expander.Background>
 
                                 <StackPanel Orientation="Vertical">
-                                    <TextBlock x:Name="tbUbisoftJuegosNoBBDDIds" Foreground="{StaticResource ColorFuente}"/>
-                                    <TextBlock x:Uid="NoGamesBBDDMessage2" Foreground="{StaticResource ColorFuente}"/>
+                                    <TextBox x:Name="tbUbisoftJuegosNoBBDDIds" Foreground="{StaticResource ColorFuente}" RequestedTheme="Dark" TextWrapping="Wrap"/>
+                                    <TextBlock x:Uid="NoGamesBBDDMessage2" Foreground="{StaticResource ColorFuente}" Margin="0,15,0,0"/>
 
                                     <Button x:Name="botonUbisoftJuegosNoBBDDContactar" Background="{StaticResource ColorPrimario}" Padding="15,8" Margin="0,15,0,0">
                                         <Button.Content>
@@ -284,6 +284,93 @@
                                 <controls:AdaptiveGridView x:Name="gvUbisoftJuegosInstalados" DesiredWidth="250" Padding="20"/>
 
                                 <TextBlock x:Name="tbUbisoftMensajeNoJuegos" x:Uid="NoGamesDetected" Foreground="{StaticResource ColorFuente}" Margin="30" Visibility="Collapsed"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </Grid>
+
+                <Grid x:Name="gridBattlenet" Visibility="Collapsed">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel x:Name="spBattlenetJuegosInstaladosMensaje" Grid.Row="0" Orientation="Horizontal" Margin="30,30,30,0" Padding="20" CornerRadius="5" Visibility="Collapsed">
+                            <StackPanel.Background>
+                                <SolidColorBrush Color="{StaticResource ColorPrimario}" Opacity="0.6"/>
+                            </StackPanel.Background>
+                            
+                            <iconos:FontAwesome Icon="Solid_ExclamationCircle" Foreground="{StaticResource ColorFuente}" Margin="0,0,15,0"/>
+                            <TextBlock x:Uid="BattlenetInstalledGamesMessage" Foreground="{StaticResource ColorFuente}" Margin="0,0,0,0" TextWrapping="Wrap"/>
+                        </StackPanel>
+
+                        <ScrollViewer x:Name="svBattlenetJuegosInstalados" Grid.Row="1" VerticalScrollBarVisibility="Visible" Padding="0,0,15,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                            <StackPanel Orientation="Vertical">
+                                <ProgressRing x:Name="prBattlenetJuegosInstalados" IsIndeterminate="True" Foreground="{StaticResource ColorFuente}" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Collapsed" Margin="30"/>
+
+                                <controls:AdaptiveGridView x:Name="gvBattlenetJuegosInstalados" DesiredWidth="250" Padding="20"/>
+
+                                <TextBlock x:Name="tbBattlenetMensajeNoJuegos" x:Uid="NoGamesDetected" Foreground="{StaticResource ColorFuente}" Margin="30" Visibility="Collapsed"/>
+                            </StackPanel>
+                        </ScrollViewer>
+                    </Grid>
+                </Grid>
+
+                <Grid x:Name="gridAmazon" Visibility="Collapsed">
+                    <ScrollViewer x:Name="svAmazonJuegosInstalados" Grid.Row="1" VerticalScrollBarVisibility="Visible" Padding="0,0,15,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                        <StackPanel Orientation="Vertical">
+                            <ProgressRing x:Name="prAmazonJuegosInstalados" IsIndeterminate="True" Foreground="{StaticResource ColorFuente}" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Collapsed" Margin="30"/>
+
+                            <controls:AdaptiveGridView x:Name="gvAmazonJuegosInstalados" DesiredWidth="250" Padding="20"/>
+
+                            <TextBlock x:Name="tbAmazonMensajeNoJuegos" x:Uid="NoGamesDetected" Foreground="{StaticResource ColorFuente}" Margin="30" Visibility="Collapsed"/>
+                        </StackPanel>
+                    </ScrollViewer>
+                </Grid>
+
+                <Grid x:Name="gridEpicGames" Visibility="Collapsed">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel Grid.Row="0" Orientation="Vertical">
+                            <Expander x:Name="expanderEpicGamesJuegosNoBBDD" Margin="30,30,30,0" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" RequestedTheme="Dark" CornerRadius="5" Visibility="Collapsed">
+                                <Expander.Header>
+                                    <StackPanel Orientation="Horizontal">
+                                        <iconos:FontAwesome Icon="Solid_ExclamationCircle" Foreground="{StaticResource ColorFuente}" Margin="0,0,15,0"/>
+                                        <TextBlock x:Uid="NoGamesBBDDMessage1" Foreground="{StaticResource ColorFuente}" Margin="10,0,0,0"/>
+                                    </StackPanel>
+                                </Expander.Header>
+
+                                <Expander.Background>
+                                    <SolidColorBrush Color="{StaticResource ColorPrimario}" Opacity="0.6"/>
+                                </Expander.Background>
+
+                                <StackPanel Orientation="Vertical">
+                                    <TextBox x:Name="tbEpicGamesJuegosNoBBDDIds" Foreground="{StaticResource ColorFuente}" RequestedTheme="Dark" TextWrapping="Wrap"/>
+                                    <TextBlock x:Uid="NoGamesBBDDMessage2" Foreground="{StaticResource ColorFuente}" Margin="0,15,0,0"/>
+
+                                    <Button x:Name="botonEpicGamesJuegosNoBBDDContactar" Background="{StaticResource ColorPrimario}" Padding="15,8" Margin="0,15,0,0">
+                                        <Button.Content>
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock x:Uid="Contact" Foreground="{StaticResource ColorFuente}"/>
+                                            </StackPanel>
+                                        </Button.Content>
+                                    </Button>
+                                </StackPanel>
+                            </Expander>
+                        </StackPanel>
+
+                        <ScrollViewer x:Name="svEpicGamesJuegosInstalados" Grid.Row="1" VerticalScrollBarVisibility="Visible" Padding="0,0,15,0" HorizontalAlignment="Stretch" VerticalAlignment="Top">
+                            <StackPanel Orientation="Vertical">
+                                <ProgressRing x:Name="prEpicGamesJuegosInstalados" IsIndeterminate="True" Foreground="{StaticResource ColorFuente}" VerticalAlignment="Center" HorizontalAlignment="Left" Visibility="Collapsed" Margin="30"/>
+
+                                <controls:AdaptiveGridView x:Name="gvEpicGamesJuegosInstalados" DesiredWidth="250" Padding="20"/>
+
+                                <TextBlock x:Name="tbEpicGamesMensajeNoJuegos" x:Uid="NoGamesDetected" Foreground="{StaticResource ColorFuente}" Margin="30" Visibility="Collapsed"/>
                             </StackPanel>
                         </ScrollViewer>
                     </Grid>

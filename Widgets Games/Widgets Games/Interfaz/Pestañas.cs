@@ -23,10 +23,6 @@ namespace Interfaz
             ObjetosVentana.nvItemMenu.PointerEntered += Animaciones.EntraRatonNvItem;
             ObjetosVentana.nvItemMenu.PointerExited += Animaciones.SaleRatonNvItem;
 
-            //ObjetosVentana.nvItemVolver.PointerPressed += Ofertas.BotonCerrarExpandida;
-            //ObjetosVentana.nvItemVolver.PointerEntered += Animaciones.EntraRatonNvItem;
-            //ObjetosVentana.nvItemVolver.PointerExited += Animaciones.SaleRatonNvItem;
-
             TextBlock tbOpcionesTt = new TextBlock
             {
                 Text = recursos.GetString("Options")
@@ -61,12 +57,17 @@ namespace Interfaz
                 }
             }
 
+            ObjetosVentana.nvItemSubirArriba.Visibility = Visibility.Collapsed;
+
             ObjetosVentana.nvPrincipal.Visibility = Visibility.Collapsed;
             ObjetosVentana.gridPresentacion.Visibility = Visibility.Collapsed;
             ObjetosVentana.gridSteam.Visibility = Visibility.Collapsed;
             ObjetosVentana.gridGOG.Visibility = Visibility.Collapsed;
             ObjetosVentana.gridEAPlay.Visibility = Visibility.Collapsed;
             ObjetosVentana.gridUbisoft.Visibility = Visibility.Collapsed;
+            ObjetosVentana.gridBattlenet.Visibility = Visibility.Collapsed;
+            ObjetosVentana.gridAmazon.Visibility = Visibility.Collapsed;
+            ObjetosVentana.gridEpicGames.Visibility = Visibility.Collapsed;
             ObjetosVentana.gridWidgetPrecarga.Visibility = Visibility.Collapsed;
             ObjetosVentana.gridOpciones.Visibility = Visibility.Collapsed;
 
@@ -100,7 +101,8 @@ namespace Interfaz
             {
                 CornerRadius = new CornerRadius(3),
                 Padding = new Thickness(5),
-                Orientation = Orientation.Horizontal
+                Orientation = Orientation.Horizontal,
+                Height = 30
             };
 
             sp.PointerEntered += Animaciones.EntraRatonStackpanel;

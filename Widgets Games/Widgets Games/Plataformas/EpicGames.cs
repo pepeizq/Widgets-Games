@@ -4,21 +4,22 @@ using Interfaz;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
-using Microsoft.Win32;
+using Microsoft.VisualBasic;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Windows.System;
 using Windows.UI;
 using static Widgets_Games.MainWindow;
 
 namespace Plataformas
 {
-    public static class Ubisoft
+    public static class EpicGames
     {
         public static void Cargar()
         {
-            ObjetosVentana.botonUbisoftJuegosNoBBDDContactar.Click += AbrirContactarClick;
+            ObjetosVentana.botonEpicGamesJuegosNoBBDDContactar.Click += AbrirContactarClick;
         }
 
         private static async void AbrirContactarClick(object sender, RoutedEventArgs e)
@@ -28,47 +29,59 @@ namespace Plataformas
 
         public static async void CargarJuegosInstalados()
         {
-            ObjetosVentana.expanderUbisoftJuegosNoBBDD.Visibility = Visibility.Collapsed;
-            ObjetosVentana.prUbisoftJuegosInstalados.Visibility = Visibility.Visible;
-            ObjetosVentana.gvUbisoftJuegosInstalados.Visibility = Visibility.Collapsed;
-            ObjetosVentana.tbUbisoftMensajeNoJuegos.Visibility = Visibility.Collapsed;
+            ObjetosVentana.expanderEpicGamesJuegosNoBBDD.Visibility = Visibility.Collapsed;
+            ObjetosVentana.prEpicGamesJuegosInstalados.Visibility = Visibility.Visible;
+            ObjetosVentana.gvEpicGamesJuegosInstalados.Visibility = Visibility.Collapsed;
+            ObjetosVentana.tbEpicGamesMensajeNoJuegos.Visibility = Visibility.Collapsed;
 
             List<string> listaIDsInstaladas = new List<string>();
-            RegistryKey registro = Registry.LocalMachine.OpenSubKey("SOFTWARE\\WOW6432Node\\Ubisoft\\Launcher\\Installs");
+            string rutaJuegosInstalados = Path.Combine(Environment.ExpandEnvironmentVariables("%PROGRAMDATA%"), "Epic\\UnrealEngineLauncher");
 
-            foreach (string id in registro.GetSubKeyNames())
+            if (rutaJuegosInstalados != null)
             {
-                bool añadir = true;
+                string contenidoJuegosInstalados = Ficheros.LeerFicheroFueraAplicacion(rutaJuegosInstalados + "\\LauncherInstalled.dat");
 
-                if (listaIDsInstaladas.Count > 0)
+                if (contenidoJuegosInstalados != null)
                 {
-                    foreach (string idInstalada in listaIDsInstaladas)
+                    int i = 0;
+                    while (i < 1000)
                     {
-                        if (id == idInstalada)
+                        if (contenidoJuegosInstalados.Contains(Strings.ChrW(34) + "AppName" + Strings.ChrW(34)) == true)
                         {
-                            añadir = false;
-                        }
-                    }
-                }
+                            int int1 = contenidoJuegosInstalados.IndexOf(Strings.ChrW(34) + "AppName" + Strings.ChrW(34));
+                            string temp1 = contenidoJuegosInstalados.Remove(0, int1 + 10);
 
-                if (añadir == true)
-                {
-                    listaIDsInstaladas.Add(id);
+                            contenidoJuegosInstalados = temp1;
+
+                            int int2 = contenidoJuegosInstalados.IndexOf(Strings.ChrW(34));
+                            string temp2 = contenidoJuegosInstalados.Remove(0, int2 + 1);
+
+                            int int3 = temp2.IndexOf(Strings.ChrW(34));
+                            string temp3 = temp2.Remove(int3, temp2.Length - int3);
+
+                            listaIDsInstaladas.Add(temp3);
+                        }
+                        else
+                        {
+                            break;
+                        }
+                        i += 1;
+                    }
                 }
             }
 
             if (listaIDsInstaladas.Count > 0)
             {
-                ObjetosVentana.tbUbisoftMensajeNoJuegos.Visibility = Visibility.Collapsed;
-                ObjetosVentana.gvUbisoftJuegosInstalados.Items.Clear();
+                ObjetosVentana.tbEpicGamesMensajeNoJuegos.Visibility = Visibility.Collapsed;
+                ObjetosVentana.gvEpicGamesJuegosInstalados.Items.Clear();
 
-                List<UbisoftJuego> listaJuegos = new List<UbisoftJuego>();
+                List<EpicGamesJuego> listaJuegos = new List<EpicGamesJuego>();
                 List<string> listaIDsNoEncontradas = new List<string>();
-                string bbdd = await Decompiladores.CogerHtml("https://raw.githubusercontent.com/pepeizq/Database-Games/master/Base%20de%20Datos%20Plataformas/Jsons/Ubisoft.json");
-                
+                string bbdd = await Decompiladores.CogerHtml("https://raw.githubusercontent.com/pepeizq/Database-Games/master/Base%20de%20Datos%20Plataformas/Jsons/EpicGames.json");
+
                 if (bbdd != null)
                 {
-                    List<UbisoftAPI> json = JsonConvert.DeserializeObject<List<UbisoftAPI>>(bbdd);
+                    List<EpicGamesAPI> json = JsonConvert.DeserializeObject<List<EpicGamesAPI>>(bbdd);
 
                     if (json != null)
                     {
@@ -78,9 +91,9 @@ namespace Plataformas
                             {
                                 bool idEncontrada = false;
 
-                                foreach (UbisoftAPI juegoJson in json)
+                                foreach (EpicGamesAPI juegoJson in json)
                                 {
-                                    foreach (string id2 in juegoJson.idsUbi)
+                                    foreach (string id2 in juegoJson.idsEpic)
                                     {
                                         if (id == id2)
                                         {
@@ -113,9 +126,9 @@ namespace Plataformas
                                                     imagenGrande = Steam.dominioImagenes + "/steam/apps/" + juegoJson.idSteam + "/library_600x900.jpg";
                                                 }
                                             }
-                                  
-                                            listaJuegos.Add(new UbisoftJuego(juegoJson.nombre, "uplay://launch/" + id + "/0",
-                                                                    imagenPequeña, imagenGrande));
+
+                                            listaJuegos.Add(new EpicGamesJuego(juegoJson.nombre, "com.epicgames.launcher://apps/" + id + "?action=launch&silent=true",
+                                                                               imagenPequeña, imagenGrande));
                                             break;
                                         }
                                     }
@@ -132,13 +145,13 @@ namespace Plataformas
                                 }
                             }
                         }
-                    }                    
+                    }
                 }
 
                 if (listaIDsNoEncontradas.Count > 0)
                 {
-                    ObjetosVentana.expanderUbisoftJuegosNoBBDD.Visibility = Visibility.Visible;
-                    ObjetosVentana.expanderUbisoftJuegosNoBBDD.IsExpanded = true;
+                    ObjetosVentana.expanderEpicGamesJuegosNoBBDD.Visibility = Visibility.Visible;
+                    ObjetosVentana.expanderEpicGamesJuegosNoBBDD.IsExpanded = true;
 
                     string idsNoEncontradas = string.Empty;
 
@@ -147,25 +160,25 @@ namespace Plataformas
                         idsNoEncontradas = idsNoEncontradas + idNoEncontrada + Environment.NewLine;
                     }
 
-                    if (idsNoEncontradas != string.Empty) 
-                    { 
-                        ObjetosVentana.tbUbisoftJuegosNoBBDDIds.Text = idsNoEncontradas;
+                    if (idsNoEncontradas != string.Empty)
+                    {
+                        ObjetosVentana.tbEpicGamesJuegosNoBBDDIds.Text = idsNoEncontradas.Trim();
                     }
                 }
                 else
                 {
-                    ObjetosVentana.expanderUbisoftJuegosNoBBDD.Visibility = Visibility.Collapsed;
+                    ObjetosVentana.expanderEpicGamesJuegosNoBBDD.Visibility = Visibility.Collapsed;
                 }
-                
+
                 if (listaJuegos.Count > 0)
                 {
-                    ObjetosVentana.tbUbisoftMensajeNoJuegos.Visibility = Visibility.Collapsed;
-                    ObjetosVentana.gvUbisoftJuegosInstalados.Visibility = Visibility.Visible;
-                    ObjetosVentana.gvUbisoftJuegosInstalados.Items.Clear();
+                    ObjetosVentana.tbEpicGamesMensajeNoJuegos.Visibility = Visibility.Collapsed;
+                    ObjetosVentana.gvEpicGamesJuegosInstalados.Visibility = Visibility.Visible;
+                    ObjetosVentana.gvEpicGamesJuegosInstalados.Items.Clear();
 
-                    listaJuegos.Sort(delegate (UbisoftJuego c1, UbisoftJuego c2) { return c1.nombre.CompareTo(c2.nombre); });
+                    listaJuegos.Sort(delegate (EpicGamesJuego c1, EpicGamesJuego c2) { return c1.nombre.CompareTo(c2.nombre); });
 
-                    foreach (UbisoftJuego juego in listaJuegos)
+                    foreach (EpicGamesJuego juego in listaJuegos)
                     {
                         ImageEx imagen = new ImageEx
                         {
@@ -174,7 +187,7 @@ namespace Plataformas
                             Stretch = Stretch.UniformToFill,
                             Source = juego.imagenGrande
                         };
-                     
+
                         Button botonJuego = new Button
                         {
                             Content = imagen,
@@ -188,26 +201,26 @@ namespace Plataformas
 
                         botonJuego.Click += ImagenJuegoClick;
 
-                        ObjetosVentana.gvUbisoftJuegosInstalados.Items.Add(botonJuego);
+                        ObjetosVentana.gvEpicGamesJuegosInstalados.Items.Add(botonJuego);
                     }
                 }
                 else
                 {
-                    ObjetosVentana.tbUbisoftMensajeNoJuegos.Visibility = Visibility.Visible;                 
+                    ObjetosVentana.tbEpicGamesMensajeNoJuegos.Visibility = Visibility.Visible;
                 }
             }
             else
             {
-                ObjetosVentana.tbUbisoftMensajeNoJuegos.Visibility = Visibility.Visible;
+                ObjetosVentana.tbEpicGamesMensajeNoJuegos.Visibility = Visibility.Visible;
             }
 
-            ObjetosVentana.prUbisoftJuegosInstalados.Visibility = Visibility.Collapsed;
+            ObjetosVentana.prEpicGamesJuegosInstalados.Visibility = Visibility.Collapsed;
         }
 
         private static void ImagenJuegoClick(object sender, RoutedEventArgs e)
         {
             Button boton = sender as Button;
-            UbisoftJuego juego = boton.Tag as UbisoftJuego;
+            EpicGamesJuego juego = boton.Tag as EpicGamesJuego;
 
             WidgetPrecarga.PrecargarJuego(juego.nombre,
                     juego.ejecutable, null,
@@ -215,14 +228,14 @@ namespace Plataformas
         }
     }
 
-    public class UbisoftJuego
+    public class EpicGamesJuego
     {
         public string nombre { get; set; }
         public string ejecutable { get; set; }
         public string imagenPequeña { get; set; }
         public string imagenGrande { get; set; }
 
-        public UbisoftJuego(string Nombre, string Ejecutable, string ImagenPequeña, string ImagenGrande)
+        public EpicGamesJuego(string Nombre, string Ejecutable, string ImagenPequeña, string ImagenGrande)
         {
             nombre = Nombre;
             ejecutable = Ejecutable;

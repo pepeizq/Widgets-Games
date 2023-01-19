@@ -19,6 +19,9 @@ namespace Interfaz
             ObjetosVentana.svGOGJuegosInstalados.ViewChanging += svScroll;
             ObjetosVentana.svEAPlayJuegosInstalados.ViewChanging += svScroll;
             ObjetosVentana.svUbisoftJuegosInstalados.ViewChanging += svScroll;
+            ObjetosVentana.svBattlenetJuegosInstalados.ViewChanging += svScroll;
+            ObjetosVentana.svAmazonJuegosInstalados.ViewChanging += svScroll;
+            ObjetosVentana.svEpicGamesJuegosInstalados.ViewChanging += svScroll;
             ObjetosVentana.svWidgetPrecarga.ViewChanging += svScroll;
             ObjetosVentana.svOpciones.ViewChanging += svScroll;
         }
@@ -60,6 +63,18 @@ namespace Interfaz
             else if (ObjetosVentana.gridUbisoft.Visibility == Visibility.Visible)
             {
                 ObjetosVentana.svUbisoftJuegosInstalados.ChangeView(null, 0, null);
+            }
+            else if (ObjetosVentana.gridBattlenet.Visibility == Visibility.Visible)
+            {
+                ObjetosVentana.svBattlenetJuegosInstalados.ChangeView(null, 0, null);
+            }
+            else if (ObjetosVentana.gridAmazon.Visibility == Visibility.Visible)
+            {
+                ObjetosVentana.svAmazonJuegosInstalados.ChangeView(null, 0, null);
+            }
+            else if (ObjetosVentana.gridEpicGames.Visibility == Visibility.Visible)
+            {
+                ObjetosVentana.svEpicGamesJuegosInstalados.ChangeView(null, 0, null);
             }
             else if (ObjetosVentana.gridWidgetPrecarga.Visibility == Visibility.Visible)
             {

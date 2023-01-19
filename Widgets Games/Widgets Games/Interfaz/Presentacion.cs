@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.WinUI.UI.Controls;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Media;
 using Windows.UI;
 
@@ -49,6 +50,17 @@ namespace Interfaz
             }
 
             boton.Content = sp;
+
+            if (nombre != null)
+            {
+                TextBlock tbTt = new TextBlock
+                {
+                    Text = nombre
+                };
+
+                ToolTipService.SetToolTip(boton, tbTt);
+                ToolTipService.SetPlacement(boton, PlacementMode.Bottom);
+            }
 
             return boton;
         }
