@@ -15,6 +15,9 @@ namespace Interfaz
             if (await Detectar() == true)
             {
                 ObjetosVentana.botonPresentacionTrialComprar.Click += BotonAbrirCompra;
+                ObjetosVentana.botonPresentacionTrialComprar.PointerEntered += Animaciones.EntraRatonBoton2;
+                ObjetosVentana.botonPresentacionTrialComprar.PointerExited += Animaciones.SaleRatonBoton2;
+
                 ObjetosVentana.spPresentacionTrial.Visibility = Visibility.Visible;
             }
             else

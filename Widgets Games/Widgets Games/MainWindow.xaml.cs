@@ -282,40 +282,48 @@ namespace Widgets_Games
             Pestañas.CreadorItems("/Assets/Plataformas/logo_eaplay.png", "EA Play");
             Pestañas.CreadorItems("/Assets/Plataformas/logo_gog.png", "GOG");           
             Pestañas.CreadorItems("/Assets/Plataformas/logo_steam.png", "Steam");
-            
+
             //----------------------------------------------------------
 
-            Button botonSteam = Presentacion.CreadorBotones("/Assets/Plataformas/logo_steam_completo.png", "Steam", false);
+            GridViewItem itemSteam = Presentacion.CreadorBotones("/Assets/Plataformas/logo_steam_completo.png", "Steam", false);
+            Button2 botonSteam = itemSteam.Content as Button2;
             botonSteam.Click += AbrirSteamClick;
-            ObjetosVentana.gvPresentacionPlataformas.Items.Add(botonSteam);
+            ObjetosVentana.gvPresentacionPlataformas.Items.Add(itemSteam);
 
-            Button botonGOG = Presentacion.CreadorBotones("/Assets/Plataformas/logo_gog.png", "GOG", false);
+            GridViewItem itemGOG = Presentacion.CreadorBotones("/Assets/Plataformas/logo_gog.png", "GOG", false);
+            Button2 botonGOG = itemGOG.Content as Button2;
             botonGOG.Click += AbrirGOGClick;
-            ObjetosVentana.gvPresentacionPlataformas.Items.Add(botonGOG);
+            ObjetosVentana.gvPresentacionPlataformas.Items.Add(itemGOG);
 
-            Button botonEAPlay = Presentacion.CreadorBotones("/Assets/Plataformas/logo_eaplay_completo.png", "EA Play", false);
+            GridViewItem itemEAPlay = Presentacion.CreadorBotones("/Assets/Plataformas/logo_eaplay_completo.png", "EA Play", false);
+            Button2 botonEAPlay = itemEAPlay.Content as Button2;
             botonEAPlay.Click += AbrirEAPlayClick;
-            ObjetosVentana.gvPresentacionPlataformas.Items.Add(botonEAPlay);
+            ObjetosVentana.gvPresentacionPlataformas.Items.Add(itemEAPlay);
 
-            Button botonUbisoft = Presentacion.CreadorBotones("/Assets/Plataformas/logo_ubisoft_completo.png", "Ubisoft Connect", false);
+            GridViewItem itemUbisoft = Presentacion.CreadorBotones("/Assets/Plataformas/logo_ubisoft_completo.png", "Ubisoft Connect", false);
+            Button2 botonUbisoft = itemUbisoft.Content as Button2;
             botonUbisoft.Click += AbrirUbisoftClick;
-            ObjetosVentana.gvPresentacionPlataformas.Items.Add(botonUbisoft);
+            ObjetosVentana.gvPresentacionPlataformas.Items.Add(itemUbisoft);
 
-            Button botonBattlenet = Presentacion.CreadorBotones("/Assets/Plataformas/logo_battlenet_completo.png", "Battle.net", false);
+            GridViewItem itemBattlenet = Presentacion.CreadorBotones("/Assets/Plataformas/logo_battlenet_completo.png", "Battle.net", false);
+            Button2 botonBattlenet = itemBattlenet.Content as Button2;
             botonBattlenet.Click += AbrirBattlenetClick;
-            ObjetosVentana.gvPresentacionPlataformas.Items.Add(botonBattlenet);
+            ObjetosVentana.gvPresentacionPlataformas.Items.Add(itemBattlenet);
 
-            Button botonAmazon = Presentacion.CreadorBotones("/Assets/Plataformas/logo_amazon.png", "Amazon Games", false);
+            GridViewItem itemAmazon = Presentacion.CreadorBotones("/Assets/Plataformas/logo_amazon.png", "Amazon Games", false);
+            Button2 botonAmazon = itemAmazon.Content as Button2;
             botonAmazon.Click += AbrirAmazonClick;
-            ObjetosVentana.gvPresentacionPlataformas.Items.Add(botonAmazon);
+            ObjetosVentana.gvPresentacionPlataformas.Items.Add(itemAmazon);
 
-            Button botonEpicGames = Presentacion.CreadorBotones("/Assets/Plataformas/logo_epicgames.png", "Epic Games", false);
+            GridViewItem itemEpicGames = Presentacion.CreadorBotones("/Assets/Plataformas/logo_epicgames.png", "Epic Games", false);
+            Button2 botonEpicGames = itemEpicGames.Content as Button2;
             botonEpicGames.Click += AbrirEpicGamesClick;
-            ObjetosVentana.gvPresentacionPlataformas.Items.Add(botonEpicGames);
+            ObjetosVentana.gvPresentacionPlataformas.Items.Add(itemEpicGames);
 
-            Button botonCualquierJuego = Presentacion.CreadorBotones("/Assets/Plataformas/logo_cualquierjuego.png", recursos.GetString("AnyGame"), true);
+            GridViewItem itemCualquierJuego = Presentacion.CreadorBotones("/Assets/Plataformas/logo_cualquierjuego.png", recursos.GetString("AnyGame"), true);
+            Button2 botonCualquierJuego = itemCualquierJuego.Content as Button2;
             botonCualquierJuego.Click += AbrirCualquierJuegoClick;
-            ObjetosVentana.gvPresentacionPlataformas.Items.Add(botonCualquierJuego);
+            ObjetosVentana.gvPresentacionPlataformas.Items.Add(itemCualquierJuego);
         }
 
         private void nvPrincipal_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
@@ -324,9 +332,9 @@ namespace Widgets_Games
 
             if (args.InvokedItemContainer != null)
             {
-                if (args.InvokedItemContainer.GetType() == typeof(NavigationViewItem))
+                if (args.InvokedItemContainer.GetType() == typeof(NavigationViewItem2))
                 {
-                    NavigationViewItem item = args.InvokedItemContainer as NavigationViewItem;
+                    NavigationViewItem2 item = args.InvokedItemContainer as NavigationViewItem2;
 
                     if (item.Name == "nvItemMenu")
                     {
@@ -343,9 +351,9 @@ namespace Widgets_Games
 
             if (args.InvokedItem != null)
             {
-                if (args.InvokedItem.GetType() == typeof(StackPanel))
+                if (args.InvokedItem.GetType() == typeof(StackPanel2))
                 {
-                    StackPanel sp = (StackPanel)args.InvokedItem;
+                    StackPanel2 sp = (StackPanel2)args.InvokedItem;
 
                     if (sp.Children[1] != null)
                     {

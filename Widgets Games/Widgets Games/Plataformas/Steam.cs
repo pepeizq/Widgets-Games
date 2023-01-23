@@ -25,7 +25,12 @@ namespace Plataformas
             CambiarSubPestañaInstalados();
 
             ObjetosVentana.botonSteamJuegosInstalados.Click += CambiarSubPestañaInstalados;
+            ObjetosVentana.botonSteamJuegosInstalados.PointerEntered += Animaciones.EntraRatonBoton2;
+            ObjetosVentana.botonSteamJuegosInstalados.PointerExited += Animaciones.SaleRatonBoton2;
+
             ObjetosVentana.botonSteamCualquierJuego.Click += CambiarSubPestañaCualquiera;
+            ObjetosVentana.botonSteamCualquierJuego.PointerEntered += Animaciones.EntraRatonBoton2;
+            ObjetosVentana.botonSteamCualquierJuego.PointerExited += Animaciones.SaleRatonBoton2;
 
             ObjetosVentana.tbSteamCualquierJuego.TextChanged += EnlaceCualquierJuegoTextoCambia;
         }
@@ -170,25 +175,35 @@ namespace Plataformas
                                     IsCacheEnabled = true,
                                     EnableLazyLoading = true,
                                     Stretch = Stretch.UniformToFill,
-                                    Source = "https://cdn.cloudflare.steamstatic.com/steam/apps/" + juego.id + "/library_600x900.jpg"
+                                    Source = dominioImagenes + "/steam/apps/" + juego.id + "/library_600x900.jpg",
+                                    CornerRadius = new CornerRadius(2)
                                 };
 
                                 imagen.ImageExFailed += ImagenJuegoFalla;
 
-                                Button botonJuego = new Button
+                                Button2 botonJuego = new Button2
                                 {
                                     Content = imagen,
-                                    Margin = new Thickness(10),
-                                    Padding = new Thickness(0),
-                                    BorderBrush = new SolidColorBrush((Color)Application.Current.Resources["ColorPrimario"]),
-                                    BorderThickness = new Thickness(2),
+                                    Margin = new Thickness(0),
+                                    Padding = new Thickness(2),
+                                    Background = new SolidColorBrush((Color)Application.Current.Resources["ColorPrimario"]),
+                                    BorderThickness = new Thickness(0),
                                     Tag = juego,
-                                    MaxWidth = 300
+                                    MaxWidth = 300,
+                                    CornerRadius = new CornerRadius(5)
                                 };
 
                                 botonJuego.Click += ImagenJuegoClick;
+                                botonJuego.PointerEntered += Animaciones.EntraRatonBoton2;
+                                botonJuego.PointerExited += Animaciones.SaleRatonBoton2;
 
-                                ObjetosVentana.gvSteamJuegosInstalados.Items.Add(botonJuego);
+                                GridViewItem item = new GridViewItem
+                                {
+                                    Content = botonJuego,
+                                    Margin = new Thickness(5, 0, 5, 10)
+                                };
+
+                                ObjetosVentana.gvSteamJuegosInstalados.Items.Add(item);
                             }
                         }
                     }
@@ -228,8 +243,8 @@ namespace Plataformas
 
             WidgetPrecarga.PrecargarJuego(juego.nombre,
                     "steam://rungameid/" + juego.id + "/", null,
-                    "https://cdn.cloudflare.steamstatic.com/steam/apps/" + juego.id + "/header.jpg",
-                    "https://cdn.cloudflare.steamstatic.com/steam/apps/" + juego.id + "/library_600x900.jpg");
+                    dominioImagenes + "/steam/apps/" + juego.id + "/header.jpg",
+                    dominioImagenes + "/steam/apps/" + juego.id + "/library_600x900.jpg");
         }
 
         private async static void EnlaceCualquierJuegoTextoCambia(object sender, TextChangedEventArgs e)

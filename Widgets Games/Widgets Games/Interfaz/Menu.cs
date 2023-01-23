@@ -25,7 +25,7 @@ namespace Interfaz
                 Foreground = new SolidColorBrush((Color)Application.Current.Resources["ColorFuente"])
             };
 
-            MenuFlyoutItem item1 = new MenuFlyoutItem
+            MenuFlyoutItem2 item1 = new MenuFlyoutItem2
             {
                 Icon = icono1,
                 Text = recursos.GetString("MenuRate"),
@@ -34,6 +34,8 @@ namespace Interfaz
             };
 
             item1.Click += BotonAbrirVotar;
+            item1.PointerEntered += Animaciones.EntraRatonMenuFlyoutItem2;
+            item1.PointerExited += Animaciones.SaleRatonMenuFlyoutItem2;
 
             ObjetosVentana.menuItemMenu.Items.Add(item1);
 
@@ -43,7 +45,7 @@ namespace Interfaz
                 Foreground = new SolidColorBrush((Color)Application.Current.Resources["ColorFuente"])
             };
 
-            MenuFlyoutItem item2 = new MenuFlyoutItem
+            MenuFlyoutItem2 item2 = new MenuFlyoutItem2
             {
                 Icon = icono2,
                 Text = recursos.GetString("MenuGithub"),
@@ -52,6 +54,8 @@ namespace Interfaz
             };
 
             item2.Click += BotonAbrirCodigoFuente;
+            item2.PointerEntered += Animaciones.EntraRatonMenuFlyoutItem2;
+            item2.PointerExited += Animaciones.SaleRatonMenuFlyoutItem2;
 
             ObjetosVentana.menuItemMenu.Items.Add(item2);
 
@@ -68,7 +72,7 @@ namespace Interfaz
 
             //--------------------------------------------------------------------
 
-            MenuFlyoutItem item3 = new MenuFlyoutItem
+            MenuFlyoutItem2 item3 = new MenuFlyoutItem2
             {
                 Text = recursos.GetString("MenuContact"),
                 Foreground = new SolidColorBrush((Color)Application.Current.Resources["ColorFuente"]),
@@ -77,10 +81,12 @@ namespace Interfaz
             };
 
             item3.Click += BotonAbrirContactar;
+            item3.PointerEntered += Animaciones.EntraRatonMenuFlyoutItem2;
+            item3.PointerExited += Animaciones.SaleRatonMenuFlyoutItem2;
 
             ObjetosVentana.menuItemMenu.Items.Add(item3);
 
-            MenuFlyoutItem item4 = new MenuFlyoutItem
+            MenuFlyoutItem2 item4 = new MenuFlyoutItem2
             {
                 Text = recursos.GetString("MenuPatchNotes"),
                 Foreground = new SolidColorBrush((Color)Application.Current.Resources["ColorFuente"]),
@@ -89,6 +95,8 @@ namespace Interfaz
             };
 
             item4.Click += BotonAbrirNotasParche;
+            item4.PointerEntered += Animaciones.EntraRatonMenuFlyoutItem2;
+            item4.PointerExited += Animaciones.SaleRatonMenuFlyoutItem2;
 
             ObjetosVentana.menuItemMenu.Items.Add(item4);
 
@@ -105,7 +113,7 @@ namespace Interfaz
 
             //--------------------------------------------------------------------
 
-            MenuFlyoutItem item5 = new MenuFlyoutItem
+            MenuFlyoutItem2 item5 = new MenuFlyoutItem2
             {
                 Text = "pepeizqapps.com",
                 Foreground = new SolidColorBrush((Color)Application.Current.Resources["ColorFuente"]),
@@ -114,10 +122,12 @@ namespace Interfaz
             };
 
             item5.Click += BotonAbrirWeb1;
+            item5.PointerEntered += Animaciones.EntraRatonMenuFlyoutItem2;
+            item5.PointerExited += Animaciones.SaleRatonMenuFlyoutItem2;
 
             ObjetosVentana.menuItemMenu.Items.Add(item5);
 
-            MenuFlyoutItem item6 = new MenuFlyoutItem
+            MenuFlyoutItem2 item6 = new MenuFlyoutItem2
             {
                 Text = "pepeizqdeals.com",
                 Foreground = new SolidColorBrush((Color)Application.Current.Resources["ColorFuente"]),
@@ -126,6 +136,8 @@ namespace Interfaz
             };
 
             item6.Click += BotonAbrirWeb2;
+            item6.PointerEntered += Animaciones.EntraRatonMenuFlyoutItem2;
+            item6.PointerExited += Animaciones.SaleRatonMenuFlyoutItem2;
 
             ObjetosVentana.menuItemMenu.Items.Add(item6);
 
@@ -142,7 +154,7 @@ namespace Interfaz
 
             //--------------------------------------------------------------------
 
-            MenuFlyoutItem item7 = new MenuFlyoutItem
+            MenuFlyoutItem2 item7 = new MenuFlyoutItem2
             {
                 Text = recursos.GetString("MenuExit"),
                 Foreground = new SolidColorBrush((Color)Application.Current.Resources["ColorFuente"]),
@@ -151,6 +163,8 @@ namespace Interfaz
             };
 
             item7.Click += BotonCerrarApp;
+            item7.PointerEntered += Animaciones.EntraRatonMenuFlyoutItem2;
+            item7.PointerExited += Animaciones.SaleRatonMenuFlyoutItem2;
 
             ObjetosVentana.menuItemMenu.Items.Add(item7);
         }

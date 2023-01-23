@@ -4,7 +4,6 @@ using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.Windows.ApplicationModel.Resources;
-using System.Security.Cryptography;
 using Windows.UI;
 using static Widgets_Games.MainWindow;
 
@@ -20,8 +19,8 @@ namespace Interfaz
             ObjetosVentana.nvPrincipal.MenuItems.Insert(0, ObjetosVentana.nvItemMenu);
 
             ObjetosVentana.nvItemMenu.PointerEntered += EntraRatonNvItemMenu;
-            ObjetosVentana.nvItemMenu.PointerEntered += Animaciones.EntraRatonNvItem;
-            ObjetosVentana.nvItemMenu.PointerExited += Animaciones.SaleRatonNvItem;
+            ObjetosVentana.nvItemMenu.PointerEntered += Animaciones.EntraRatonNvItem2;
+            ObjetosVentana.nvItemMenu.PointerExited += Animaciones.SaleRatonNvItem2;
 
             TextBlock tbOpcionesTt = new TextBlock
             {
@@ -31,17 +30,17 @@ namespace Interfaz
             ToolTipService.SetToolTip(ObjetosVentana.nvItemOpciones, tbOpcionesTt);
             ToolTipService.SetPlacement(ObjetosVentana.nvItemOpciones, PlacementMode.Bottom);
 
-            ObjetosVentana.nvItemOpciones.PointerEntered += Animaciones.EntraRatonNvItem;
-            ObjetosVentana.nvItemOpciones.PointerExited += Animaciones.SaleRatonNvItem;
+            ObjetosVentana.nvItemOpciones.PointerEntered += Animaciones.EntraRatonNvItem2;
+            ObjetosVentana.nvItemOpciones.PointerExited += Animaciones.SaleRatonNvItem2;
         }
 
         public static void Visibilidad(Grid grid, bool nv, StackPanel sp, bool mostrarNombre)
         {
             foreach (var item in ObjetosVentana.nvPrincipal.MenuItems)
             {
-                if (item.GetType() == typeof(StackPanel))
+                if (item.GetType() == typeof(StackPanel2))
                 {
-                    StackPanel spItem = item as StackPanel;
+                    StackPanel2 spItem = item as StackPanel2;
 
                     if (spItem.Children.Count > 0)
                     {
@@ -97,7 +96,7 @@ namespace Interfaz
 
         public static void CreadorItems(string imagenEnlace, string nombre)
         {
-            StackPanel sp = new StackPanel
+            StackPanel2 sp = new StackPanel2
             {
                 CornerRadius = new CornerRadius(3),
                 Padding = new Thickness(5),
@@ -105,8 +104,8 @@ namespace Interfaz
                 Height = 30
             };
 
-            sp.PointerEntered += Animaciones.EntraRatonStackpanel;
-            sp.PointerExited += Animaciones.SaleRatonStackpanel;
+            sp.PointerEntered += Animaciones.EntraRatonStackPanel2;
+            sp.PointerExited += Animaciones.SaleRatonStackPanel2;
 
             ImageEx imagen = new ImageEx
             {

@@ -1,4 +1,6 @@
-﻿using Microsoft.UI;
+﻿using FontAwesome5;
+using Microsoft.UI;
+using Microsoft.UI.Input;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
@@ -9,48 +11,16 @@ namespace Interfaz
 {
     public static class Animaciones
     {
-        public static void EntraRatonGrid(object sender, PointerRoutedEventArgs e)
+        public static void EntraRatonNvItem2(object sender, PointerRoutedEventArgs e)
         {
             SolidColorBrush fondo = new SolidColorBrush((Color)Application.Current.Resources["ColorFuente"])
             {
                 Opacity = 0.2
             };
 
-            Grid grid = sender as Grid;
-            grid.Background = fondo;
-        }
+            NavigationViewItem2 nvItem = sender as NavigationViewItem2;
+            nvItem.CambiarCursor(InputSystemCursor.Create(InputSystemCursorShape.Hand));
 
-        public static void SaleRatonGrid(object sender, PointerRoutedEventArgs e)
-        {
-            Grid grid = sender as Grid;
-            grid.Background = new SolidColorBrush(Colors.Transparent);
-        }
-
-        public static void EntraRatonStackpanel(object sender, PointerRoutedEventArgs e)
-        {
-            SolidColorBrush fondo = new SolidColorBrush((Color)Application.Current.Resources["ColorFuente"])
-            {
-                Opacity = 0.2
-            };
-
-            StackPanel sp = sender as StackPanel;
-            sp.Background = fondo;
-        }
-
-        public static void SaleRatonStackpanel(object sender, PointerRoutedEventArgs e)
-        {
-            StackPanel sp = sender as StackPanel;
-            sp.Background = new SolidColorBrush(Colors.Transparent);
-        }
-
-        public static void EntraRatonNvItem(object sender, PointerRoutedEventArgs e)
-        {
-            SolidColorBrush fondo = new SolidColorBrush((Color)Application.Current.Resources["ColorFuente"])
-            {
-                Opacity = 0.2
-            };
-
-            NavigationViewItem nvItem = sender as NavigationViewItem;
             Grid grid = nvItem.Content as Grid;
             grid.Background = fondo;
 
@@ -64,9 +34,11 @@ namespace Interfaz
             }
         }
 
-        public static void SaleRatonNvItem(object sender, PointerRoutedEventArgs e)
+        public static void SaleRatonNvItem2(object sender, PointerRoutedEventArgs e)
         {
-            NavigationViewItem nvItem = sender as NavigationViewItem;
+            NavigationViewItem2 nvItem = sender as NavigationViewItem2;
+            nvItem.CambiarCursor(InputSystemCursor.Create(InputSystemCursorShape.Arrow));
+
             Grid grid = nvItem.Content as Grid;
             grid.Background = new SolidColorBrush(Colors.Transparent);
 
@@ -80,34 +52,98 @@ namespace Interfaz
             }
         }
 
-        public static void EntraRatonBoton(object sender, PointerRoutedEventArgs e)
+        public static void EntraRatonBoton2(object sender, PointerRoutedEventArgs e)
         {
-            Button boton = sender as Button;
-            Grid grid = boton.Content as Grid;
+            Button2 boton = sender as Button2;
+            boton.CambiarCursor(InputSystemCursor.Create(InputSystemCursorShape.Hand));
 
-            if (grid.Children[0] != null)
+            if (boton.Content.GetType() == typeof(StackPanel))
             {
-                if (grid.Children[0].GetType() == typeof(TextBlock))
+                StackPanel sp = boton.Content as StackPanel;
+
+                foreach (object objeto in sp.Children)
                 {
-                    TextBlock tb = grid.Children[0] as TextBlock;
-                    tb.Foreground = new SolidColorBrush((Color)Application.Current.Resources["ColorPrimario"]);
+                    if (objeto.GetType() == typeof(TextBlock))
+                    {
+                        TextBlock tb = objeto as TextBlock;
+                        tb.Foreground = new SolidColorBrush((Color)Application.Current.Resources["ColorPrimario"]);
+                    }
+                    else if (objeto.GetType() == typeof(FontAwesome))
+                    {
+                        FontAwesome icono = objeto as FontAwesome;
+                        icono.Foreground = new SolidColorBrush((Color)Application.Current.Resources["ColorPrimario"]);
+                    }
                 }
             }
         }
 
-        public static void SaleRatonBoton(object sender, PointerRoutedEventArgs e)
+        public static void SaleRatonBoton2(object sender, PointerRoutedEventArgs e)
         {
-            Button boton = sender as Button;
-            Grid grid = boton.Content as Grid;
+            Button2 boton = sender as Button2;
+            boton.CambiarCursor(InputSystemCursor.Create(InputSystemCursorShape.Arrow));
 
-            if (grid.Children[0] != null)
+            if (boton.Content.GetType() == typeof(StackPanel))
             {
-                if (grid.Children[0].GetType() == typeof(TextBlock))
+                StackPanel sp = boton.Content as StackPanel;
+
+                foreach (object objeto in sp.Children)
                 {
-                    TextBlock tb = grid.Children[0] as TextBlock;
-                    tb.Foreground = new SolidColorBrush((Color)Application.Current.Resources["ColorFuente"]);
+                    if (objeto.GetType() == typeof(TextBlock))
+                    {
+                        TextBlock tb = objeto as TextBlock;
+                        tb.Foreground = new SolidColorBrush((Color)Application.Current.Resources["ColorFuente"]);
+                    }
+                    else if (objeto.GetType() == typeof(FontAwesome))
+                    {
+                        FontAwesome icono = objeto as FontAwesome;
+                        icono.Foreground = new SolidColorBrush((Color)Application.Current.Resources["ColorFuente"]);
+                    }
                 }
             }
+        }
+
+        public static void EntraRatonComboCaja2(object sender, PointerRoutedEventArgs e)
+        {
+            ComboBox2 cb = sender as ComboBox2;
+            cb.CambiarCursor(InputSystemCursor.Create(InputSystemCursorShape.Hand));
+        }
+
+        public static void SaleRatonComboCaja2(object sender, PointerRoutedEventArgs e)
+        {
+            ComboBox2 cb = sender as ComboBox2;
+            cb.CambiarCursor(InputSystemCursor.Create(InputSystemCursorShape.Arrow));
+        }
+
+        public static void EntraRatonStackPanel2(object sender, PointerRoutedEventArgs e)
+        {
+            StackPanel2 sp = sender as StackPanel2;
+            sp.CambiarCursor(InputSystemCursor.Create(InputSystemCursorShape.Hand));
+
+            SolidColorBrush fondo = new SolidColorBrush((Color)Application.Current.Resources["ColorFuente"])
+            {
+                Opacity = 0.2
+            };
+
+            sp.Background = fondo;
+        }
+
+        public static void SaleRatonStackPanel2(object sender, PointerRoutedEventArgs e)
+        {
+            StackPanel2 sp = sender as StackPanel2;
+            sp.CambiarCursor(InputSystemCursor.Create(InputSystemCursorShape.Arrow));
+            sp.Background = new SolidColorBrush(Colors.Transparent);
+        }
+
+        public static void EntraRatonMenuFlyoutItem2(object sender, PointerRoutedEventArgs e)
+        {
+            MenuFlyoutItem2 item = sender as MenuFlyoutItem2;
+            item.CambiarCursor(InputSystemCursor.Create(InputSystemCursorShape.Hand));
+        }
+
+        public static void SaleRatonMenuFlyoutItem2(object sender, PointerRoutedEventArgs e)
+        {
+            MenuFlyoutItem2 item = sender as MenuFlyoutItem2;
+            item.CambiarCursor(InputSystemCursor.Create(InputSystemCursorShape.Arrow));
         }
     }
 }

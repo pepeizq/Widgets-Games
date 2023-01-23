@@ -107,23 +107,33 @@ namespace Plataformas
                             IsCacheEnabled = true,
                             EnableLazyLoading = true,
                             Stretch = Stretch.UniformToFill,
-                            Source = juego.imagenGrande
+                            Source = juego.imagenGrande,
+                            CornerRadius = new CornerRadius(2)
                         };
 
-                        Button botonJuego = new Button
+                        Button2 botonJuego = new Button2
                         {
                             Content = imagen,
-                            Margin = new Thickness(10),
+                            Margin = new Thickness(0),
                             Padding = new Thickness(0),
                             BorderBrush = new SolidColorBrush((Color)Application.Current.Resources["ColorPrimario"]),
                             BorderThickness = new Thickness(2),
                             Tag = juego,
-                            MaxWidth = 300
+                            MaxWidth = 300,
+                            CornerRadius = new CornerRadius(5)
                         };
 
                         botonJuego.Click += ImagenJuegoClick;
+                        botonJuego.PointerEntered += Animaciones.EntraRatonBoton2;
+                        botonJuego.PointerExited += Animaciones.SaleRatonBoton2;
 
-                        ObjetosVentana.gvAmazonJuegosInstalados.Items.Add(botonJuego);
+                        GridViewItem item = new GridViewItem
+                        {
+                            Content = botonJuego,
+                            Margin = new Thickness(5, 0, 5, 10)
+                        };
+
+                        ObjetosVentana.gvAmazonJuegosInstalados.Items.Add(item);
                     }
                 }
                 else

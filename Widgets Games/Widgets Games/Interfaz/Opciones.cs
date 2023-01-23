@@ -17,6 +17,11 @@ namespace Interfaz
     {
         public static void CargarDatos()
         {
+            ObjetosVentana.nvItemOpciones.PointerEntered += Animaciones.EntraRatonNvItem2;
+            ObjetosVentana.nvItemOpciones.PointerExited += Animaciones.SaleRatonNvItem2;
+
+            //---------------------------------
+
             ApplicationDataContainer datos = ApplicationData.Current.LocalSettings;
 
             IReadOnlyList<string> idiomasApp = ApplicationLanguages.ManifestLanguages;
@@ -56,7 +61,10 @@ namespace Interfaz
             }
 
             ApplicationLanguages.PrimaryLanguageOverride = ObjetosVentana.cbOpcionesIdioma.SelectedItem.ToString();
+          
             ObjetosVentana.cbOpcionesIdioma.SelectionChanged += CbOpcionIdioma;
+            ObjetosVentana.cbOpcionesIdioma.PointerEntered += Animaciones.EntraRatonComboCaja2;
+            ObjetosVentana.cbOpcionesIdioma.PointerExited += Animaciones.SaleRatonComboCaja2;
 
             //---------------------------------
 
@@ -66,11 +74,15 @@ namespace Interfaz
             }
 
             ObjetosVentana.cbOpcionesPantalla.SelectionChanged += CbOpcionPantalla;
+            ObjetosVentana.cbOpcionesPantalla.PointerEntered += Animaciones.EntraRatonComboCaja2;
+            ObjetosVentana.cbOpcionesPantalla.PointerExited += Animaciones.SaleRatonComboCaja2;
             ObjetosVentana.cbOpcionesPantalla.SelectedIndex = (int)datos.Values["OpcionesPantalla"];
 
             //---------------------------------
 
             ObjetosVentana.botonOpcionesLimpiar.Click += BotonOpcionLimpiar;
+            ObjetosVentana.botonOpcionesLimpiar.PointerEntered += Animaciones.EntraRatonBoton2;
+            ObjetosVentana.botonOpcionesLimpiar.PointerExited += Animaciones.SaleRatonBoton2;
         }
 
         public static void CbOpcionIdioma(object sender, SelectionChangedEventArgs e)

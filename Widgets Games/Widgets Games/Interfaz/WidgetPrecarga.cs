@@ -17,8 +17,18 @@ namespace Interfaz
             ObjetosVentana.tbWidgetPrecargaImagenGrande.TextChanged += ActualizarImagenGrande;
 
             ObjetosVentana.cbWidgetPrecargaImagen.SelectionChanged += CambiarImagenElegida;
+            ObjetosVentana.cbWidgetPrecargaImagen.PointerEntered += Animaciones.EntraRatonComboCaja2;
+            ObjetosVentana.cbWidgetPrecargaImagen.PointerExited += Animaciones.SaleRatonComboCaja2;
+
+            ObjetosVentana.cbWidgetPrecargaImagenOrientacionHorizontal.PointerEntered += Animaciones.EntraRatonComboCaja2;
+            ObjetosVentana.cbWidgetPrecargaImagenOrientacionHorizontal.PointerExited += Animaciones.SaleRatonComboCaja2;
+
+            ObjetosVentana.cbWidgetPrecargaImagenOrientacionVertical.PointerEntered += Animaciones.EntraRatonComboCaja2;
+            ObjetosVentana.cbWidgetPrecargaImagenOrientacionVertical.PointerExited += Animaciones.SaleRatonComboCaja2;
 
             ObjetosVentana.botonWidgetPrecargaCargarJuego.Click += CargarJuego;
+            ObjetosVentana.botonWidgetPrecargaCargarJuego.PointerEntered += Animaciones.EntraRatonBoton2;
+            ObjetosVentana.botonWidgetPrecargaCargarJuego.PointerExited += Animaciones.SaleRatonBoton2;
         }
 
         private static void ActivarBotonCargaJuego(object sender, TextChangedEventArgs e)

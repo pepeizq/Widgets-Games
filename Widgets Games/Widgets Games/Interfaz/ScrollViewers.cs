@@ -11,8 +11,8 @@ namespace Interfaz
         public static void Cargar()
         {
             ObjetosVentana.nvItemSubirArriba.PointerPressed += SubirArriba;
-            ObjetosVentana.nvItemSubirArriba.PointerEntered += Animaciones.EntraRatonNvItem;
-            ObjetosVentana.nvItemSubirArriba.PointerExited += Animaciones.SaleRatonNvItem;
+            ObjetosVentana.nvItemSubirArriba.PointerEntered += Animaciones.EntraRatonNvItem2;
+            ObjetosVentana.nvItemSubirArriba.PointerExited += Animaciones.SaleRatonNvItem2;
 
             ObjetosVentana.svPresentacion.ViewChanging += svScroll;
             ObjetosVentana.svSteamJuegosInstalados.ViewChanging += svScroll;

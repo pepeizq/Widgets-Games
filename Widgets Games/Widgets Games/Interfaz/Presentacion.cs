@@ -9,15 +9,15 @@ namespace Interfaz
 {
     public static class Presentacion
     {
-        public static Button CreadorBotones(string imagenEnlace, string nombre, bool mostrarNombre)
+        public static GridViewItem CreadorBotones(string imagenEnlace, string nombre, bool mostrarNombre)
         {
-            Button boton = new Button
+            Button2 boton = new Button2
             {
                 Height = 80,
                 Width = 250,
                 Padding = new Thickness(20),
                 Background = new SolidColorBrush((Color)Application.Current.Resources["ColorPrimario"]),
-                Margin = new Thickness(10)
+                Margin = new Thickness(0)
             };
 
             StackPanel sp = new StackPanel
@@ -51,6 +51,9 @@ namespace Interfaz
 
             boton.Content = sp;
 
+            boton.PointerEntered += Animaciones.EntraRatonBoton2;
+            boton.PointerExited += Animaciones.SaleRatonBoton2;
+
             if (nombre != null)
             {
                 TextBlock tbTt = new TextBlock
@@ -62,7 +65,13 @@ namespace Interfaz
                 ToolTipService.SetPlacement(boton, PlacementMode.Bottom);
             }
 
-            return boton;
+            GridViewItem item = new GridViewItem
+            {
+                Content = boton,
+                Margin = new Thickness(10)
+            };
+
+            return item;
         }
     }
 }
