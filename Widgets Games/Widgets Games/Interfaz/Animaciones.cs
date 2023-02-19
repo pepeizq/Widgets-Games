@@ -1,4 +1,4 @@
-﻿using FontAwesome5;
+﻿using FontAwesome6.Fonts;
 using Microsoft.UI;
 using Microsoft.UI.Input;
 using Microsoft.UI.Xaml;

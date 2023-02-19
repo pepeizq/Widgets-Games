@@ -1,4 +1,5 @@
-﻿using FontAwesome5;
+﻿using FontAwesome6;
+using FontAwesome6.Fonts;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media;
