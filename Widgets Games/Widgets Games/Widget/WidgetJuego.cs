@@ -1,4 +1,5 @@
 ﻿using Herramientas;
+using Interfaz;
 using Microsoft.Windows.Widgets.Providers;
 using Plantillas;
 using System;
@@ -18,8 +19,7 @@ internal class WidgetJuego : WidgetBase
             string plantilla = Ficheros.LeerFicheroFueraAplicacion(ApplicationData.Current.LocalFolder.Path + "/Plantillas/Juego" + ID + ".json");
             Juego json = JsonSerializer.Deserialize<Juego>(plantilla);
 
-            if (json.enlace.Contains("steam://rungameid/") == true || json.enlace.Contains("uplay://launch/") == true || 
-                json.enlace.Contains("amazon-games://play/") == true || json.enlace.Contains("com.epicgames.launcher://apps/") == true)
+            if (WidgetPrecarga.ComprobarURI(json.enlace) == true)
             {
                 await Launcher.LaunchUriAsync(new Uri(json.enlace));
             }

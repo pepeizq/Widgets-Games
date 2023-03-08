@@ -123,8 +123,14 @@
   <data name="Arguments.Text" xml:space="preserve">
     <value>Argumentos</value>
   </data>
-  <data name="BattlenetInstalledGamesMessage.Text" xml:space="preserve">
-    <value>Recuerda, para ejecutar el juego desde Widgets debes tenerlo instalado en la aplicación de Battle.net.</value>
+  <data name="Arguments2.Text" xml:space="preserve">
+    <value>Esta línea de texto contiene los argumentos que se ejecutarán con el juego al iniciar el widget</value>
+  </data>
+  <data name="BattlenetInstalledGamesMessage1.Text" xml:space="preserve">
+    <value>Recuerda</value>
+  </data>
+  <data name="BattlenetInstalledGamesMessage2.Text" xml:space="preserve">
+    <value>Para ejecutar el juego que selecciones desde Widgets, debes tenerlo instalado en la aplicación de Battle.net</value>
   </data>
   <data name="Bottom.Text" xml:space="preserve">
     <value>Abajo</value>
@@ -133,13 +139,7 @@
     <value>Centrada</value>
   </data>
   <data name="ChooseImage.Text" xml:space="preserve">
-    <value>Elige el tipo de imagen antes de precargar el Widget:</value>
-  </data>
-  <data name="ChooseImageBig" xml:space="preserve">
-    <value>La imagen grande se adapta mejor a los widgets de tamaño mediano y grande.</value>
-  </data>
-  <data name="ChooseImageSmall" xml:space="preserve">
-    <value>La imagen pequeña se adapta mejor al widget de tamaño pequeño.</value>
+    <value>Tipo de imagen que usará el widget</value>
   </data>
   <data name="Contact.Text" xml:space="preserve">
     <value>Contactar</value>
@@ -153,11 +153,20 @@
   <data name="Executable.Text" xml:space="preserve">
     <value>Ejecutable</value>
   </data>
+  <data name="Executable2.Text" xml:space="preserve">
+    <value>Esta línea de texto ejecutará el widget, puede ser un fichero.exe o un protocolo browser si la aplicación de la plataforma es compatible</value>
+  </data>
   <data name="ImageBig.Text" xml:space="preserve">
     <value>Imagen Grande</value>
   </data>
+  <data name="ImageBig2.Text" xml:space="preserve">
+    <value>Esta línea de texto contiene un enlace a una imagen en formato cuadrado o vertical, para encajar mejor en los widgets de tamaño medio y grande</value>
+  </data>
   <data name="ImageSmall.Text" xml:space="preserve">
     <value>Imagen Pequeña</value>
+  </data>
+  <data name="ImageSmall2.Text" xml:space="preserve">
+    <value>Esta línea de texto contiene un enlace a una imagen en formato 16:9, que encaja mejor en los widgets de tamaño pequeño</value>
   </data>
   <data name="Left.Text" xml:space="preserve">
     <value>Izquierda</value>
@@ -196,7 +205,10 @@
     <value>Limpiar Datos</value>
   </data>
   <data name="OptionsAppCleanInfo.Text" xml:space="preserve">
-    <value>Pulsa el botón para limpiar todos los datos generados por la aplicación, se reiniciará la aplicación.</value>
+    <value>Limpiar Datos</value>
+  </data>
+  <data name="OptionsAppCleanInfo2.Text" xml:space="preserve">
+    <value>Todos los datos y ficheros generados por la aplicación serán eliminados, cuando termine se reiniciará la aplicación como si fuera una instalación limpia</value>
   </data>
   <data name="OptionsAppWindow1.Text" xml:space="preserve">
     <value>Defecto</value>
@@ -208,13 +220,13 @@
     <value>Superpuesta</value>
   </data>
   <data name="OptionsAppWindowInfo.Text" xml:space="preserve">
-    <value>Selecciona en que modo quieres que la aplicación se muestre en Windows:</value>
-  </data>
-  <data name="OptionsLanguage.Text" xml:space="preserve">
-    <value>Idioma</value>
+    <value>Modo en el que se mostrará la aplicación en Windows</value>
   </data>
   <data name="OptionsLanguageInfo.Text" xml:space="preserve">
-    <value>Selecciona el idioma de la aplicación, es necesario un reinicio en la aplicación para efectuar el cambio.</value>
+    <value>Idioma de la aplicación</value>
+  </data>
+  <data name="OptionsLanguageInfo2.Text" xml:space="preserve">
+    <value>Es necesario un reinicio en la aplicación para efectuar el cambio</value>
   </data>
   <data name="PresentationMessage.Text" xml:space="preserve">
     <value>Selecciona la plataforma donde tienes el juego para añadir como widget:</value>
@@ -249,21 +261,27 @@ Una vez añadido el widget del juego, puedes ejecutarlo desde la app de Widgets.
     <value>Comprar Aplicación</value>
   </data>
   <data name="TrialMessage.Text" xml:space="preserve">
-    <value>Estás usando una version trial de la aplicación, solo podrás añadir 1 widget.</value>
+    <value>Estás usando una version trial de la aplicación, la única diferencia respecto a la versión comprada es que no aparecerá este mensaje molesto.</value>
   </data>
-  <data name="WidgetImageOrientation.Text" xml:space="preserve">
-    <value>Orientación de la imagen en el Widget:</value>
+  <data name="WidgetHelp.Text" xml:space="preserve">
+    <value>Ayuda</value>
+  </data>
+  <data name="WidgetHelp2.Text" xml:space="preserve">
+    <value>Si tienes dudas en como se añade el widget en la app, puedes consultar una guía en mi web</value>
   </data>
   <data name="WidgetImageOrientationHorizontal.Text" xml:space="preserve">
-    <value>Horizontal</value>
+    <value>Orientación horizontal de la imagen</value>
   </data>
   <data name="WidgetImageOrientationVertical.Text" xml:space="preserve">
-    <value>Vertical</value>
+    <value>Orientación vertical de la imagen</value>
   </data>
   <data name="WidgetLoadGame.Text" xml:space="preserve">
     <value>Cargar juego en la app Widgets</value>
   </data>
   <data name="WidgetLoadGameMessage" xml:space="preserve">
     <value>Cargado widget del juego, abre la app Widgets y añade el widget del juego desde 'Añadir Widgets'.</value>
+  </data>
+  <data name="WidgetOpenHelp.Text" xml:space="preserve">
+    <value>Abrir Guía</value>
   </data>
 </root>

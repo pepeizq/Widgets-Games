@@ -23,6 +23,7 @@ namespace Widgets_Games
             Interfaz.Menu.Cargar();
             Trial.Cargar();
             Steam.Cargar();
+            Battlenet.Cargar();
             EAPlay.Cargar();
             Ubisoft.Cargar();
             EpicGames.Cargar();
@@ -102,7 +103,8 @@ namespace Widgets_Games
 
             //-------------------------------------------------------------------
 
-            ObjetosVentana.spBattlenetJuegosInstaladosMensaje = spBattlenetJuegosInstaladosMensaje;
+            ObjetosVentana.gridBattlenetMensajeSiJuegos = gridBattlenetMensajeSiJuegos;
+            ObjetosVentana.botonBattlenetCerrarMensajeSiJuegos = botonBattlenetCerrarMensajeSiJuegos;
             ObjetosVentana.svBattlenetJuegosInstalados = svBattlenetJuegosInstalados;
             ObjetosVentana.prBattlenetJuegosInstalados = prBattlenetJuegosInstalados;
             ObjetosVentana.gvBattlenetJuegosInstalados = gvBattlenetJuegosInstalados;
@@ -127,25 +129,28 @@ namespace Widgets_Games
 
             //-------------------------------------------------------------------
 
+            ObjetosVentana.spWidgetPrecargaBotones = spWidgetPrecargaBotones;
             ObjetosVentana.svWidgetPrecarga = svWidgetPrecarga;
+            ObjetosVentana.spWidgetPrecargaPestañas = spWidgetPrecargaPestanas;
             ObjetosVentana.tbWidgetPrecargaTitulo = tbWidgetPrecargaTitulo;
-            ObjetosVentana.expanderWidgetPrecargaDatos = expanderWidgetPrecargaDatos;
             ObjetosVentana.tbWidgetPrecargaEjecutable = tbWidgetPrecargaEjecutable;
+            ObjetosVentana.spWidgetPrecargaArgumentosSeccion = spWidgetPrecargaArgumentosSeccion;
             ObjetosVentana.tbWidgetPrecargaArgumentos = tbWidgetPrecargaArgumentos;
-            ObjetosVentana.tbWidgetPrecargaImagenPequeña = tbWidgetPrecargaPequena;
-            ObjetosVentana.tbWidgetPrecargaImagenGrande = tbWidgetPrecargaGrande;
-            ObjetosVentana.expanderWidgetPrecargaPersonalizacion = expanderWidgetPrecargaPersonalizacion;
+            ObjetosVentana.tbWidgetPrecargaImagenPequeña = tbWidgetPrecargaImagenPequena;
+            ObjetosVentana.tbWidgetPrecargaImagenGrande = tbWidgetPrecargaImagenGrande;
             ObjetosVentana.cbWidgetPrecargaImagen = cbWidgetPrecargaImagen;
-            ObjetosVentana.tbWidgetPrecargaMensajeImagen = tbWidgetPrecargaMensajeImagen;
             ObjetosVentana.imagenWidgetPrecargaElegida = imagenWidgetPrecargaElegida;
             ObjetosVentana.cbWidgetPrecargaImagenOrientacionHorizontal = cbWidgetPrecargaImagenOrientacionHorizontal;
             ObjetosVentana.cbWidgetPrecargaImagenOrientacionVertical = cbWidgetPrecargaImagenOrientacionVertical;
             ObjetosVentana.botonWidgetPrecargaCargarJuego = botonWidgetPrecargaCargarJuego;
             ObjetosVentana.tbWidgetCargarJuegoMensaje = tbWidgetCargarJuegoMensaje;
+            ObjetosVentana.botonWidgetPrecargaAbrirAyuda = botonWidgetPrecargaAbrirAyuda;
 
             //-------------------------------------------------------------------
 
+            ObjetosVentana.spOpcionesBotones = spOpcionesBotones;
             ObjetosVentana.svOpciones = svOpciones;
+            ObjetosVentana.spOpcionesPestañas = spOpcionesPestanas;
             ObjetosVentana.cbOpcionesIdioma = cbOpcionesIdioma;
             ObjetosVentana.cbOpcionesPantalla = cbOpcionesPantalla;
             ObjetosVentana.botonOpcionesLimpiar = botonOpcionesLimpiar;
@@ -221,7 +226,8 @@ namespace Widgets_Games
 
             //-------------------------------------------------------------------
 
-            public static StackPanel spBattlenetJuegosInstaladosMensaje { get; set; }
+            public static Grid gridBattlenetMensajeSiJuegos { get; set; }
+            public static Button botonBattlenetCerrarMensajeSiJuegos { get; set; }
             public static ScrollViewer svBattlenetJuegosInstalados { get; set; }
             public static ProgressRing prBattlenetJuegosInstalados { get; set; }
             public static AdaptiveGridView gvBattlenetJuegosInstalados { get; set; }
@@ -246,25 +252,28 @@ namespace Widgets_Games
 
             //-------------------------------------------------------------------
 
+            public static StackPanel spWidgetPrecargaBotones { get; set; }
             public static ScrollViewer svWidgetPrecarga { get; set; }
+            public static StackPanel spWidgetPrecargaPestañas { get; set; }
             public static TextBlock tbWidgetPrecargaTitulo { get; set; }
-            public static Microsoft.UI.Xaml.Controls.Expander expanderWidgetPrecargaDatos { get; set; }
             public static TextBox tbWidgetPrecargaEjecutable { get; set; }
+            public static StackPanel spWidgetPrecargaArgumentosSeccion { get; set; }
             public static TextBox tbWidgetPrecargaArgumentos { get; set; }
             public static TextBox tbWidgetPrecargaImagenPequeña { get; set; }
             public static TextBox tbWidgetPrecargaImagenGrande { get; set; }
-            public static Microsoft.UI.Xaml.Controls.Expander expanderWidgetPrecargaPersonalizacion { get; set; }
             public static ComboBox cbWidgetPrecargaImagen { get; set; }
-            public static TextBlock tbWidgetPrecargaMensajeImagen { get; set; }
             public static ImageEx imagenWidgetPrecargaElegida { get; set; }
             public static ComboBox cbWidgetPrecargaImagenOrientacionHorizontal { get; set; }
             public static ComboBox cbWidgetPrecargaImagenOrientacionVertical { get; set; }
             public static Button botonWidgetPrecargaCargarJuego { get; set; }
             public static TextBlock tbWidgetCargarJuegoMensaje { get; set; }
+            public static Button botonWidgetPrecargaAbrirAyuda { get; set; }
 
             //-------------------------------------------------------------------
 
+            public static StackPanel spOpcionesBotones { get; set; }
             public static ScrollViewer svOpciones { get; set; }
+            public static StackPanel spOpcionesPestañas { get; set; }
             public static ComboBox cbOpcionesIdioma { get; set; }
             public static ComboBox cbOpcionesPantalla { get; set; }
             public static Button botonOpcionesLimpiar { get; set; }
@@ -285,42 +294,42 @@ namespace Widgets_Games
 
             //----------------------------------------------------------
 
-            GridViewItem itemSteam = Presentacion.CreadorBotones("/Assets/Plataformas/logo_steam_completo.png", "Steam", false);
+            GridViewItem itemSteam = Presentacion.CreadorBotones("/Assets/Plataformas/logo_steam_completo.png", "Steam", false, 20);
             Button2 botonSteam = itemSteam.Content as Button2;
             botonSteam.Click += AbrirSteamClick;
             ObjetosVentana.gvPresentacionPlataformas.Items.Add(itemSteam);
 
-            GridViewItem itemGOG = Presentacion.CreadorBotones("/Assets/Plataformas/logo_gog.png", "GOG", false);
+            GridViewItem itemGOG = Presentacion.CreadorBotones("/Assets/Plataformas/logo_gog.png", "GOG", false, 20);
             Button2 botonGOG = itemGOG.Content as Button2;
             botonGOG.Click += AbrirGOGClick;
             ObjetosVentana.gvPresentacionPlataformas.Items.Add(itemGOG);
 
-            GridViewItem itemEAPlay = Presentacion.CreadorBotones("/Assets/Plataformas/logo_eaplay_completo.png", "EA Play", false);
+            GridViewItem itemEAPlay = Presentacion.CreadorBotones("/Assets/Plataformas/logo_eaplay_completo.png", "EA Play", false, 20);
             Button2 botonEAPlay = itemEAPlay.Content as Button2;
             botonEAPlay.Click += AbrirEAPlayClick;
             ObjetosVentana.gvPresentacionPlataformas.Items.Add(itemEAPlay);
 
-            GridViewItem itemUbisoft = Presentacion.CreadorBotones("/Assets/Plataformas/logo_ubisoft_completo.png", "Ubisoft Connect", false);
+            GridViewItem itemUbisoft = Presentacion.CreadorBotones("/Assets/Plataformas/logo_ubisoft_completo.png", "Ubisoft Connect", false, 20);
             Button2 botonUbisoft = itemUbisoft.Content as Button2;
             botonUbisoft.Click += AbrirUbisoftClick;
             ObjetosVentana.gvPresentacionPlataformas.Items.Add(itemUbisoft);
 
-            GridViewItem itemBattlenet = Presentacion.CreadorBotones("/Assets/Plataformas/logo_battlenet_completo.png", "Battle.net", false);
+            GridViewItem itemBattlenet = Presentacion.CreadorBotones("/Assets/Plataformas/logo_battlenet_completo.png", "Battle.net", false, 20);
             Button2 botonBattlenet = itemBattlenet.Content as Button2;
             botonBattlenet.Click += AbrirBattlenetClick;
             ObjetosVentana.gvPresentacionPlataformas.Items.Add(itemBattlenet);
 
-            GridViewItem itemAmazon = Presentacion.CreadorBotones("/Assets/Plataformas/logo_amazon.png", "Amazon Games", false);
+            GridViewItem itemAmazon = Presentacion.CreadorBotones("/Assets/Plataformas/logo_amazon.png", "Amazon Games", false, 20);
             Button2 botonAmazon = itemAmazon.Content as Button2;
             botonAmazon.Click += AbrirAmazonClick;
             ObjetosVentana.gvPresentacionPlataformas.Items.Add(itemAmazon);
 
-            GridViewItem itemEpicGames = Presentacion.CreadorBotones("/Assets/Plataformas/logo_epicgames.png", "Epic Games", false);
+            GridViewItem itemEpicGames = Presentacion.CreadorBotones("/Assets/Plataformas/logo_epicgames.png", "Epic Games", false, 10);
             Button2 botonEpicGames = itemEpicGames.Content as Button2;
             botonEpicGames.Click += AbrirEpicGamesClick;
             ObjetosVentana.gvPresentacionPlataformas.Items.Add(itemEpicGames);
 
-            GridViewItem itemCualquierJuego = Presentacion.CreadorBotones("/Assets/Plataformas/logo_cualquierjuego.png", recursos.GetString("AnyGame"), true);
+            GridViewItem itemCualquierJuego = Presentacion.CreadorBotones("/Assets/Plataformas/logo_cualquierjuego.png", recursos.GetString("AnyGame"), true, 20);
             Button2 botonCualquierJuego = itemCualquierJuego.Content as Button2;
             botonCualquierJuego.Click += AbrirCualquierJuegoClick;
             ObjetosVentana.gvPresentacionPlataformas.Items.Add(itemCualquierJuego);
