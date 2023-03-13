@@ -120,6 +120,24 @@
   <data name="AnyGame" xml:space="preserve">
     <value>Any Game</value>
   </data>
+  <data name="AppClosingMessage1" xml:space="preserve">
+    <value>This application is open source and you can check it on Github, and if you have an account there I would appreciate a star</value>
+  </data>
+  <data name="AppClosingMessage2" xml:space="preserve">
+    <value>You can rate the app in the Microsoft Store, I'm not going to tell you how you should rate me but I hope you keep in mind that I'm the only developer with the app</value>
+  </data>
+  <data name="AppClosingMessage3" xml:space="preserve">
+    <value>You can check the latest updates that I have released for this application on my website, do not expect kilometric updates because only two hands work on this application</value>
+  </data>
+  <data name="AppClosingNo.Text" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="AppClosingQuestion.Text" xml:space="preserve">
+    <value>Do you want to close the application?</value>
+  </data>
+  <data name="AppClosingYes.Text" xml:space="preserve">
+    <value>Yes</value>
+  </data>
   <data name="Arguments.Text" xml:space="preserve">
     <value>Arguments</value>
   </data>
@@ -195,6 +213,9 @@
   <data name="NoGamesDetected.Text" xml:space="preserve">
     <value>No Games Detected</value>
   </data>
+  <data name="Open.Text" xml:space="preserve">
+    <value>Open</value>
+  </data>
   <data name="Options" xml:space="preserve">
     <value>Options</value>
   </data>
@@ -261,7 +282,7 @@ Once you've added a game widget you can run it from the Widget app.</value>
     <value>Buy App</value>
   </data>
   <data name="TrialMessage.Text" xml:space="preserve">
-    <value>You are using a trial version of the app, the only difference with respect to the purchased version is that this annoying message will not appear.</value>
+    <value>You are using a trial version of the app, the only difference with respect to the purchased version is that this annoying message will not appear</value>
   </data>
   <data name="WidgetHelp.Text" xml:space="preserve">
     <value>Help</value>

@@ -56,7 +56,7 @@ namespace Interfaz
 
         public static async void BotonAbrirCompra(object sender, RoutedEventArgs e)
         {
-            await Launcher.LaunchUriAsync(new Uri("ms-windows-store://pdp/?ProductId=9N6RH8C536LS"));
+            await Launcher.LaunchUriAsync(new Uri("ms-windows-store://pdp/?ProductId=" + AppDatos.IDTienda));
         }
     }
 }
