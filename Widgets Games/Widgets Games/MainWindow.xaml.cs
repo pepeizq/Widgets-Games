@@ -23,7 +23,6 @@ namespace Widgets_Games
             Pestañas.Cargar();
             ScrollViewers.Cargar();
             Interfaz.Menu.Cargar();
-            Trial.Cargar();
             Steam.Cargar();
             Battlenet.Cargar();
             EAPlay.Cargar();
@@ -72,8 +71,6 @@ namespace Widgets_Games
 
             ObjetosVentana.svPresentacion = svPresentacion;
             ObjetosVentana.gvPresentacionPlataformas = gvPresentacionPlataformas;
-            ObjetosVentana.spPresentacionTrial = spPresentacionTrial;
-            ObjetosVentana.botonPresentacionTrialComprar = botonPresentacionTrialComprar;
 
             //-------------------------------------------------------------------
 
@@ -204,8 +201,6 @@ namespace Widgets_Games
 
             public static ScrollViewer svPresentacion { get; set; }
             public static AdaptiveGridView gvPresentacionPlataformas { get; set; }
-            public static StackPanel spPresentacionTrial { get; set; }
-            public static Button botonPresentacionTrialComprar { get; set; }
 
             //-------------------------------------------------------------------
 

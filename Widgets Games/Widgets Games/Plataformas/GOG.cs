@@ -24,37 +24,40 @@ namespace Plataformas
 
             RegistryKey registro = Registry.LocalMachine.OpenSubKey("SOFTWARE\\WOW6432Node\\GOG.com\\Games");
 
-            foreach (string id in registro.GetSubKeyNames()) 
+            if (registro != null)
             {
-                RegistryKey registroJuego = Registry.LocalMachine.OpenSubKey("SOFTWARE\\WOW6432Node\\GOG.com\\Games\\" + id);
-                
-                if (registroJuego.GetValue("exe") != null)
-                {
-                    string ejecutable = registroJuego.GetValue("exe").ToString().Trim();
-                    string argumentos = registroJuego.GetValue("launchParam").ToString().Trim();
-                    string nombre = registroJuego.GetValue("gameName").ToString().Trim();
+				foreach (string id in registro.GetSubKeyNames())
+				{
+					RegistryKey registroJuego = Registry.LocalMachine.OpenSubKey("SOFTWARE\\WOW6432Node\\GOG.com\\Games\\" + id);
 
-                    string html = await Decompiladores.CogerHtml("https://api.gog.com/products?ids=" + id);
+					if (registroJuego.GetValue("exe") != null)
+					{
+						string ejecutable = registroJuego.GetValue("exe").ToString().Trim();
+						string argumentos = registroJuego.GetValue("launchParam").ToString().Trim();
+						string nombre = registroJuego.GetValue("gameName").ToString().Trim();
 
-                    if (html != string.Empty)
-                    {
-                        List<GOGAPI> json = JsonConvert.DeserializeObject<List<GOGAPI>>(html);
+						string html = await Decompiladores.CogerHtml("https://api.gog.com/products?ids=" + id);
 
-                        if (json != null)
-                        {
-                            string imagen = json[0].imagenes.logo;
-                            imagen = imagen.Replace("_glx_logo", null);
+						if (html != string.Empty)
+						{
+							List<GOGAPI> json = JsonConvert.DeserializeObject<List<GOGAPI>>(html);
 
-                            if (imagen.Contains("https:") == false)
-                            {
-                                imagen = "https:" + imagen;
-                            }
+							if (json != null)
+							{
+								string imagen = json[0].imagenes.logo;
+								imagen = imagen.Replace("_glx_logo", null);
 
-                            listaJuegos.Add(new GOGJuego(id, nombre, ejecutable, argumentos, imagen));
-                        }
-                    }
-                }               
-            }
+								if (imagen.Contains("https:") == false)
+								{
+									imagen = "https:" + imagen;
+								}
+
+								listaJuegos.Add(new GOGJuego(id, nombre, ejecutable, argumentos, imagen));
+							}
+						}
+					}
+				}
+			}
 
             if (listaJuegos.Count > 0)
             {

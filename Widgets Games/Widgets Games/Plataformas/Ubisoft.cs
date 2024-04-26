@@ -38,26 +38,29 @@ namespace Plataformas
             List<string> listaIDsInstaladas = new List<string>();
             RegistryKey registro = Registry.LocalMachine.OpenSubKey("SOFTWARE\\WOW6432Node\\Ubisoft\\Launcher\\Installs");
 
-            foreach (string id in registro.GetSubKeyNames())
+            if (registro != null)
             {
-                bool añadir = true;
+				foreach (string id in registro.GetSubKeyNames())
+				{
+					bool añadir = true;
 
-                if (listaIDsInstaladas.Count > 0)
-                {
-                    foreach (string idInstalada in listaIDsInstaladas)
-                    {
-                        if (id == idInstalada)
-                        {
-                            añadir = false;
-                        }
-                    }
-                }
+					if (listaIDsInstaladas.Count > 0)
+					{
+						foreach (string idInstalada in listaIDsInstaladas)
+						{
+							if (id == idInstalada)
+							{
+								añadir = false;
+							}
+						}
+					}
 
-                if (añadir == true)
-                {
-                    listaIDsInstaladas.Add(id);
-                }
-            }
+					if (añadir == true)
+					{
+						listaIDsInstaladas.Add(id);
+					}
+				}
+			}
 
             if (listaIDsInstaladas.Count > 0)
             {
